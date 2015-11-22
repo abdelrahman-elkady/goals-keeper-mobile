@@ -36,3 +36,11 @@ proguard/
 
 # Log Files
 *.log
+
+.idea/.name
+.idea/misc.xml
+.idea/modules.xml
+app/app.iml
+
+goals-keeper-mobile.iml
+
