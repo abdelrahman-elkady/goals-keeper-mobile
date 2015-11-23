@@ -12,17 +12,24 @@ import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import goals_keeper.com.goalskeeperapp.R;
 import goals_keeper.com.goalskeeperapp.fragments.LoginFragment;
 
 public class MainActivity extends AppCompatActivity {
 
+    @Bind(R.id.toolbar_main)
+    Toolbar mToolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_main);
-        setSupportActionBar(toolbar);
+
+        ButterKnife.bind(this);
+
+        setSupportActionBar(mToolbar);
 
         // Handling status bar coloring in API 21+
         Window window = this.getWindow();
