@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">GoalsKeeperApp</string>
     <string name="action_settings">Settings</string>
+    <string name="about">About</string>
+
+    <string name="desc_placeholder_app_icon">app icon placeholder</string>
+
+    <string name="app_title">Goals keeper</string>
+    <string name="btn_facebook_login">Login with Facebook</string>
 </resources>
