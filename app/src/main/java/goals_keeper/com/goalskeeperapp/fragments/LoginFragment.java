@@ -1,9 +1,10 @@
 package goals_keeper.com.goalskeeperapp.fragments;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -38,7 +39,12 @@ public class LoginFragment extends Fragment {
         mFacebookLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Snackbar.make(view, "Welcome Back, Get a Snack !", Snackbar.LENGTH_LONG).show();
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+                HomeFragment homeFragment = new HomeFragment();
+                fragmentTransaction.replace(R.id.main_fragment_container, homeFragment);
+                fragmentTransaction.commit();
             }
         });
 
