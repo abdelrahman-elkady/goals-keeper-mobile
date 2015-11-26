@@ -27,6 +27,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         setSupportActionBar(mToolbar);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
 
