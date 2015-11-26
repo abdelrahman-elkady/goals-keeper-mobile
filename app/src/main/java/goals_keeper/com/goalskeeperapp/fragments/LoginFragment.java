@@ -30,11 +30,12 @@ public class LoginFragment extends Fragment {
         final View view = inflater.inflate(R.layout.fragment_login, container, false); // Inflating the fragment layout
 
         ButterKnife.bind(this, view);
-
+        final Intent intent = new Intent(this.getActivity(), ProfileActivity.class);
         mFacebookLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Snackbar.make(view, "Welcome Back, Get a Snack !", Snackbar.LENGTH_LONG).show();
+                startActivity(intent);
             }
         });
 
