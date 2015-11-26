@@ -3,20 +3,30 @@ package goals_keeper.com.goalskeeperapp.activities;
 import android.os.Bundle;
 import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import goals_keeper.com.goalskeeperapp.R;
 
 public class ProfileActivity extends AppCompatActivity {
+
+    @Bind(R.id.toolbar_profile)
+    Toolbar mToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        //getActionBar().setDisplayHomeAsUpEnabled(true);
+
+        ButterKnife.bind(this);
+
+        setSupportActionBar(mToolbar);
+
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -34,7 +44,7 @@ public class ProfileActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_profile) {
-            Toast.makeText(this,"Profile option pressed",Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Profile option pressed", Toast.LENGTH_LONG).show();
             return true;
         }
 
