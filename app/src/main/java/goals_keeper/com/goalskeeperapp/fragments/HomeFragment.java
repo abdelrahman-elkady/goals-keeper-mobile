@@ -1,6 +1,7 @@
 package goals_keeper.com.goalskeeperapp.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -8,12 +9,16 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import goals_keeper.com.goalskeeperapp.R;
+import goals_keeper.com.goalskeeperapp.activities.ProfileActivity;
 import goals_keeper.com.goalskeeperapp.adapters.HomePagerAdapter;
 
 /**
@@ -33,6 +38,12 @@ public class HomeFragment extends Fragment {
 
     Toolbar mToolbar;
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
+        super.onCreate(savedInstanceState);
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -51,5 +62,25 @@ public class HomeFragment extends Fragment {
         mHomeViewPager.setAdapter(mHomePageAdapter);
 
         return view;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+
+        menu.clear();
+        inflater.inflate(R.menu.menu_home, menu);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if(id ==R.id.action_profile)
+        {
+            final Intent intent = new Intent(this.getActivity(), ProfileActivity.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
