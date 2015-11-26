@@ -40,6 +40,7 @@ proguard/
 .idea/.name
 .idea/misc.xml
 .idea/modules.xml
+.idea/gradle.xml
 app/app.iml
 
 goals-keeper-mobile.iml

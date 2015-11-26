@@ -2,7 +2,6 @@ package goals_keeper.com.goalskeeperapp.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
@@ -21,7 +20,7 @@ import goals_keeper.com.goalskeeperapp.R;
  *
  * @author kady
  */
-public class LoginFragment extends Fragment {
+public class LoginFragment extends android.support.v4.app.Fragment {
 
     @Bind(R.id.btn_facebook_login)
     Button mFacebookLoginButton;
