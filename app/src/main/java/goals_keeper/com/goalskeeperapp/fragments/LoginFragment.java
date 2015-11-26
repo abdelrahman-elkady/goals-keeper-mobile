@@ -34,7 +34,6 @@ public class LoginFragment extends android.support.v4.app.Fragment {
         final View view = inflater.inflate(R.layout.fragment_login, container, false); // Inflating the fragment layout
 
         ButterKnife.bind(this, view);
-
         mFacebookLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
