@@ -108,8 +108,11 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:clickable="true"
-        android:src="@android:drawable/ic_menu_edit"
+        android:src="@drawable/ic_edit_white_24dp"
+        app:borderWidth="0dp"
+        app:elevation="10dp"
         app:layout_anchor="@id/imgview_profile"
-        app:layout_anchorGravity="bottom|right|end" />
+        app:layout_anchorGravity="bottom|right|end"
+        app:rippleColor="@color/rippleColor" />
 
 </android.support.design.widget.CoordinatorLayout>
