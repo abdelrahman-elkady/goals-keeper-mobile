@@ -7,13 +7,18 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import goals_keeper.com.goalskeeperapp.R;
+import goals_keeper.com.goalskeeperapp.fragments.HomeFragment;
 import goals_keeper.com.goalskeeperapp.fragments.LoginFragment;
 import goals_keeper.com.goalskeeperapp.fragments.ProfileFragment;
 
@@ -21,6 +26,8 @@ public class ProfileActivity extends AppCompatActivity {
 
     @Bind(R.id.toolbar_profile)
     Toolbar mToolbar;
+
+    private boolean hasOptionsMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,4 +68,7 @@ public class ProfileActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public void setHasOptionsMenu(boolean hasOptionsMenu) {
+        this.hasOptionsMenu = hasOptionsMenu;
+    }
 }
