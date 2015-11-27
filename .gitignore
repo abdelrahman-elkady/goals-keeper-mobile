@@ -41,6 +41,7 @@ proguard/
 .idea/misc.xml
 .idea/modules.xml
 .idea/gradle.xml
+.idea/vcs.xml
 app/app.iml
 
 goals-keeper-mobile.iml
