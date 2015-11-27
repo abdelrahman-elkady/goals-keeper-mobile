@@ -27,8 +27,6 @@ public class ProfileActivity extends AppCompatActivity {
     @Bind(R.id.toolbar_profile)
     Toolbar mToolbar;
 
-    private boolean hasOptionsMenu;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,7 +66,12 @@ public class ProfileActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void setHasOptionsMenu(boolean hasOptionsMenu) {
-        this.hasOptionsMenu = hasOptionsMenu;
+    @Override
+    public void onBackPressed() {
+        if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
+            this.finish();
+        } else {
+            getSupportFragmentManager().popBackStack();
+        }
     }
 }

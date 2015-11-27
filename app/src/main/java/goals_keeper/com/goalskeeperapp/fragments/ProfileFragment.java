@@ -21,7 +21,7 @@ import goals_keeper.com.goalskeeperapp.R;
  */
 public class ProfileFragment extends Fragment {
 
-    @Bind(R.id. fab_profile_edit)
+    @Bind(R.id.fab_profile_edit)
     FloatingActionButton mProfileEditFAB;
 
     @Nullable
@@ -40,7 +40,7 @@ public class ProfileFragment extends Fragment {
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
                 ProfileEditFragment profileEditFragment = new ProfileEditFragment();
-                fragmentTransaction.replace(R.id.profile_fragment_container,profileEditFragment);
+                fragmentTransaction.replace(R.id.profile_fragment_container, profileEditFragment).addToBackStack(null);
                 fragmentTransaction.commit();
             }
         });
