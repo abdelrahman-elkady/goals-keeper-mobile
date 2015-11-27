@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -22,10 +22,79 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <FrameLayout
+    <RelativeLayout
         android:id="@+id/profile_fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent" >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:weightSum="5">
+        <ImageView
+            android:id="@+id/imgview_profile"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/no_description"
+            android:scaleType="fitXY"
+            android:src="@drawable/profile_placeholder" />
+
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab_profile_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:src="@android:drawable/ic_menu_edit"
+                app:layout_anchor="@id/imgview_profile"
+
+                android:layout_gravity="right" />
+        </LinearLayout>
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/name_text"
+            android:text="Abdelrahman Mahmoud"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
 
 
-</LinearLayout>
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/age_text"
+            android:text="21 Years Old"
+            android:layout_below="@+id/name_text"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp" />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/city_text"
+            android:text="Giza"
+            android:layout_below="@+id/age_text"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/counrty_text"
+            android:text="Egypt"
+            android:layout_below="@+id/city_text"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp" />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/gender_text"
+            android:text="Male"
+            android:layout_below="@+id/counrty_text"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="10dp" />
+    </RelativeLayout>
+
+
+</RelativeLayout>
