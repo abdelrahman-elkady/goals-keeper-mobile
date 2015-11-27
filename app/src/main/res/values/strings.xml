@@ -4,6 +4,7 @@
     <string name="about">About</string>
 
     <string name="desc_placeholder_app_icon">app icon placeholder</string>
+    <string name="no_description">null</string>
 
     <string name="app_title">Goals keeper</string>
     <string name="btn_facebook_login">Login with Facebook</string>

@@ -2,6 +2,8 @@ package goals_keeper.com.goalskeeperapp.activities;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -12,6 +14,8 @@ import android.widget.Toast;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import goals_keeper.com.goalskeeperapp.R;
+import goals_keeper.com.goalskeeperapp.fragments.LoginFragment;
+import goals_keeper.com.goalskeeperapp.fragments.ProfileFragment;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -28,6 +32,16 @@ public class ProfileActivity extends AppCompatActivity {
         setSupportActionBar(mToolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        // Attaching the login fragment to the layout
+        // TODO: Check if the user is logged in or not to replace fragments
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        ProfileFragment profileFragment = new ProfileFragment();
+        fragmentTransaction.add(R.id.profile_fragment_container, profileFragment);
+        fragmentTransaction.commit();
+
     }
 
 
