@@ -1,5 +1,6 @@
 package goals_keeper.com.goalskeeperapp.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -11,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -29,6 +31,7 @@ public class ProfileFragment extends Fragment {
     Button mFollowersButton;
     @Bind(R.id.following_button)
     Button mFollowingButton;
+    private Context applicationContext;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,19 +63,16 @@ public class ProfileFragment extends Fragment {
         mFollowingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 // TODO Add the linking to the Ali's Fragments/Activities
-                fragmentTransaction.commit();
+                Toast.makeText(getActivity(), "Waiting for Ali's task", Toast.LENGTH_LONG).show();
+
             }
         });
         mFollowersButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 // TODO Add the linking to the Ali's Fragments/Activities
-                fragmentTransaction.commit();
+                    Toast.makeText(getActivity(), "Waiting for Ali's task", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -88,4 +88,5 @@ public class ProfileFragment extends Fragment {
 
         return super.onOptionsItemSelected(item);
     }
+
 }
