@@ -33,7 +33,7 @@ public class HomePagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        if(position == 1) {
+        if(position == 0) {
             return "Timeline";
         }
         return "My Goals";
