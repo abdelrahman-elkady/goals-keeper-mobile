@@ -17,7 +17,7 @@ import goals_keeper.com.goalskeeperapp.adapters.PostAdabter;
  * Created by hamamsy on 28/11/15.
  */
 public class PostFragment extends android.support.v4.app.Fragment {
-    @Bind(R.id.my_recycler_view)
+    @Bind(R.id.post_recycler_view)
     RecyclerView mRecyclerView;
 
     RecyclerView.Adapter mAdapter;
@@ -36,9 +36,11 @@ public class PostFragment extends android.support.v4.app.Fragment {
         // use a linear layout manager
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
-
+        String []dummyData = new String[10];
+        for (int i=0;i<dummyData.length ;i++)
+            dummyData[i] = new String("Goal "+(i+1));
         // specify an adapter (see also next example)
-        mAdapter = new PostAdabter(new String[]{"Eat Betngan","Play BetnganBall"});
+        mAdapter = new PostAdabter(dummyData);
         mRecyclerView.setAdapter(mAdapter);
         return view;
     }

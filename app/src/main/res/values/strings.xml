@@ -9,4 +9,5 @@
     <string name="app_title">Goals keeper</string>
     <string name="btn_facebook_login">Login with Facebook</string>
     <string name="title_activity_profile">Profile</string>
+    <string name="goals_search_hint">Goal</string>
 </resources>

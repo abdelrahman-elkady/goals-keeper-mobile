@@ -21,6 +21,14 @@ public class PostAdabter extends RecyclerView.Adapter<PostAdabter.ViewHolder> {
         public ViewHolder(LinearLayout v) {
             super(v);
             mLinearLayout = v;
+            TextView tv = (TextView)v.findViewById(R.id.my_text_view);
+            tv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+
+                }
+            });
         }
     }
 

@@ -24,18 +24,27 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:weightSum="100">
-        <TextView
-            android:layout_width="wrap_content"
+
+        <EditText
+            android:id="@+id/search"
+            android:layout_width="240dp"
             android:layout_height="wrap_content"
-            android:text="Create Post"
-            android:textSize="22dp"
-            android:id="@+id/textView" />
+            android:hint="@string/goals_search_hint"
+            android:inputType="text"
+            android:imeOptions="actionSend"
+            android:gravity="center_horizontal"
+            android:layout_gravity="center_horizontal" />
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/my_recycler_view"
+            android:id="@+id/post_recycler_view"
             android:scrollbars="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="176dp"/>
+            android:layout_width="240dp"
+            android:layout_height="53dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_weight="4.20" />
 
         <EditText
             android:layout_width="match_parent"
@@ -45,7 +54,29 @@
             android:maxLines="300"
             android:text="How far are you from your goal?"
             android:textStyle="normal"
-            android:gravity="top" />
+            android:gravity="top"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Post"
+                android:id="@+id/btn_post"
+                android:layout_gravity="center_horizontal" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cancel"
+                android:id="@+id/btn_cancel" />
+        </LinearLayout>
 
     </LinearLayout>
 
