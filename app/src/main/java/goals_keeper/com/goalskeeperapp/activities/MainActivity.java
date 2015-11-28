@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         LoginFragment loginFragment = new LoginFragment();
-        fragmentTransaction.add(R.id.main_fragment_container,loginFragment);
+        fragmentTransaction.add(R.id.main_fragment_container, loginFragment);
         fragmentTransaction.commit();
 
     }
@@ -70,5 +71,14 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
+            this.finish();
+        } else {
+            getSupportFragmentManager().popBackStack();
+        }
     }
 }
