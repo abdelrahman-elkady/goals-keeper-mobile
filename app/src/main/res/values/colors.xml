@@ -4,7 +4,10 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorPrimaryLight">#C5CAE9</color>
     <color name="colorAccent">#4CAF50</color>
+    <color name="colorAccentDark">#116e14</color>
     <color name="rippleColor">#08630c</color>
     <color name="colorPrimaryText">#212121</color>
     <color name="colorSecondaryText">#727272</color>
+
+    <color name="white">#ffffff</color>
 </resources>
