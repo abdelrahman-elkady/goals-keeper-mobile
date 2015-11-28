@@ -53,13 +53,10 @@ public class HomeFragment extends Fragment {
 
         mToolbar = (Toolbar) getActivity().findViewById(R.id.toolbar_main);
 
-        mHomePageAdapter = new HomePagerAdapter(getFragmentManager());
-
+        mHomePageAdapter = new HomePagerAdapter(getChildFragmentManager());
         mHomeViewPager.setAdapter(mHomePageAdapter);
         mHomeTabLayout.setupWithViewPager(mHomeViewPager);
 
-        mHomePageAdapter = new HomePagerAdapter(getActivity().getSupportFragmentManager());
-        mHomeViewPager.setAdapter(mHomePageAdapter);
 
         return view;
     }
