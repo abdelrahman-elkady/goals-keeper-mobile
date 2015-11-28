@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -24,6 +25,10 @@ public class ProfileFragment extends Fragment {
 
     @Bind(R.id.fab_profile_edit)
     FloatingActionButton mProfileEditFAB;
+    @Bind(R.id.followers_button)
+    Button mFollowersButton;
+    @Bind(R.id.following_button)
+    Button mFollowingButton;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,6 +53,25 @@ public class ProfileFragment extends Fragment {
 
                 ProfileEditFragment profileEditFragment = new ProfileEditFragment();
                 fragmentTransaction.replace(R.id.profile_fragment_container, profileEditFragment).addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
+
+        mFollowingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+// TODO Add the linking to the Ali's Fragments/Activities
+                fragmentTransaction.commit();
+            }
+        });
+        mFollowersButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+// TODO Add the linking to the Ali's Fragments/Activities
                 fragmentTransaction.commit();
             }
         });
