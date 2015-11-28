@@ -44,12 +44,10 @@ public class ProfileEditFragment extends android.support.v4.app.Fragment {
         mSaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
 
-                ProfileFragment profileFragment = new ProfileFragment();
-                fragmentTransaction.replace(R.id.profile_fragment_container, profileFragment).addToBackStack(null);
-                fragmentTransaction.commit();
+                fragmentManager.popBackStack();
+
             }
         });
 
