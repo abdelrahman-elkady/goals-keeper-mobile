@@ -40,7 +40,7 @@ public class PostFragment extends android.support.v4.app.Fragment {
         for (int i=0;i<dummyData.length ;i++)
             dummyData[i] = new String("Goal "+(i+1));
         // specify an adapter (see also next example)
-        mAdapter = new PostAdabter(dummyData);
+        mAdapter = new PostAdabter(dummyData,view);
         mRecyclerView.setAdapter(mAdapter);
         return view;
     }

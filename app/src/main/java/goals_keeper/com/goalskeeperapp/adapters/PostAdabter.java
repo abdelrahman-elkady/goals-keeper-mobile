@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -14,26 +15,19 @@ import goals_keeper.com.goalskeeperapp.R;
  */
 public class PostAdabter extends RecyclerView.Adapter<PostAdabter.ViewHolder> {
     private String[] mDataset; //dummy data for now
+    public static View mView;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public LinearLayout mLinearLayout;
-
         public ViewHolder(LinearLayout v) {
             super(v);
             mLinearLayout = v;
-            TextView tv = (TextView)v.findViewById(R.id.my_text_view);
-            tv.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-
-                }
-            });
         }
     }
 
-    public PostAdabter(String[] myDataset) {
+    public PostAdabter(String[] myDataset,View view) {
         mDataset = myDataset;
+        mView = view;
     }
 
     // Create new views (invoked by the layout manager)
@@ -49,13 +43,19 @@ public class PostAdabter extends RecyclerView.Adapter<PostAdabter.ViewHolder> {
         return vh;
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        // - get element from your dataset at this position
-        // - replace the contents of the view with that element
-        TextView tv =(TextView) holder.mLinearLayout.findViewById(R.id.my_text_view);
-        tv.setText(mDataset[position]);
+        Button btn =(Button) holder.mLinearLayout.findViewById(R.id.btn_checked_goal);
+        btn.setText(mDataset[position]);
+
+        final String text = btn.getText().toString();
+        final TextView goalsTextView = (TextView) mView.findViewById(R.id.goal_search_edit_text);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goalsTextView.setText(text);
+            }
+        });
 
     }
 

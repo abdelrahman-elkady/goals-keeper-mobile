@@ -26,7 +26,7 @@
         android:weightSum="100">
 
         <EditText
-            android:id="@+id/search"
+            android:id="@+id/goal_search_edit_text"
             android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:hint="@string/goals_search_hint"

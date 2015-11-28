@@ -4,10 +4,11 @@
     android:layout_height="match_parent"
     android:weightSum="1">
 
-    <TextView
-        android:layout_width="match_parent"
+    <Button
+        android:layout_width="165dp"
         android:layout_height="wrap_content"
-        android:text="New Text"
-        android:id="@+id/my_text_view"
-        android:layout_weight="0.19" />
+        android:text="New Button"
+        android:id="@+id/btn_checked_goal"
+        android:layout_gravity="center_horizontal" />
+
 </LinearLayout>
