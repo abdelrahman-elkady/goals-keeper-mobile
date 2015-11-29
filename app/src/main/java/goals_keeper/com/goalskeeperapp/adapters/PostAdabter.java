@@ -49,13 +49,6 @@ public class PostAdabter extends RecyclerView.Adapter<PostAdabter.ViewHolder> {
         btn.setText(mDataset[position]);
 
         final String text = btn.getText().toString();
-        final TextView goalsTextView = (TextView) mView.findViewById(R.id.goal_search_edit_text);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goalsTextView.setText(text);
-            }
-        });
 
     }
 
