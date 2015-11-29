@@ -1,6 +1,5 @@
 package goals_keeper.com.goalskeeperapp.activities;
 
-import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -21,7 +20,7 @@ import goals_keeper.com.goalskeeperapp.fragments.LoginFragment;
 
 public class MainActivity extends AppCompatActivity {
 
-    @Bind(R.id.toolbar_main)
+    @Bind(R.id.toolbar)
     Toolbar mToolbar;
 
     @Override

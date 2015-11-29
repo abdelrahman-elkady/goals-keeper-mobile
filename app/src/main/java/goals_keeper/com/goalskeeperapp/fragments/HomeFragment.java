@@ -51,7 +51,7 @@ public class HomeFragment extends Fragment {
 
         ButterKnife.bind(this, view);
 
-        mToolbar = (Toolbar) getActivity().findViewById(R.id.toolbar_main);
+        mToolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
 
         mHomePageAdapter = new HomePagerAdapter(getChildFragmentManager());
         mHomeViewPager.setAdapter(mHomePageAdapter);
