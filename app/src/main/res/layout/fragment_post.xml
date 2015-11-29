@@ -39,7 +39,7 @@
             android:id="@+id/post_text"
             android:layout_weight="6.43"
             android:maxLines="300"
-            android:text="What&apos;s on your mind?"
+            android:hint="What&apos;s on your mind?"
             android:textStyle="normal"
             android:gravity="top"
             android:layout_marginLeft="50dp"
