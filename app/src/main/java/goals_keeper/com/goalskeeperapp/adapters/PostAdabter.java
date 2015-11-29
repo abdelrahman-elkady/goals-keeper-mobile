@@ -45,7 +45,7 @@ public class PostAdabter extends RecyclerView.Adapter<PostAdabter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Button btn =(Button) holder.mLinearLayout.findViewById(R.id.btn_checked_goal);
+        TextView btn =(TextView) holder.mLinearLayout.findViewById(R.id.tv_checked_goal);
         btn.setText(mDataset[position]);
 
         final String text = btn.getText().toString();
