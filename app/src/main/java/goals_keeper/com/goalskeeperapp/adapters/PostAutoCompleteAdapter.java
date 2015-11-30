@@ -24,7 +24,7 @@ public class PostAutoCompleteAdapter extends Activity implements TextWatcher {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_post);
+        setContentView(R.layout.fragment_create_post);
 
         myAutoComplete = (AutoCompleteTextView)findViewById(R.id.goal_auto_complete_field);
 

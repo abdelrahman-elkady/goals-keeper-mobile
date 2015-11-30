@@ -34,8 +34,8 @@ public class TimelineFragment extends android.support.v4.app.Fragment {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-                PostFragment postFragment = new PostFragment();
-                fragmentTransaction.replace(R.id.main_fragment_container, postFragment).addToBackStack(null);
+                CreatePostFragment createPostFragment = new CreatePostFragment();
+                fragmentTransaction.replace(R.id.main_fragment_container, createPostFragment).addToBackStack(null);
                 fragmentTransaction.commit();
             }
         });

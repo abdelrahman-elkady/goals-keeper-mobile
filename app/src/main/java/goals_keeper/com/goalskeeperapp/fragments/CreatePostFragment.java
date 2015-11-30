@@ -17,10 +17,10 @@ import goals_keeper.com.goalskeeperapp.R;
 /**
  * Created by hamamsy on 28/11/15.
  */
-public class PostFragment extends android.support.v4.app.Fragment {
+public class CreatePostFragment extends android.support.v4.app.Fragment {
 
     @Bind(R.id.btn_cancel)
-    Button mCancelButtom;
+    Button mCancelButton;
 
 
     @Nullable
@@ -28,18 +28,13 @@ public class PostFragment extends android.support.v4.app.Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         setHasOptionsMenu(true); // To support modifying the toolbar menu on fragment change
 
-        View view = inflater.inflate(R.layout.fragment_post, container, false); // Inflating the fragment layout
+        View view = inflater.inflate(R.layout.fragment_create_post, container, false); // Inflating the fragment layout
 
         ButterKnife.bind(this, view);
-        mCancelButtom.setOnClickListener(new View.OnClickListener() {
+        mCancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-                HomeFragment homeFragment = new HomeFragment();
-                fragmentTransaction.replace(R.id.main_fragment_container, homeFragment).addToBackStack(null);
-                fragmentTransaction.commit();
+                getActivity().onBackPressed();
             }
         });
         return view;
