@@ -30,6 +30,13 @@
                 android:value="goals_keeper.com.goalskeeperapp.activities.MainActivity" />
 
         </activity>
+
+        <activity
+            android:name=".activities.FollowsActivity"
+            android:label="@string/title_activity_follows"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
     </application>
 
 </manifest>
