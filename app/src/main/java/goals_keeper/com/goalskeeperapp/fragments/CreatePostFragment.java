@@ -5,6 +5,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,8 +31,11 @@ public class CreatePostFragment extends android.support.v4.app.Fragment {
     @Bind(R.id.auto_complete_goal_selection)
     AutoCompleteTextView mGoalSelectAutoCompleteTextView;
 
-    CreatePostAutoCompleteAdapter mGoalsAdapter;
+    @Bind(R.id.btn_post)
+    Button mPostButton;
 
+    CreatePostAutoCompleteAdapter mGoalsAdapter;
+    ArrayList<String> mData;
 
     @Nullable
     @Override
@@ -41,16 +46,15 @@ public class CreatePostFragment extends android.support.v4.app.Fragment {
 
         ButterKnife.bind(this, view);
 
-        ArrayList<String> data = new ArrayList<String>();
-        data.add("Quit smoking");
-        data.add("Getting A+ in theory of computation");
-        data.add("Get driving license");
-        data.add("Eat a banana");
-        data.add("Win a marathon");
 
-        mGoalsAdapter = new CreatePostAutoCompleteAdapter(getActivity(), data);
+        mData = new ArrayList<>();
+        initData();
+
+        mGoalsAdapter = new CreatePostAutoCompleteAdapter(getActivity(), mData);
 
         mGoalSelectAutoCompleteTextView.setAdapter(mGoalsAdapter);
+
+        validateInput();
 
         mCancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,5 +63,40 @@ public class CreatePostFragment extends android.support.v4.app.Fragment {
             }
         });
         return view;
+    }
+
+    
+    private void initData() {
+        mData.add("Quit smoking");
+        mData.add("Getting A+ in theory of computation");
+        mData.add("Get driving license");
+        mData.add("Eat a banana");
+        mData.add("Win a marathon");
+    }
+
+    /**
+     * Checks for the goal to be within the goals of the user
+     */
+    private void validateInput() {
+        mGoalSelectAutoCompleteTextView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (mData.contains(mGoalSelectAutoCompleteTextView.getText().toString())) {
+                    mPostButton.setEnabled(true);
+                } else {
+                    mPostButton.setEnabled(false);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 }
