@@ -1,69 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_marginBottom="@dimen/activity_vertical_margin"
+    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+    android:layout_marginRight="@dimen/activity_horizontal_margin"
+    android:layout_marginTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:weightSum="100">
-
-        <AutoCompleteTextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:hint="Goal&apos;s Title"
-            android:completionThreshold="1"
-            android:id="@+id/goal_auto_complete_field"
-            android:layout_gravity="top"
-            android:layout_weight="8" />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/post_text"
-            android:layout_weight="6.43"
-            android:maxLines="300"
-            android:hint="What&apos;s on your mind?"
-            android:textStyle="normal"
-            android:gravity="top"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:layout_marginTop="20dp" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
+    <AutoCompleteTextView
+        android:id="@+id/auto_complete_goal_selection"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:paddingTop="50dp">
+        android:completionThreshold="1"
+        android:hint="Goal&apos;s Title" />
 
-        <Switch
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Private"
-            android:paddingLeft="40dp"
-            android:paddingRight="50dp"
-            android:id="@+id/switch_privacy"
-            android:checked="false" />
+    <EditText
+        android:id="@+id/post_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:gravity="top|left"
+        android:hint="What&apos;s on your mind?"
+        android:inputType="textMultiLine"
+        android:lines="10"
+        android:maxLines="300"
+        android:textStyle="normal" />
+
+
+    <Switch
+        android:id="@+id/switch_privacy"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|left"
+        android:layout_marginTop="10dp"
+        android:checked="false"
+        android:text="Private" />
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|bottom">
 
         <Button
+            android:id="@+id/btn_cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Post"
+            android:text="Cancel" />
+
+        <Button
             android:id="@+id/btn_post"
-            android:layout_gravity="center_horizontal" />
-
-        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cancel"
-            android:id="@+id/btn_cancel" />
+            android:layout_marginLeft="10dp"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:text="Post" />
 
     </LinearLayout>
 
 
-</android.support.design.widget.CoordinatorLayout>
+</LinearLayout>

@@ -26,7 +26,7 @@ public class PostAutoCompleteAdapter extends Activity implements TextWatcher {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_create_post);
 
-        myAutoComplete = (AutoCompleteTextView)findViewById(R.id.goal_auto_complete_field);
+        myAutoComplete = (AutoCompleteTextView)findViewById(R.id.auto_complete_goal_selection);
 
         myAutoComplete.addTextChangedListener(this);
         myAutoComplete.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_dropdown_item_1line, item));
