@@ -1,6 +1,7 @@
 package goals_keeper.com.goalskeeperapp.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -12,11 +13,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
+
+import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import goals_keeper.com.goalskeeperapp.R;
+import goals_keeper.com.goalskeeperapp.activities.FollowsActivity;
+import goals_keeper.com.goalskeeperapp.utils.Constants;
 
 /**
  * Created by kady on 27/11/15.
@@ -48,6 +52,7 @@ public class ProfileFragment extends Fragment {
         final View view = inflater.inflate(R.layout.fragment_profile, container, false); // Inflating the fragment layout
 
         ButterKnife.bind(this, view);
+
         mProfileEditFAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,16 +68,31 @@ public class ProfileFragment extends Fragment {
         mFollowingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-// TODO Add the linking to the Ali's Fragments/Activities
-                Toast.makeText(getActivity(), "Waiting for Ali's task", Toast.LENGTH_LONG).show();
+                Intent followingIntent = new Intent(getActivity(), FollowsActivity.class);
+
+                ArrayList<String> data = new ArrayList<String>();
+                data.add("Ali Hassan");
+                data.add("Abdelrahman Elkady");
+                data.add("Mohammed Mostafa");
+                data.add("Ahmed Saleh");
+
+                followingIntent.putStringArrayListExtra(Constants.BUNDLE_USERS_KEY, data);
+                startActivity(followingIntent);
 
             }
         });
+
         mFollowersButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-// TODO Add the linking to the Ali's Fragments/Activities
-                    Toast.makeText(getActivity(), "Waiting for Ali's task", Toast.LENGTH_LONG).show();
+                Intent followersIntent = new Intent(getActivity(), FollowsActivity.class);
+
+                ArrayList<String> data = new ArrayList<String>();
+                data.add("Ali Hassan");
+                data.add("Ahmed Saleh");
+
+                followersIntent.putStringArrayListExtra(Constants.BUNDLE_USERS_KEY, data);
+                startActivity(followersIntent);
             }
         });
 
