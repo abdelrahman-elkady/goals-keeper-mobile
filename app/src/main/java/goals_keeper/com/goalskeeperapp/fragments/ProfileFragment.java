@@ -64,15 +64,25 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
 // TODO Add the linking to the Ali's Fragments/Activities
-                Toast.makeText(getActivity(), "Waiting for Ali's task", Toast.LENGTH_LONG).show();
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
+                FollowingFragment followingFragment= new FollowingFragment();
+                fragmentTransaction.replace(R.id.profile_fragment_container, followingFragment ).addToBackStack(null);
+                fragmentTransaction.commit();
             }
         });
+
         mFollowersButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 // TODO Add the linking to the Ali's Fragments/Activities
-                    Toast.makeText(getActivity(), "Waiting for Ali's task", Toast.LENGTH_LONG).show();
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+                FollowersFragment followersFragment = new FollowersFragment();
+                fragmentTransaction.replace(R.id.profile_fragment_container, followersFragment).addToBackStack(null);
+                fragmentTransaction.commit();
             }
         });
 
