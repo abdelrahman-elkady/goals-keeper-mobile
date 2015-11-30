@@ -5,6 +5,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,6 +36,8 @@ public class UserListFragment extends Fragment {
 
     UserListAdapter mUserListAdapter;
 
+    ArrayList<String> mFilteredData;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -42,7 +46,8 @@ public class UserListFragment extends Fragment {
 
         ButterKnife.bind(this, root);
 
-        ArrayList<String> data = getArguments().getStringArrayList(Constants.BUNDLE_USERS_KEY);
+        final ArrayList<String> data = getArguments().getStringArrayList(Constants.BUNDLE_USERS_KEY);
+        mFilteredData = new ArrayList<>();
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -50,8 +55,30 @@ public class UserListFragment extends Fragment {
 
 
         mUserListAdapter = new UserListAdapter(getActivity(), data);
-
         mUserListRecyclerView.setAdapter(mUserListAdapter);
+
+        mUserSearchEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence query, int start, int before, int count) {
+                mFilteredData.clear();
+                for (int i = 0; i < data.size(); i++) {
+                    if (data.get(i).toLowerCase().contains(query.toString().toLowerCase())) {
+                        mFilteredData.add(data.get(i));
+                    }
+                }
+                mUserListAdapter.setData(mFilteredData);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
         return root;
     }

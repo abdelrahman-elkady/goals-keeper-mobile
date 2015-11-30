@@ -48,6 +48,11 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
         return mData.size();
     }
 
+    public void setData(ArrayList<String> data) {
+        this.mData = data;
+        notifyDataSetChanged();
+    }
+
     class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView userNameTextView;
