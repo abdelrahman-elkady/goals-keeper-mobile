@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import java.util.ArrayList;
 
@@ -73,4 +74,5 @@ public class TimelineFragment extends android.support.v4.app.Fragment {
         fragmentTransaction.replace(R.id.main_fragment_container, createPostFragment).addToBackStack(null);
         fragmentTransaction.commit();
     }
+
 }

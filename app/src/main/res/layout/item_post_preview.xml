@@ -25,9 +25,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
-                android:background="@android:color/transparent"
+                android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="@string/no_description"
-                android:src="@drawable/ic_share_black_24dp" />
+                android:src="@drawable/ic_share_black_24dp"
+                android:tint="@color/colorPrimary" />
 
             <TextView
                 android:id="@+id/timeline_txt_user_name"
@@ -58,19 +59,23 @@
                 android:layout_alignRight="@+id/timeline_txt_post_preview"
                 android:layout_below="@+id/timeline_txt_post_preview"
                 android:layout_marginLeft="10dp"
-                android:background="@android:color/transparent"
+                android:layout_marginTop="5dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="@string/no_description"
-                android:src="@drawable/ic_mode_comment_black_24dp" />
+                android:src="@drawable/ic_mode_comment_black_24dp"
+                android:tint="@color/colorPrimary" />
 
             <ImageButton
                 android:id="@+id/imgbtn_like"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/timeline_txt_post_preview"
+                android:layout_marginTop="5dp"
                 android:layout_toLeftOf="@id/imgbtn_comment"
-                android:background="@android:color/transparent"
+                android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="@string/no_description"
-                android:src="@drawable/ic_favorite_border_black_24dp" />
+                android:src="@drawable/icon_like"
+                android:tint="@color/materialRed" />
 
 
         </RelativeLayout>

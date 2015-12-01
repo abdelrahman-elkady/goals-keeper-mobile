@@ -40,6 +40,18 @@ public class TimeLinePostsAdapter extends RecyclerView.Adapter<TimeLinePostsAdap
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.postPreviewTextView.setText(mData.get(position).getContent());
+
+        likePost(holder);
+    }
+
+    private void likePost(ViewHolder holder) {
+        holder.likeImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                v.setActivated(!v.isActivated()); // changing the icon based on the drawable
+                //TODO: like/dislike the post !
+            }
+        });
     }
 
     @Override
