@@ -1,5 +1,6 @@
 package goals_keeper.com.goalskeeperapp.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
@@ -11,10 +12,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import goals_keeper.com.goalskeeperapp.R;
+import goals_keeper.com.goalskeeperapp.activities.UserConnectionsActivity;
+import goals_keeper.com.goalskeeperapp.utils.Constants;
 
 /**
  * Created by kady on 23/11/15.
@@ -41,12 +47,16 @@ public class LoginFragment extends android.support.v4.app.Fragment {
 
     @OnClick(R.id.btn_facebook_login)
     public void loginWithFacebook() {
+
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         HomeFragment homeFragment = new HomeFragment();
         fragmentTransaction.replace(R.id.main_fragment_container, homeFragment);
         fragmentTransaction.commit();
+
+
+
     }
 
     @Override
@@ -54,3 +64,5 @@ public class LoginFragment extends android.support.v4.app.Fragment {
         menu.clear(); // No menu on login screen !
     }
 }
+
+
