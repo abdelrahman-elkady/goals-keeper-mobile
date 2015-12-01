@@ -1,21 +1,17 @@
 package goals_keeper.com.goalskeeperapp.fragments;
 
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import goals_keeper.com.goalskeeperapp.R;
 
 /**
@@ -23,7 +19,7 @@ import goals_keeper.com.goalskeeperapp.R;
  */
 public class ProfileEditFragment extends android.support.v4.app.Fragment {
 
-    @Bind(R.id.save_button)
+    @Bind(R.id.btn_save)
     Button mSaveButton;
 
 
@@ -41,17 +37,15 @@ public class ProfileEditFragment extends android.support.v4.app.Fragment {
         final View view = inflater.inflate(R.layout.fragment_profile_edit, container, false); // Inflating the fragment layout
 
         ButterKnife.bind(this, view);
-        mSaveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-
-                fragmentManager.popBackStack();
-
-            }
-        });
 
         return view;
+    }
+
+    @OnClick(R.id.btn_save)
+    public void saveProfileEdit() {
+        // TODO: Save the changes !
+
+        getActivity().onBackPressed();
     }
 
     @Override

@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnTextChanged;
 import goals_keeper.com.goalskeeperapp.R;
 import goals_keeper.com.goalskeeperapp.adapters.UserListAdapter;
 import goals_keeper.com.goalskeeperapp.utils.Constants;
@@ -36,7 +37,7 @@ public class UserListFragment extends Fragment {
 
     UserListAdapter mUserListAdapter;
 
-    ArrayList<String> mFilteredData;
+    ArrayList<String> mFilteredData, mData;
 
     @Nullable
     @Override
@@ -46,7 +47,7 @@ public class UserListFragment extends Fragment {
 
         ButterKnife.bind(this, root);
 
-        final ArrayList<String> data = getArguments().getStringArrayList(Constants.BUNDLE_USERS_KEY);
+        mData = getArguments().getStringArrayList(Constants.BUNDLE_USERS_KEY);
         mFilteredData = new ArrayList<>();
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
@@ -54,9 +55,18 @@ public class UserListFragment extends Fragment {
         mUserListRecyclerView.setLayoutManager(layoutManager);
 
 
-        mUserListAdapter = new UserListAdapter(getActivity(), data);
+        mUserListAdapter = new UserListAdapter(getActivity(), mData);
         mUserListRecyclerView.setAdapter(mUserListAdapter);
 
+        filterUsers();
+
+        return root;
+    }
+
+    /**
+     * Filter users in list based on the query in EditText
+     */
+    private void filterUsers() {
         mUserSearchEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -66,9 +76,9 @@ public class UserListFragment extends Fragment {
             @Override
             public void onTextChanged(CharSequence query, int start, int before, int count) {
                 mFilteredData.clear();
-                for (int i = 0; i < data.size(); i++) {
-                    if (data.get(i).toLowerCase().contains(query.toString().toLowerCase())) {
-                        mFilteredData.add(data.get(i));
+                for (int i = 0; i < mData.size(); i++) {
+                    if (mData.get(i).toLowerCase().contains(query.toString().toLowerCase())) {
+                        mFilteredData.add(mData.get(i));
                     }
                 }
                 mUserListAdapter.setData(mFilteredData);
@@ -79,7 +89,6 @@ public class UserListFragment extends Fragment {
 
             }
         });
-
-        return root;
     }
+
 }

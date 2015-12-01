@@ -35,7 +35,6 @@ public class ProfileFragment extends Fragment {
     Button mFollowersButton;
     @Bind(R.id.following_button)
     Button mFollowingButton;
-    private Context applicationContext;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

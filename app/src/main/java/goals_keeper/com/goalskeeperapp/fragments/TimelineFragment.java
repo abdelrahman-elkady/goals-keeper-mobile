@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import goals_keeper.com.goalskeeperapp.R;
 
 /**
@@ -28,17 +29,18 @@ public class TimelineFragment extends android.support.v4.app.Fragment {
         final View view = inflater.inflate(R.layout.fragment_timeline, container, false);
 
         ButterKnife.bind(this, view);
-        mAddPostButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-                CreatePostFragment createPostFragment = new CreatePostFragment();
-                fragmentTransaction.replace(R.id.main_fragment_container, createPostFragment).addToBackStack(null);
-                fragmentTransaction.commit();
-            }
-        });
         return view;
+    }
+
+    @OnClick(R.id.fab_add_post)
+    public void launchCreatePost() {
+
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        CreatePostFragment createPostFragment = new CreatePostFragment();
+        fragmentTransaction.replace(R.id.main_fragment_container, createPostFragment).addToBackStack(null);
+        fragmentTransaction.commit();
     }
 }

@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import goals_keeper.com.goalskeeperapp.R;
 import goals_keeper.com.goalskeeperapp.adapters.CreatePostAutoCompleteAdapter;
 
@@ -46,26 +47,23 @@ public class CreatePostFragment extends android.support.v4.app.Fragment {
 
         ButterKnife.bind(this, view);
 
-
         mData = new ArrayList<>();
         initData();
 
         mGoalsAdapter = new CreatePostAutoCompleteAdapter(getActivity(), mData);
-
         mGoalSelectAutoCompleteTextView.setAdapter(mGoalsAdapter);
 
         validateInput();
 
-        mCancelButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().onBackPressed();
-            }
-        });
         return view;
     }
 
-    
+    @OnClick(R.id.btn_cancel)
+    public void navigateBack() {
+        getActivity().onBackPressed();
+    }
+
+
     private void initData() {
         mData.add("Quit smoking");
         mData.add("Getting A+ in theory of computation");
