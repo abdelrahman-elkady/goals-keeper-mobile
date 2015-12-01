@@ -19,6 +19,7 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
     ArrayList<String> mData;
     Context mContext;
 
+
     public CommentListAdapter(Context context, ArrayList<String> data) {
         super();
         this.mContext = context;
@@ -27,12 +28,13 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.item_user, parent, false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.item_comment, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(CommentListAdapter.ViewHolder holder, int position) {
+        holder.userCommentTextView.setText(mData.get(position));
 
     }
 
@@ -41,10 +43,7 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
         return mData.size();
     }
 
-    public void setData(ArrayList<String> data) {
-        this.mData = data;
-        notifyDataSetChanged();
-    }
+
     class ViewHolder extends RecyclerView.ViewHolder {
 
         public TextView userNameTextView;
@@ -53,8 +52,8 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
 
         public ViewHolder(View itemView) {
             super(itemView);
-            userCommentTextView=(TextView)itemView.findViewById(R.id.txtview_comment);
-            userNameTextView = (TextView) itemView.findViewById(R.id.txtview_user_name);
+            userCommentTextView=(TextView)itemView.findViewById(R.id.person_comment);
+            userNameTextView = (TextView) itemView.findViewById(R.id.person_name);
             userProfileImageView = (ImageView) itemView.findViewById(R.id.imgview_profile_picture);
         }
 
