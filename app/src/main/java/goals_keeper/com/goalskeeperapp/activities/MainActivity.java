@@ -32,14 +32,6 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(mToolbar);
 
-        // Handling status bar coloring in API 21+
-        Window window = this.getWindow();
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-            window.setStatusBarColor(ContextCompat.getColor(this, R.color.colorPrimaryDark));
-        }
-
         // Attaching the login fragment to the layout
         // TODO: Check if the user is logged in or not to replace fragments
         FragmentManager fragmentManager = getSupportFragmentManager();
