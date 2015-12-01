@@ -21,6 +21,7 @@
         app:elevation="10dp"
         app:layout_anchor="@id/recycler_view_timeline"
         app:layout_anchorGravity="bottom|right|end"
+        app:layout_behavior="goals_keeper.com.goalskeeperapp.lib.ScrollAwareFABBehavior"
         app:rippleColor="@color/rippleColor" />
 
 </android.support.design.widget.CoordinatorLayout>
