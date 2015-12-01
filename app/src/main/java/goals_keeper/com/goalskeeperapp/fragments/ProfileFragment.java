@@ -1,6 +1,5 @@
 package goals_keeper.com.goalskeeperapp.fragments;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -19,7 +18,7 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import goals_keeper.com.goalskeeperapp.R;
-import goals_keeper.com.goalskeeperapp.activities.FollowsActivity;
+import goals_keeper.com.goalskeeperapp.activities.UserConnectionsActivity;
 import goals_keeper.com.goalskeeperapp.utils.Constants;
 
 /**
@@ -67,7 +66,7 @@ public class ProfileFragment extends Fragment {
         mFollowingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent followingIntent = new Intent(getActivity(), FollowsActivity.class);
+                Intent followingIntent = new Intent(getActivity(), UserConnectionsActivity.class);
 
                 ArrayList<String> data = new ArrayList<String>();
                 data.add("Ali Hassan");
@@ -76,6 +75,7 @@ public class ProfileFragment extends Fragment {
                 data.add("Ahmed Saleh");
 
                 followingIntent.putStringArrayListExtra(Constants.BUNDLE_USERS_KEY, data);
+                followingIntent.putExtra(Constants.USER_CONNECTION_TYPE, Constants.FOLLOWINGS);
                 startActivity(followingIntent);
 
             }
@@ -84,13 +84,14 @@ public class ProfileFragment extends Fragment {
         mFollowersButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent followersIntent = new Intent(getActivity(), FollowsActivity.class);
+                Intent followersIntent = new Intent(getActivity(), UserConnectionsActivity.class);
 
                 ArrayList<String> data = new ArrayList<String>();
                 data.add("Ali Hassan");
                 data.add("Ahmed Saleh");
 
                 followersIntent.putStringArrayListExtra(Constants.BUNDLE_USERS_KEY, data);
+                followersIntent.putExtra(Constants.USER_CONNECTION_TYPE, Constants.FOLLOWERS);
                 startActivity(followersIntent);
             }
         });

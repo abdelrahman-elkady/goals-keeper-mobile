@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import goals_keeper.com.goalskeeperapp.R;
-import goals_keeper.com.goalskeeperapp.fragments.LoginFragment;
 import goals_keeper.com.goalskeeperapp.fragments.UserListFragment;
 import goals_keeper.com.goalskeeperapp.utils.Constants;
 
@@ -22,7 +21,7 @@ import goals_keeper.com.goalskeeperapp.utils.Constants;
  *
  * @author kady
  */
-public class FollowsActivity extends AppCompatActivity {
+public class UserConnectionsActivity extends AppCompatActivity {
 
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
@@ -31,7 +30,7 @@ public class FollowsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_list);
+        setContentView(R.layout.activity_user_connections);
 
         ButterKnife.bind(this);
 
@@ -41,6 +40,7 @@ public class FollowsActivity extends AppCompatActivity {
 
         Bundle bundle = new Bundle();
         bundle.putStringArrayList(Constants.BUNDLE_USERS_KEY, data);
+        bundle.putInt(Constants.USER_CONNECTION_TYPE, getIntent().getIntExtra(Constants.USER_CONNECTION_TYPE, 0));
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

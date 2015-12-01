@@ -3,6 +3,7 @@ package goals_keeper.com.goalskeeperapp.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -21,6 +22,7 @@ import butterknife.OnTextChanged;
 import goals_keeper.com.goalskeeperapp.R;
 import goals_keeper.com.goalskeeperapp.adapters.UserListAdapter;
 import goals_keeper.com.goalskeeperapp.utils.Constants;
+import goals_keeper.com.goalskeeperapp.utils.Helpers;
 
 /**
  * Created by kady on 30/11/15.
@@ -39,6 +41,8 @@ public class UserListFragment extends Fragment {
 
     ArrayList<String> mFilteredData, mData;
 
+    private Bundle mBundle;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -47,8 +51,14 @@ public class UserListFragment extends Fragment {
 
         ButterKnife.bind(this, root);
 
-        mData = getArguments().getStringArrayList(Constants.BUNDLE_USERS_KEY);
+        mBundle = getArguments();
+
+        mData = mBundle.getStringArrayList(Constants.BUNDLE_USERS_KEY);
+        int type = mBundle.getInt(Constants.USER_CONNECTION_TYPE, 0);
+        changeTitle(type);
+
         mFilteredData = new ArrayList<>();
+
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -61,6 +71,18 @@ public class UserListFragment extends Fragment {
         filterUsers();
 
         return root;
+    }
+
+    private void changeTitle(int type) {
+        switch (type) {
+            case (Constants.FOLLOWERS):
+                Helpers.setToolbarTitle((AppCompatActivity) getActivity(), "Your followers");
+                break;
+            case (Constants.FOLLOWINGS):
+                Helpers.setToolbarTitle((AppCompatActivity) getActivity(), "People you follow");
+                break;
+            // TODO: You can add default after modifying the default value while getting the type
+        }
     }
 
     /**
