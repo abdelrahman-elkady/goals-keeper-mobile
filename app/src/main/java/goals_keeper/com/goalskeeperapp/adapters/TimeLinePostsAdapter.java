@@ -1,0 +1,63 @@
+package goals_keeper.com.goalskeeperapp.adapters;
+
+import android.content.Context;
+import android.media.Image;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.TextView;
+
+import java.util.ArrayList;
+
+import goals_keeper.com.goalskeeperapp.R;
+import goals_keeper.com.goalskeeperapp.models.Post;
+
+
+/**
+ * Created by kady on 01/12/15.
+ *
+ * @author kady
+ */
+public class TimeLinePostsAdapter extends RecyclerView.Adapter<TimeLinePostsAdapter.ViewHolder> {
+
+    ArrayList<Post> mData;
+    Context mContext;
+
+    public TimeLinePostsAdapter(Context mContext, ArrayList<Post> mData) {
+        super();
+        this.mData = mData;
+        this.mContext = mContext;
+    }
+
+    @Override
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(mContext).inflate(R.layout.item_post_preview, parent, false);
+        return new ViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        holder.postPreviewTextView.setText(mData.get(position).getContent());
+    }
+
+    @Override
+    public int getItemCount() {
+        return mData.size();
+    }
+
+    class ViewHolder extends RecyclerView.ViewHolder {
+        TextView userNameTextView, postPreviewTextView;
+        ImageButton shareImageButton, commentImageButton, likeImageButton;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            userNameTextView = (TextView) itemView.findViewById(R.id.timeline_txt_user_name);
+            postPreviewTextView = (TextView) itemView.findViewById(R.id.timeline_txt_post_preview);
+            shareImageButton = (ImageButton) itemView.findViewById(R.id.imgbtn_share);
+            likeImageButton = (ImageButton) itemView.findViewById(R.id.imgbtn_like);
+            commentImageButton = (ImageButton) itemView.findViewById(R.id.imgbtn_comment);
+        }
+    }
+}
