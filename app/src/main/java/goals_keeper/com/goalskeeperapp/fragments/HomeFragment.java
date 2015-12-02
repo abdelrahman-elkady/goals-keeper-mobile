@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -21,6 +22,7 @@ import goals_keeper.com.goalskeeperapp.R;
 import goals_keeper.com.goalskeeperapp.activities.ProfileActivity;
 import goals_keeper.com.goalskeeperapp.activities.SearchActivity;
 import goals_keeper.com.goalskeeperapp.adapters.HomePagerAdapter;
+import goals_keeper.com.goalskeeperapp.utils.Helpers;
 
 /**
  * Created by kady on 25/11/15.
@@ -51,6 +53,7 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
         ButterKnife.bind(this, view);
+        Helpers.setToolbarTitle((AppCompatActivity) getActivity(), getString(R.string.app_name));
 
         mToolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
 

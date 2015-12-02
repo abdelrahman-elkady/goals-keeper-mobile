@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -20,6 +21,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import goals_keeper.com.goalskeeperapp.R;
 import goals_keeper.com.goalskeeperapp.adapters.CreatePostAutoCompleteAdapter;
+import goals_keeper.com.goalskeeperapp.utils.Helpers;
 
 /**
  * Created by hamamsy on 28/11/15.
@@ -46,6 +48,7 @@ public class CreatePostFragment extends android.support.v4.app.Fragment {
         View view = inflater.inflate(R.layout.fragment_create_post, container, false); // Inflating the fragment layout
 
         ButterKnife.bind(this, view);
+        Helpers.setToolbarTitle((AppCompatActivity) getActivity(), "New Post");
 
         mData = new ArrayList<>();
         initData();

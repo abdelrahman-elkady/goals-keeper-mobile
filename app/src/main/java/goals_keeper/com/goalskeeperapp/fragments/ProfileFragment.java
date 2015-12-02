@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +22,7 @@ import goals_keeper.com.goalskeeperapp.R;
 import goals_keeper.com.goalskeeperapp.activities.SearchActivity;
 import goals_keeper.com.goalskeeperapp.activities.UserConnectionsActivity;
 import goals_keeper.com.goalskeeperapp.utils.Constants;
+import goals_keeper.com.goalskeeperapp.utils.Helpers;
 
 /**
  * Created by kady on 27/11/15.
@@ -51,6 +53,7 @@ public class ProfileFragment extends Fragment {
         final View view = inflater.inflate(R.layout.fragment_profile, container, false); // Inflating the fragment layout
 
         ButterKnife.bind(this, view);
+        Helpers.setToolbarTitle((AppCompatActivity) getActivity(), "Your profile");
 
         mProfileEditFAB.setOnClickListener(new View.OnClickListener() {
             @Override
