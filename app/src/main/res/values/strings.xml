@@ -13,4 +13,5 @@
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec purus in ante pretium blandit. Aliquam erat volutpat. Nulla libero lectus.</string>
     <string name="user_name_placeholder">John Doe</string>
     <string name="goal_name_placeholder">get A+</string>
+    <string name="action_search">search</string>
 </resources>

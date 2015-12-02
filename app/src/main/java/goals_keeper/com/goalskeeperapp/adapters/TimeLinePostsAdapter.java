@@ -58,7 +58,7 @@ public class TimeLinePostsAdapter extends RecyclerView.Adapter<TimeLinePostsAdap
 
                     //TODO: send proper data with the request
                     CommentFragment commentFragment = new CommentFragment();
-                    manager.beginTransaction().replace(R.id.fragment_container, commentFragment).commit();
+                    manager.beginTransaction().replace(R.id.fragment_container, commentFragment).addToBackStack(null).commit();
                 }
             }
         });

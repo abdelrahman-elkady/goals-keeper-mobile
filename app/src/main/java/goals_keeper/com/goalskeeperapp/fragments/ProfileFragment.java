@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import goals_keeper.com.goalskeeperapp.R;
+import goals_keeper.com.goalskeeperapp.activities.SearchActivity;
 import goals_keeper.com.goalskeeperapp.activities.UserConnectionsActivity;
 import goals_keeper.com.goalskeeperapp.utils.Constants;
 
@@ -104,6 +105,11 @@ public class ProfileFragment extends Fragment {
         if (item.getItemId() == android.R.id.home) {
             getActivity().onBackPressed();
             return true;
+        }
+
+        if (item.getItemId() == R.id.action_search) {
+            Intent searchIntent = new Intent(this.getActivity(), SearchActivity.class);
+            startActivity(searchIntent);
         }
 
         return super.onOptionsItemSelected(item);

@@ -1,50 +1,46 @@
 package goals_keeper.com.goalskeeperapp.activities;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import goals_keeper.com.goalskeeperapp.R;
-import goals_keeper.com.goalskeeperapp.fragments.LoginFragment;
+import goals_keeper.com.goalskeeperapp.adapters.SearchPagerAdapter;
 
-public class MainActivity extends AppCompatActivity {
+/**
+ * Created by abdelrahman on 02/12/15.
+ */
+public class SearchActivity extends AppCompatActivity {
+    private SearchPagerAdapter mSearchPagerAdapter;
+
+    @Bind(R.id.search_pager)
+    ViewPager mSearchViewPager;
+
+    @Bind(R.id.search_tab_layout)
+    TabLayout mSearchTabLayout;
 
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
+        setContentView(R.layout.activity_search);
         ButterKnife.bind(this);
 
         setSupportActionBar(mToolbar);
 
-        // Attaching the login fragment to the layout
-        // TODO: Check if the user is logged in or not to replace fragments
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-        LoginFragment loginFragment = new LoginFragment();
-        fragmentTransaction.add(R.id.fragment_container, loginFragment);
-        fragmentTransaction.commit();
-
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+        mSearchPagerAdapter = new SearchPagerAdapter(getSupportFragmentManager());
+        mSearchViewPager.setAdapter(mSearchPagerAdapter);
+        mSearchTabLayout.setupWithViewPager(mSearchViewPager);
     }
 
     @Override
