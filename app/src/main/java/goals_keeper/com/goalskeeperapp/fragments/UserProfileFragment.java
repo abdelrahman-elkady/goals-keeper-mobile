@@ -4,9 +4,12 @@ import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -25,6 +28,9 @@ public class UserProfileFragment extends Fragment {
     @Bind(R.id.imgbtn_follow)
     ImageButton mFollowImageButton;
 
+    @Bind(R.id.person_timeline_btn)
+    Button mPersonTimelineBtn;
+
     @Bind(R.id.name_text)
     TextView mUsernameTextView;
 
@@ -36,6 +42,18 @@ public class UserProfileFragment extends Fragment {
 
         followUser();
         mUsernameTextView.setText(getArguments().getString("USER_NAME"));
+
+        mPersonTimelineBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+                TimelineFragment timelineFragment= new TimelineFragment();
+                fragmentTransaction.replace(R.id.fragment_container, timelineFragment).addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
 
         return view;
     }
