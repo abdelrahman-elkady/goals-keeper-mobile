@@ -35,7 +35,7 @@ public class LoginFragment extends android.support.v4.app.Fragment {
         final View view = inflater.inflate(R.layout.fragment_login, container, false); // Inflating the fragment layout
 
         ButterKnife.bind(this, view);
-        
+
         return view;
     }
 
@@ -48,7 +48,6 @@ public class LoginFragment extends android.support.v4.app.Fragment {
         HomeFragment homeFragment = new HomeFragment();
         fragmentTransaction.replace(R.id.fragment_container, homeFragment);
         fragmentTransaction.commit();
-
 
 
     }
