@@ -1,31 +1,23 @@
 package goals_keeper.com.goalskeeperapp.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import goals_keeper.com.goalskeeperapp.R;
-import goals_keeper.com.goalskeeperapp.adapters.SearchPageAdapter;
+import goals_keeper.com.goalskeeperapp.adapters.SearchPagerAdapter;
 
 /**
  * Created by abdelrahman on 02/12/15.
  */
 public class SearchActivity extends AppCompatActivity {
-    private SearchPageAdapter mSearchPageAdapter;
+    private SearchPagerAdapter mSearchPagerAdapter;
 
     @Bind(R.id.search_pager)
     ViewPager mSearchViewPager;
@@ -43,8 +35,8 @@ public class SearchActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
 
-        mSearchPageAdapter = new SearchPageAdapter(getSupportFragmentManager());
-        mSearchViewPager.setAdapter(mSearchPageAdapter);
+        mSearchPagerAdapter = new SearchPagerAdapter(getSupportFragmentManager());
+        mSearchViewPager.setAdapter(mSearchPagerAdapter);
         mSearchTabLayout.setupWithViewPager(mSearchViewPager);
     }
 

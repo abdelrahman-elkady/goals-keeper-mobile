@@ -21,13 +21,6 @@ import goals_keeper.com.goalskeeperapp.adapters.UserListAdapter;
  */
 public class SearchPeopleFragment extends UserListFragment {
 
-    @Bind(R.id.edittxt_user_list_search)
-    EditText mUserSearchEditText;
-
-    @Bind(R.id.recycler_view_user_list)
-    RecyclerView mUserListRecyclerView;
-
-    UserListAdapter mUserListAdapter;
 
     @Nullable
     @Override
@@ -37,6 +30,7 @@ public class SearchPeopleFragment extends UserListFragment {
         ButterKnife.bind(this, view);
 
         mData = new ArrayList<>();
+        mFilteredData = new ArrayList<>();
         initData();
 
 
@@ -46,6 +40,8 @@ public class SearchPeopleFragment extends UserListFragment {
 
         mUserListAdapter = new UserListAdapter(getActivity(), mData);
         mUserListRecyclerView.setAdapter(mUserListAdapter);
+
+        filterUsers();
 
         return view;
     }

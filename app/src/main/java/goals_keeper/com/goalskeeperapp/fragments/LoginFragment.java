@@ -19,6 +19,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import goals_keeper.com.goalskeeperapp.R;
+import goals_keeper.com.goalskeeperapp.activities.SearchActivity;
 import goals_keeper.com.goalskeeperapp.activities.UserConnectionsActivity;
 import goals_keeper.com.goalskeeperapp.utils.Constants;
 
@@ -41,20 +42,21 @@ public class LoginFragment extends android.support.v4.app.Fragment {
         final View view = inflater.inflate(R.layout.fragment_login, container, false); // Inflating the fragment layout
 
         ButterKnife.bind(this, view);
-        
+
         return view;
     }
 
     @OnClick(R.id.btn_facebook_login)
     public void loginWithFacebook() {
 
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-        HomeFragment homeFragment = new HomeFragment();
-        fragmentTransaction.replace(R.id.main_fragment_container, homeFragment);
-        fragmentTransaction.commit();
-
+//        FragmentManager fragmentManager = getFragmentManager();
+//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//
+//        HomeFragment homeFragment = new HomeFragment();
+//        fragmentTransaction.replace(R.id.main_fragment_container, homeFragment);
+//        fragmentTransaction.commit();
+        Intent intent = new Intent(getActivity(), SearchActivity.class);
+        startActivity(intent);
 
 
     }

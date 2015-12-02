@@ -15,9 +15,9 @@ import goals_keeper.com.goalskeeperapp.models.Post;
 /**
  * Created by abdelrahman on 02/12/15.
  */
-public class SearchPageAdapter extends FragmentPagerAdapter {
+public class SearchPagerAdapter extends FragmentPagerAdapter {
 
-    public SearchPageAdapter(FragmentManager fm) {
+    public SearchPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 

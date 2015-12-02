@@ -88,7 +88,7 @@ public class UserListFragment extends Fragment {
     /**
      * Filter users in list based on the query in EditText
      */
-    private void filterUsers() {
+    protected void filterUsers() {
         mUserSearchEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
