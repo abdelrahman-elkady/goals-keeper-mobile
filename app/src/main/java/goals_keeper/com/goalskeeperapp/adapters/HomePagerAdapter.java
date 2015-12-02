@@ -4,6 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import goals_keeper.com.goalskeeperapp.fragments.GoalPreviewFragment;
 import goals_keeper.com.goalskeeperapp.fragments.PersonalGoalsFragment;
 import goals_keeper.com.goalskeeperapp.fragments.TimelineFragment;
 
@@ -23,7 +24,7 @@ public class HomePagerAdapter extends FragmentPagerAdapter {
         if (position == 0) {
             return new TimelineFragment();
         }
-        return new PersonalGoalsFragment();
+        return new GoalPreviewFragment();
     }
 
     @Override

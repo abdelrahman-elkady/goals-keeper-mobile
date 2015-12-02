@@ -91,5 +91,6 @@ public class TimeLinePostsAdapter extends RecyclerView.Adapter<TimeLinePostsAdap
             likeImageButton = (ImageButton) itemView.findViewById(R.id.imgbtn_like);
             commentImageButton = (ImageButton) itemView.findViewById(R.id.imgbtn_comment);
         }
+
     }
 }

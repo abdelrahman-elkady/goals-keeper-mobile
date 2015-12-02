@@ -9,11 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import goals_keeper.com.goalskeeperapp.R;
 import goals_keeper.com.goalskeeperapp.fragments.CommentFragment;
+import goals_keeper.com.goalskeeperapp.models.Goal;
 import goals_keeper.com.goalskeeperapp.models.Post;
 
 
@@ -24,33 +26,29 @@ import goals_keeper.com.goalskeeperapp.models.Post;
  */
 public class GoalsPreviewAdapter extends RecyclerView.Adapter<GoalsPreviewAdapter.ViewHolder> {
 
-    ArrayList<Post> mData;
+    ArrayList<Goal> mData;
     Context mContext;
 
-    public GoalsPreviewAdapter(Context mContext, ArrayList<Post> mData) {
+    public GoalsPreviewAdapter(Context mContext, ArrayList<Goal> mData) {
         super();
         this.mData = mData;
         this.mContext = mContext;
+
+
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.item_post_preview, parent, false);
+        View view = LayoutInflater.from(mContext).inflate(R.layout.item_goal_preview, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.postPreviewTextView.setText(mData.get(position).getContent());
-        holder.likeImageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                v.setActivated(!v.isActivated()); // changing the icon based on the drawable
-                //TODO: like/dislike the post !
-            }
-        });
-    }
+        holder.goalTitle.setText(mData.get(position).getTitle());
+        holder.goalDescription.setText(mData.get(position).getDescription());
 
+    }
 
 
     @Override
@@ -58,16 +56,19 @@ public class GoalsPreviewAdapter extends RecyclerView.Adapter<GoalsPreviewAdapte
         return mData.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
-        TextView userNameTextView, postPreviewTextView;
-        ImageButton shareImageButton, commentImageButton, likeImageButton;
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        TextView goalTitle, goalDescription;
         public ViewHolder(View itemView) {
             super(itemView);
-            userNameTextView = (TextView) itemView.findViewById(R.id.timeline_txt_user_name);
-            postPreviewTextView = (TextView) itemView.findViewById(R.id.timeline_txt_post_preview);
-            shareImageButton = (ImageButton) itemView.findViewById(R.id.imgbtn_share);
-            likeImageButton = (ImageButton) itemView.findViewById(R.id.imgbtn_like);
-            commentImageButton = (ImageButton) itemView.findViewById(R.id.imgbtn_comment);
+            goalTitle = (TextView) itemView.findViewById(R.id.goal_title);
+            goalDescription = (TextView) itemView.findViewById(R.id.goal_description);
+        }
+
+
+        @Override
+        public void onClick(View v) {
+            Toast.makeText(mContext, "how dare you click me",
+                    Toast.LENGTH_SHORT).show();
         }
     }
 }

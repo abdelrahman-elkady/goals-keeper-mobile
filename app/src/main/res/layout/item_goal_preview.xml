@@ -20,7 +20,7 @@
 
 
             <TextView
-                android:id="@+id/timeline_txt_user_name"
+                android:id="@+id/goal_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="5dp"
@@ -30,14 +30,16 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/timeline_txt_post_preview"
+                android:id="@+id/goal_description"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/timeline_txt_user_name"
                 android:ellipsize="end"
                 android:maxLength="140"
                 android:text="@string/lorem_ipsum"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:layout_below="@+id/goal_title"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
 
 
         </RelativeLayout>
