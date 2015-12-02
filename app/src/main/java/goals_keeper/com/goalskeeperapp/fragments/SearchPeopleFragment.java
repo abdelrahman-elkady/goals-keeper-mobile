@@ -14,6 +14,8 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import goals_keeper.com.goalskeeperapp.R;
 import goals_keeper.com.goalskeeperapp.adapters.SearchPageAdapter;
+import goals_keeper.com.goalskeeperapp.adapters.UserListAdapter;
+import goals_keeper.com.goalskeeperapp.models.User;
 
 /**
  * Created by abdelrahman on 02/12/15.
@@ -23,7 +25,7 @@ public class SearchPeopleFragment extends android.support.v4.app.Fragment {
     @Bind(R.id.recycler_view_search_people)
     RecyclerView mPeopleRecyclerView;
 
-    SearchPageAdapter mSearchPageAdapter;
+    UserListAdapter mUsersAdapter;
     ArrayList<String> mData;
 
     @Nullable
@@ -38,20 +40,20 @@ public class SearchPeopleFragment extends android.support.v4.app.Fragment {
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mPeopleRecyclerView.setLayoutManager(layoutManager);
 
-        mSearchPageAdapter = new SearchPageAdapter(getActivity(),mData);
-        mPeopleRecyclerView.setAdapter(mSearchPageAdapter);
+        mUsersAdapter = new UserListAdapter(getActivity(),mData);
+        mPeopleRecyclerView.setAdapter(mUsersAdapter);
 
         return view;
     }
 
 
     private void initData() {
-        mData.add("Ali Hassan");
-        mData.add("Abdelrahman Elkady");
-        mData.add("Mohamed Mostafa");
-        mData.add("Abkr");
-        mData.add("Mr.Android");
-        mData.add("Abdelrahman Mahmoud");
+        mData.add("Quit smoking");
+        mData.add("Getting A+ in theory of computation");
+        mData.add("Get driving license");
+        mData.add("Eat a banana");
+        mData.add("Win a marathon");
+        mData.add("Win a Free Sandwish");
 
     }
 

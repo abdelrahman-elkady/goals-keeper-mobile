@@ -22,9 +22,8 @@ public class SearchGoalsFragment extends android.support.v4.app.Fragment{
     @Bind(R.id.recycler_view_search_goals)
     RecyclerView mGoalsRecyclerView;
 
-    SearchPageAdapter mSearchPageAdapter;
     ArrayList<String> mData;
-
+    SearchGoalsAdapter mSearchGoalsAdapter;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -37,8 +36,8 @@ public class SearchGoalsFragment extends android.support.v4.app.Fragment{
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mGoalsRecyclerView.setLayoutManager(layoutManager);
 
-        mSearchPageAdapter = new SearchPageAdapter(getActivity(),mData);
-        mGoalsRecyclerView.setAdapter(mSearchPageAdapter);
+        mSearchGoalsAdapter = new SearchPageAdapter(getActivity(),mData);
+        mGoalsRecyclerView.setAdapter(mSearchGoalsAdapter);
 
         return view;
     }

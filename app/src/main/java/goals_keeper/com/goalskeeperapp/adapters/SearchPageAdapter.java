@@ -1,5 +1,6 @@
 package goals_keeper.com.goalskeeperapp.adapters;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -9,20 +10,22 @@ import java.util.ArrayList;
 
 import goals_keeper.com.goalskeeperapp.fragments.SearchGoalsFragment;
 import goals_keeper.com.goalskeeperapp.fragments.SearchPeopleFragment;
+import goals_keeper.com.goalskeeperapp.models.Post;
 
 /**
  * Created by abdelrahman on 02/12/15.
  */
 public class SearchPageAdapter extends FragmentPagerAdapter {
+
     public SearchPageAdapter(FragmentManager fm) {
         super(fm);
     }
 
     public Fragment getItem(int position) {
         if (position == 0) {
-            return new SearchGoalsFragment();
+            return new SearchPeopleFragment();
         }
-        return new SearchPeopleFragment();
+        return new SearchGoalsFragment();
     }
 
     @Override
@@ -33,9 +36,9 @@ public class SearchPageAdapter extends FragmentPagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         if(position == 0) {
-            return "Goals";
+            return "Find People";
         }
-        return "People";
+        return "Explore Goals";
     }
 }
 
