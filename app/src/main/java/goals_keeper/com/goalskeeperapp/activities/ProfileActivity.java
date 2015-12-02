@@ -35,7 +35,7 @@ public class ProfileActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         ProfileFragment profileFragment = new ProfileFragment();
-        fragmentTransaction.add(R.id.profile_fragment_container, profileFragment);
+        fragmentTransaction.add(R.id.fragment_container, profileFragment);
         fragmentTransaction.commit();
 
     }

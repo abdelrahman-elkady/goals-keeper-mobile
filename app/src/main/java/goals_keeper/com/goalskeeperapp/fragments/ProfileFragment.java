@@ -54,11 +54,11 @@ public class ProfileFragment extends Fragment {
         mProfileEditFAB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fragmentManager = getFragmentManager();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
                 ProfileEditFragment profileEditFragment = new ProfileEditFragment();
-                fragmentTransaction.replace(R.id.profile_fragment_container, profileEditFragment).addToBackStack(null);
+                fragmentTransaction.replace(R.id.fragment_container, profileEditFragment).addToBackStack(null);
                 fragmentTransaction.commit();
             }
         });
