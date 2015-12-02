@@ -35,6 +35,8 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search);
         ButterKnife.bind(this);
 
+        setSupportActionBar(mToolbar);
+
 
         mSearchPagerAdapter = new SearchPagerAdapter(getSupportFragmentManager());
         mSearchViewPager.setAdapter(mSearchPagerAdapter);
