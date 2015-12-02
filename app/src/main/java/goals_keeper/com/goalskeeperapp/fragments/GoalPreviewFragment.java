@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -17,7 +18,9 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import goals_keeper.com.goalskeeperapp.R;
+import goals_keeper.com.goalskeeperapp.adapters.GoalsPreviewAdapter;
 import goals_keeper.com.goalskeeperapp.adapters.TimeLinePostsAdapter;
+import goals_keeper.com.goalskeeperapp.models.Goal;
 import goals_keeper.com.goalskeeperapp.models.Post;
 
 /**
@@ -25,52 +28,51 @@ import goals_keeper.com.goalskeeperapp.models.Post;
  *
  * @author kady
  */
-public class TimelineFragment extends android.support.v4.app.Fragment {
+public class GoalPreviewFragment extends android.support.v4.app.Fragment {
+    @Bind(R.id.fab_search_goal)
+    FloatingActionButton mSearchGoalButton;
 
-    @Bind(R.id.fab_add_post)
-    FloatingActionButton mAddPostButton;
+    @Bind(R.id.recycler_view_goals)
+    RecyclerView mGoalRecyclerView;
 
-    @Bind(R.id.recycler_view_timeline)
-    RecyclerView mPostsRecyclerView;
-
-    TimeLinePostsAdapter mTimeLinePostsAdapter;
-    ArrayList<Post> mData;
+    GoalsPreviewAdapter mGoalsPreviewAdapter;
+    ArrayList<Goal> mData;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.fragment_timeline, container, false);
+        final View view = inflater.inflate(R.layout.fragment_goals_preview, container, false);
 
         ButterKnife.bind(this, view);
         initData();
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        mPostsRecyclerView.setLayoutManager(layoutManager);
+        mGoalRecyclerView.setLayoutManager(layoutManager);
 
-        mTimeLinePostsAdapter = new TimeLinePostsAdapter(getActivity(), mData);
-        mPostsRecyclerView.setAdapter(mTimeLinePostsAdapter);
+        mGoalsPreviewAdapter = new GoalsPreviewAdapter(getActivity(), mData);
+        mGoalRecyclerView.setAdapter(mGoalsPreviewAdapter);
 
         return view;
     }
     private void initData() {
         mData = new ArrayList<>();
-        mData.add(new Post(null,getResources().getString(R.string.lorem_ipsum)));
-        mData.add(new Post(null,"Hello World the world is world without any world !"));
-        mData.add(new Post(null,getResources().getString(R.string.lorem_ipsum)));
-        mData.add(new Post(null,"Bandicoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooots"));
-        mData.add(new Post(null,getResources().getString(R.string.lorem_ipsum)));
+        mData.add(new Goal("A+","gotta catch 'em all "));
+        mData.add(new Goal("quit smoking","i don't think cancer is cool"));
+        mData.add(new Goal("becoming a bird","so i can have colorful deathers"));
+        mData.add(new Goal("leaving egypt","we are not meant to save egypt .. we are meant to leave it "));
+
     }
 
-    @OnClick(R.id.fab_add_post)
+    @OnClick(R.id.fab_search_goal)
     public void launchCreatePost() {
-
-        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        Toast.makeText(getActivity().getBaseContext(), "You clciked ", Toast.LENGTH_SHORT).show();
+        /*FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         CreatePostFragment createPostFragment = new CreatePostFragment();
         fragmentTransaction.replace(R.id.fragment_container, createPostFragment).addToBackStack(null);
-        fragmentTransaction.commit();
+        fragmentTransaction.commit();*/
     }
 
 }
