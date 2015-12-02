@@ -15,6 +15,14 @@ public class Post {
 
     private ArrayList<Like> likes;
     private ArrayList<Comment> comments;
+
+    public Post(String content) {
+        this.content = content;
+        this.likes = new ArrayList<Like>();
+        this.comments = new ArrayList<Comment>();
+        isPrivate = false;
+    }
+
     public Post(User user, String content) {
         this.user = user;
         this.content = content;
