@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,8 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import goals_keeper.com.goalskeeperapp.R;
+import goals_keeper.com.goalskeeperapp.utils.Constants;
+import goals_keeper.com.goalskeeperapp.utils.Helpers;
 
 /**
  * Created by kady on 02/12/15.
@@ -42,6 +45,7 @@ public class UserProfileFragment extends Fragment {
 
         followUser();
         mUsernameTextView.setText(getArguments().getString("USER_NAME"));
+        Helpers.setToolbarTitle((AppCompatActivity) getActivity(), getArguments().getString(Constants.TOOLBAR_TITLE));
 
         mPersonTimelineBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,7 +53,7 @@ public class UserProfileFragment extends Fragment {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-                TimelineFragment timelineFragment= new TimelineFragment();
+                TimelineFragment timelineFragment = new TimelineFragment();
                 fragmentTransaction.replace(R.id.fragment_container, timelineFragment).addToBackStack(null);
                 fragmentTransaction.commit();
             }

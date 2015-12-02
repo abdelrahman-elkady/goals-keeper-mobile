@@ -8,7 +8,7 @@ package goals_keeper.com.goalskeeperapp.utils;
 public class Constants {
     public static final String BUNDLE_USERS_KEY = "USERS";
     public static final String USER_CONNECTION_TYPE = "USER CONNECTION TYPE";
-
+    public static final String TOOLBAR_TITLE = "Toolbar title";
 
     public static final int FOLLOWERS = 0;
     public static final int FOLLOWINGS = 1;
