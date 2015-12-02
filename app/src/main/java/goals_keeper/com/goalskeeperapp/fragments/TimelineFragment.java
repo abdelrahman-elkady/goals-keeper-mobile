@@ -27,6 +27,7 @@ import goals_keeper.com.goalskeeperapp.models.Post;
  * @author kady
  */
 public class TimelineFragment extends android.support.v4.app.Fragment {
+
     @Bind(R.id.fab_add_post)
     FloatingActionButton mAddPostButton;
 
