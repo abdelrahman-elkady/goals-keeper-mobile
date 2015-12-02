@@ -19,6 +19,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import goals_keeper.com.goalskeeperapp.R;
 import goals_keeper.com.goalskeeperapp.activities.ProfileActivity;
+import goals_keeper.com.goalskeeperapp.activities.SearchActivity;
 import goals_keeper.com.goalskeeperapp.adapters.HomePagerAdapter;
 
 /**
@@ -76,6 +77,11 @@ public class HomeFragment extends Fragment {
         if (id == R.id.action_profile) {
             final Intent intent = new Intent(this.getActivity(), ProfileActivity.class);
             startActivity(intent);
+        }
+
+        if (id == R.id.action_search) {
+            Intent searchIntent = new Intent(this.getActivity(), SearchActivity.class);
+            startActivity(searchIntent);
         }
         return super.onOptionsItemSelected(item);
     }
