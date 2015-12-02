@@ -4,9 +4,12 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import java.util.ArrayList;
 
@@ -23,7 +26,10 @@ public class SearchGoalsFragment extends android.support.v4.app.Fragment {
     @Bind(R.id.recycler_view_search_goals)
     RecyclerView mGoalsRecyclerView;
 
-    ArrayList<String> mData;
+    @Bind(R.id.edittxt_search_goals)
+    EditText mGoalsSearchEditText;
+
+    ArrayList<String> mData, mFilteredData;
     SearchGoalsAdapter mSearchGoalsAdapter;
 
     @Nullable
@@ -34,6 +40,7 @@ public class SearchGoalsFragment extends android.support.v4.app.Fragment {
         ButterKnife.bind(this, view);
 
         mData = new ArrayList<>();
+        mFilteredData = new ArrayList<>();
         initData();
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
@@ -43,6 +50,7 @@ public class SearchGoalsFragment extends android.support.v4.app.Fragment {
         mSearchGoalsAdapter = new SearchGoalsAdapter(getActivity(), mData);
         mGoalsRecyclerView.setAdapter(mSearchGoalsAdapter);
 
+        filterGoals();
         return view;
     }
 
@@ -55,6 +63,31 @@ public class SearchGoalsFragment extends android.support.v4.app.Fragment {
         mData.add("Win a marathon");
         mData.add("Win a Free Sandwich");
 
+    }
+
+    protected void filterGoals() {
+        mGoalsSearchEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence query, int start, int before, int count) {
+                mFilteredData.clear();
+                for (int i = 0; i < mData.size(); i++) {
+                    if (mData.get(i).toLowerCase().contains(query.toString().toLowerCase())) {
+                        mFilteredData.add(mData.get(i));
+                    }
+                }
+                mSearchGoalsAdapter.setData(mFilteredData);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
 
