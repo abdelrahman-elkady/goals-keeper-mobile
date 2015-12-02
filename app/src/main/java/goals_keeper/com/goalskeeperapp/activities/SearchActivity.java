@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -13,6 +14,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -22,8 +24,7 @@ import goals_keeper.com.goalskeeperapp.adapters.SearchPageAdapter;
 /**
  * Created by abdelrahman on 02/12/15.
  */
-public class SearchActivity extends Fragment
-{
+public class SearchActivity extends AppCompatActivity {
     private SearchPageAdapter mSearchPageAdapter;
 
     @Bind(R.id.search_pager)
@@ -32,47 +33,42 @@ public class SearchActivity extends Fragment
     @Bind(R.id.search_tab_layout)
     TabLayout mSearchTabLayout;
 
+    @Bind(R.id.toolbar)
     Toolbar mToolbar;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        setHasOptionsMenu(true);
         super.onCreate(savedInstanceState);
-    }
+        setContentView(R.layout.activity_search);
+        ButterKnife.bind(this);
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_search, container, false);
 
-        ButterKnife.bind(this, view);
-
-        mToolbar = (Toolbar) getActivity().findViewById(R.id.toolbar);
-
-        mSearchPageAdapter = new SearchPageAdapter(getChildFragmentManager());
+        mSearchPageAdapter = new SearchPageAdapter(getSupportFragmentManager());
         mSearchViewPager.setAdapter(mSearchPageAdapter);
         mSearchTabLayout.setupWithViewPager(mSearchViewPager);
-
-
-        return view;
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-
-        menu.clear();
-        inflater.inflate(R.menu.menu_home, menu);
-
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
         if (id == R.id.action_profile) {
-            final Intent intent = new Intent(this.getActivity(), ProfileActivity.class);
-            startActivity(intent);
+            return true;
         }
+
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
+            this.finish();
+        } else {
+            getSupportFragmentManager().popBackStack();
+        }
     }
 }

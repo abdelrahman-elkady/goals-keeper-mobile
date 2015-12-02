@@ -23,6 +23,14 @@ public class SearchPageAdapter extends FragmentPagerAdapter {
 
     public Fragment getItem(int position) {
         if (position == 0) {
+            //TODO: Get all people !
+            ArrayList<String> data = new ArrayList<>();
+            data.add("Ali Hassan");
+            data.add("Abdelrahman Elkady");
+            data.add("Mohammed Mostafa");
+            data.add("Ahmed Saleh");
+
+
             return new SearchPeopleFragment();
         }
         return new SearchGoalsFragment();
@@ -35,7 +43,7 @@ public class SearchPageAdapter extends FragmentPagerAdapter {
 
     @Override
     public CharSequence getPageTitle(int position) {
-        if(position == 0) {
+        if (position == 0) {
             return "Find People";
         }
         return "Explore Goals";
