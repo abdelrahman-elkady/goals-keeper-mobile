@@ -1,17 +1,12 @@
 package goals_keeper.com.goalskeeperapp.activities;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.Window;
-import android.view.WindowManager;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -38,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
         LoginFragment loginFragment = new LoginFragment();
-        fragmentTransaction.add(R.id.main_fragment_container, loginFragment);
+        fragmentTransaction.add(R.id.fragment_container, loginFragment);
         fragmentTransaction.commit();
 
     }

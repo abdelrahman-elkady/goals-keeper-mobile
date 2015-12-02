@@ -1,6 +1,10 @@
 package goals_keeper.com.goalskeeperapp.adapters;
 
 import android.content.Context;
+import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +16,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import goals_keeper.com.goalskeeperapp.R;
+import goals_keeper.com.goalskeeperapp.fragments.UserProfileFragment;
+import goals_keeper.com.goalskeeperapp.utils.Constants;
 
 /**
  * Created by kady on 30/11/15.
@@ -53,7 +59,7 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
         notifyDataSetChanged();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         public TextView userNameTextView;
         public ImageView userProfileImageView;
@@ -62,7 +68,25 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
             super(itemView);
             userNameTextView = (TextView) itemView.findViewById(R.id.txtview_user_name);
             userProfileImageView = (ImageView) itemView.findViewById(R.id.imgview_profile_picture);
+            itemView.setOnClickListener(this);
         }
 
+        @Override
+        public void onClick(View v) {
+            // TODO: As this adapter is generic, make the user implement the onClick better by calling a method from interface
+            FragmentManager manager = ((AppCompatActivity) mContext).getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = manager.beginTransaction();
+
+            Bundle bundle = new Bundle();
+
+            //TODO: Convert the whole object to JSON ?
+            bundle.putString("USER_NAME", mData.get(getAdapterPosition()));
+
+            UserProfileFragment fragment = new UserProfileFragment();
+            fragment.setArguments(bundle);
+            fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack(null);
+            fragmentTransaction.commit();
+
+        }
     }
 }

@@ -47,7 +47,7 @@ public class UserConnectionsActivity extends AppCompatActivity {
 
         UserListFragment userListFragment = new UserListFragment();
         userListFragment.setArguments(bundle);
-        fragmentTransaction.add(R.id.fragment_container, userListFragment);
+        fragmentTransaction.add(R.id.fragment_container, userListFragment).addToBackStack(null);
         fragmentTransaction.commit();
 
     }

@@ -58,7 +58,7 @@ public class ProfileFragment extends Fragment {
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
                 ProfileEditFragment profileEditFragment = new ProfileEditFragment();
-                fragmentTransaction.replace(R.id.profile_fragment_container, profileEditFragment).addToBackStack(null);
+                fragmentTransaction.replace(R.id.fragment_container, profileEditFragment).addToBackStack(null);
                 fragmentTransaction.commit();
             }
         });

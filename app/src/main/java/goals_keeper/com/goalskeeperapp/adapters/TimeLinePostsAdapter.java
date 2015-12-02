@@ -1,7 +1,6 @@
 package goals_keeper.com.goalskeeperapp.adapters;
 
 import android.content.Context;
-import android.media.Image;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
@@ -59,7 +58,7 @@ public class TimeLinePostsAdapter extends RecyclerView.Adapter<TimeLinePostsAdap
 
                     //TODO: send proper data with the request
                     CommentFragment commentFragment = new CommentFragment();
-                    manager.beginTransaction().replace(R.id.main_fragment_container, commentFragment).commit();
+                    manager.beginTransaction().replace(R.id.fragment_container, commentFragment).commit();
                 }
             }
         });
