@@ -10,6 +10,7 @@ public class Constants {
     public static final String USER_CONNECTION_TYPE = "USER CONNECTION TYPE";
     public static final String TOOLBAR_TITLE = "TOOLBAR TITLE";
     public static final String TIMELINE_MODE = "TIMELINE MODE";
+    public static final String VIEW_PAGER_PAGE_NUMBER = "PAGE NUMBER";
 
 
     public static final int FOLLOWERS = 0;

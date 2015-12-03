@@ -13,6 +13,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import goals_keeper.com.goalskeeperapp.R;
 import goals_keeper.com.goalskeeperapp.adapters.SearchPagerAdapter;
+import goals_keeper.com.goalskeeperapp.utils.Constants;
 
 /**
  * Created by abdelrahman on 02/12/15.
@@ -42,6 +43,9 @@ public class SearchActivity extends AppCompatActivity {
         mSearchPagerAdapter = new SearchPagerAdapter(getSupportFragmentManager());
         mSearchViewPager.setAdapter(mSearchPagerAdapter);
         mSearchTabLayout.setupWithViewPager(mSearchViewPager);
+
+        int pageNumber = getIntent().getIntExtra(Constants.VIEW_PAGER_PAGE_NUMBER, 0);
+        mSearchViewPager.setCurrentItem(pageNumber);
     }
 
     @Override
