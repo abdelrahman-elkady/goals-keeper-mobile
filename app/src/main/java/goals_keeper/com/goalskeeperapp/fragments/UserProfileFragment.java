@@ -1,6 +1,5 @@
 package goals_keeper.com.goalskeeperapp.fragments;
 
-import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,6 +7,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -16,7 +17,6 @@ import android.widget.TextView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import goals_keeper.com.goalskeeperapp.R;
 import goals_keeper.com.goalskeeperapp.utils.Constants;
 import goals_keeper.com.goalskeeperapp.utils.Helpers;
@@ -32,7 +32,7 @@ public class UserProfileFragment extends Fragment {
     ImageButton mFollowImageButton;
 
     @Bind(R.id.person_timeline_btn)
-    Button mPersonTimelineBtn;
+    Button mPersonTimelineButton;
 
     @Bind(R.id.name_text)
     TextView mUsernameTextView;
@@ -41,19 +41,25 @@ public class UserProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_user_profile, container, false);
+        setHasOptionsMenu(true); // To support modifying the toolbar menu on fragment change
         ButterKnife.bind(this, view);
 
         followUser();
         mUsernameTextView.setText(getArguments().getString("USER_NAME"));
         Helpers.setToolbarTitle((AppCompatActivity) getActivity(), getArguments().getString(Constants.TOOLBAR_TITLE));
 
-        mPersonTimelineBtn.setOnClickListener(new View.OnClickListener() {
+        mPersonTimelineButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
+                Bundle bundle = new Bundle();
+                bundle.putString(Constants.TOOLBAR_TITLE, getArguments().getString("USER_NAME") + "'s Timeline");
+                bundle.putInt(Constants.TIMELINE_MODE, Constants.USER_TIMELINE);
+
                 TimelineFragment timelineFragment = new TimelineFragment();
+                timelineFragment.setArguments(bundle);
                 fragmentTransaction.replace(R.id.fragment_container, timelineFragment).addToBackStack(null);
                 fragmentTransaction.commit();
             }
@@ -70,6 +76,15 @@ public class UserProfileFragment extends Fragment {
                 //TODO: Implement following user logic
             }
         });
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+
+        menu.clear();
+        inflater.inflate(R.menu.menu_no_search, menu);
+
     }
 
 }
