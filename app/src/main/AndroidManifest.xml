@@ -48,6 +48,14 @@
 
         </activity>
 
+        <activity
+            android:name=".activities.UserProfileActivity"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+
 
     </application>
 

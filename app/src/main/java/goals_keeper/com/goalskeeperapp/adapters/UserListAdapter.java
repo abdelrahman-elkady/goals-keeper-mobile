@@ -1,6 +1,7 @@
 package goals_keeper.com.goalskeeperapp.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import goals_keeper.com.goalskeeperapp.R;
+import goals_keeper.com.goalskeeperapp.activities.UserProfileActivity;
 import goals_keeper.com.goalskeeperapp.fragments.UserProfileFragment;
 import goals_keeper.com.goalskeeperapp.utils.Constants;
 
@@ -74,9 +76,6 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
         @Override
         public void onClick(View v) {
             // TODO: As this adapter is generic, make the user implement the onClick better by calling a method from interface
-            FragmentManager manager = ((AppCompatActivity) mContext).getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = manager.beginTransaction();
-
             Bundle bundle = new Bundle();
 
             //TODO: Convert the whole object to JSON ?
@@ -84,10 +83,9 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
             bundle.putString("USER_NAME", item);
             bundle.putString(Constants.TOOLBAR_TITLE, String.format("%s's profile", item));
 
-            UserProfileFragment fragment = new UserProfileFragment();
-            fragment.setArguments(bundle);
-            fragmentTransaction.replace(R.id.fragment_container, fragment).addToBackStack(null);
-            fragmentTransaction.commit();
+            Intent userProfileIntent = new Intent(mContext, UserProfileActivity.class);
+            userProfileIntent.putExtras(bundle);
+            mContext.startActivity(userProfileIntent);
 
         }
     }
