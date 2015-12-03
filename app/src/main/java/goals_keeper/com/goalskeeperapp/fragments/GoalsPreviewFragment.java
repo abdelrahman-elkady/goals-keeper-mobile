@@ -26,7 +26,7 @@ import goals_keeper.com.goalskeeperapp.utils.Constants;
  *
  * @author kady
  */
-public class GoalPreviewFragment extends android.support.v4.app.Fragment {
+public class GoalsPreviewFragment extends android.support.v4.app.Fragment {
     @Bind(R.id.fab_search_goal)
     FloatingActionButton mSearchGoalButton;
 

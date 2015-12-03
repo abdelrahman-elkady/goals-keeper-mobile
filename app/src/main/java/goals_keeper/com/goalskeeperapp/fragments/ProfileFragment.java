@@ -33,10 +33,13 @@ public class ProfileFragment extends Fragment {
 
     @Bind(R.id.fab_profile_edit)
     FloatingActionButton mProfileEditFAB;
+
     @Bind(R.id.followers_button)
     Button mFollowersButton;
+
     @Bind(R.id.following_button)
     Button mFollowingButton;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -99,6 +102,7 @@ public class ProfileFragment extends Fragment {
                 startActivity(followersIntent);
             }
         });
+
 
         return view;
     }

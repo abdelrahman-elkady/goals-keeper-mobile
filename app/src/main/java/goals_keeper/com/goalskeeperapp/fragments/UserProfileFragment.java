@@ -37,6 +37,9 @@ public class UserProfileFragment extends Fragment {
     @Bind(R.id.name_text)
     TextView mUsernameTextView;
 
+    @Bind(R.id.fragment_user_profile_button_goals)
+    Button mGoalsButton;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -61,6 +64,18 @@ public class UserProfileFragment extends Fragment {
                 TimelineFragment timelineFragment = new TimelineFragment();
                 timelineFragment.setArguments(bundle);
                 fragmentTransaction.replace(R.id.fragment_container, timelineFragment).addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
+
+        mGoalsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+                GoalsPreviewFragment goalsPreviewFragment = new GoalsPreviewFragment();
+                fragmentTransaction.replace(R.id.fragment_container, goalsPreviewFragment).addToBackStack(null);
                 fragmentTransaction.commit();
             }
         });
