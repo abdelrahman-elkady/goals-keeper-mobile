@@ -44,15 +44,14 @@ public class Goal {
         this.description = description;
     }
 
-    public Goal (String title)
-    {
+    public Goal(String title) {
         this.title = title;
-        this.description = "";
+        this.description = null;
         this.users = new ArrayList<User>();
         this.posts = new ArrayList<Post>();
     }
-    public Goal (String title,String description)
-    {
+
+    public Goal(String title, String description) {
         this(title);
         this.description = description;
 

@@ -1,5 +1,6 @@
 package goals_keeper.com.goalskeeperapp.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -16,7 +17,9 @@ import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import goals_keeper.com.goalskeeperapp.R;
+import goals_keeper.com.goalskeeperapp.activities.CreateGoalActivity;
 import goals_keeper.com.goalskeeperapp.adapters.SearchGoalsAdapter;
 import goals_keeper.com.goalskeeperapp.adapters.SearchPagerAdapter;
 
@@ -67,6 +70,12 @@ public class SearchGoalsFragment extends android.support.v4.app.Fragment {
         mData.add("Win a marathon");
         mData.add("Win a Free Sandwich");
 
+    }
+
+    @OnClick(R.id.fragment_search_goals_fab_create_goal)
+    public void createGoal() {
+        Intent intent = new Intent(getActivity(), CreateGoalActivity.class);
+        startActivity(intent);
     }
 
     protected void filterGoals() {
