@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -20,6 +21,7 @@ import goals_keeper.com.goalskeeperapp.activities.SearchActivity;
 import goals_keeper.com.goalskeeperapp.adapters.GoalsPreviewAdapter;
 import goals_keeper.com.goalskeeperapp.models.Goal;
 import goals_keeper.com.goalskeeperapp.utils.Constants;
+import goals_keeper.com.goalskeeperapp.utils.Helpers;
 
 /**
  * Created by kady on 25/11/15.
@@ -43,6 +45,8 @@ public class GoalsPreviewFragment extends android.support.v4.app.Fragment {
 
         ButterKnife.bind(this, view);
         initData();
+
+        Helpers.setToolbarTitle((AppCompatActivity) getActivity(), "Goals");
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);

@@ -2,6 +2,7 @@ package goals_keeper.com.goalskeeperapp.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -28,6 +29,9 @@ public class SearchGoalsFragment extends android.support.v4.app.Fragment {
 
     @Bind(R.id.edittxt_search_goals)
     EditText mGoalsSearchEditText;
+
+    @Bind(R.id.fragment_search_goals_fab_create_goal)
+    FloatingActionButton mCreateGoalFloatingActionButton;
 
     ArrayList<String> mData, mFilteredData;
     SearchGoalsAdapter mSearchGoalsAdapter;
