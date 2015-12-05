@@ -65,28 +65,4 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
-
-        menu.clear();
-        inflater.inflate(R.menu.menu_home, menu);
-
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.action_profile) {
-            final Intent intent = new Intent(this.getActivity(), ProfileActivity.class);
-            startActivity(intent);
-        }
-
-        if (id == R.id.action_search) {
-            Intent searchIntent = new Intent(this.getActivity(), SearchActivity.class);
-            startActivity(searchIntent);
-        }
-        return super.onOptionsItemSelected(item);
-    }
 }

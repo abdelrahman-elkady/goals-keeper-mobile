@@ -14,4 +14,9 @@
     <string name="user_name_placeholder">John Doe</string>
     <string name="goal_name_placeholder">get A+</string>
     <string name="action_search">search</string>
+    <string name="create_post_goal_select_hint">What is your goal ?</string>
+    <string name="create_post_body_hint">Update people with your story</string>
+    <string name="cancel">Cancel</string>
+    <string name="create">Create</string>
+    <string name="post">Post</string>
 </resources>

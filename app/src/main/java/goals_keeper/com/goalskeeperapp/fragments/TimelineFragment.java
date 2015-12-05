@@ -1,5 +1,6 @@
 package goals_keeper.com.goalskeeperapp.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -21,6 +22,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import goals_keeper.com.goalskeeperapp.R;
+import goals_keeper.com.goalskeeperapp.activities.CreatePostActivity;
 import goals_keeper.com.goalskeeperapp.adapters.TimeLinePostsAdapter;
 import goals_keeper.com.goalskeeperapp.models.Post;
 import goals_keeper.com.goalskeeperapp.utils.Constants;
@@ -86,13 +88,8 @@ public class TimelineFragment extends android.support.v4.app.Fragment {
 
     @OnClick(R.id.fab_add_post)
     public void launchCreatePost() {
-
-        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-        CreatePostFragment createPostFragment = new CreatePostFragment();
-        fragmentTransaction.replace(R.id.fragment_container, createPostFragment).addToBackStack(null);
-        fragmentTransaction.commit();
+        Intent intent = new Intent(getActivity(), CreatePostActivity.class);
+        startActivity(intent);
     }
 
     @Override

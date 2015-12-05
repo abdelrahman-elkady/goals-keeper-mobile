@@ -3,7 +3,6 @@ package goals_keeper.com.goalskeeperapp.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +20,7 @@ import goals_keeper.com.goalskeeperapp.R;
  */
 public class CreateGoalFragment extends Fragment {
 
-    @Bind(R.id.fragment_create_goal_button_cancel)
+    @Bind(R.id.activity_create_post_button_cancel)
     Button mCancelButton;
 
     @Nullable
@@ -32,7 +31,7 @@ public class CreateGoalFragment extends Fragment {
         return view;
     }
 
-    @OnClick(R.id.fragment_create_goal_button_cancel)
+    @OnClick(R.id.activity_create_post_button_cancel)
     public void navigateBack() {
         getActivity().onBackPressed();
     }

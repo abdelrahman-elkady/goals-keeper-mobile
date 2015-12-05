@@ -1,16 +1,9 @@
-package goals_keeper.com.goalskeeperapp.fragments;
+package goals_keeper.com.goalskeeperapp.activities;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-
-import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 
@@ -21,51 +14,52 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import goals_keeper.com.goalskeeperapp.R;
 import goals_keeper.com.goalskeeperapp.adapters.CreatePostAutoCompleteAdapter;
-import goals_keeper.com.goalskeeperapp.utils.Helpers;
 
 /**
- * Created by hamamsy on 28/11/15.
+ * Created by kady on 05/12/15.
+ *
+ * @author kady
  */
-public class CreatePostFragment extends android.support.v4.app.Fragment {
-
-    @Bind(R.id.btn_cancel)
+public class CreatePostActivity extends BaseActivity {
+    @Bind(R.id.activity_create_post_button_cancel)
     Button mCancelButton;
 
-    @Bind(R.id.auto_complete_goal_selection)
+    @Bind(R.id.activity_create_post_edit_text_goal_select)
     AutoCompleteTextView mGoalSelectAutoCompleteTextView;
 
-    @Bind(R.id.btn_post)
+    @Bind(R.id.activity_create_post_button_post)
     Button mPostButton;
+
+    @Bind(R.id.toolbar)
+    Toolbar mToolbar;
 
     CreatePostAutoCompleteAdapter mGoalsAdapter;
     ArrayList<String> mData;
 
-    @Nullable
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        setHasOptionsMenu(true); // To support modifying the toolbar menu on fragment change
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_create_post);
+        ButterKnife.bind(this);
 
-        View view = inflater.inflate(R.layout.fragment_create_post, container, false); // Inflating the fragment layout
-
-        ButterKnife.bind(this, view);
-        Helpers.setToolbarTitle((AppCompatActivity) getActivity(), "New Post");
+        mToolbar.setTitle("New Post");
+        setSupportActionBar(mToolbar);
 
         mData = new ArrayList<>();
         initData();
 
-        mGoalsAdapter = new CreatePostAutoCompleteAdapter(getActivity(), mData);
+        mGoalsAdapter = new CreatePostAutoCompleteAdapter(this, mData);
         mGoalSelectAutoCompleteTextView.setAdapter(mGoalsAdapter);
 
         validateInput();
 
-        return view;
     }
 
-    @OnClick(R.id.btn_cancel)
+    @OnClick(R.id.activity_create_post_button_cancel)
     public void navigateBack() {
-        getActivity().onBackPressed();
+        onBackPressed();
     }
-
 
     private void initData() {
         mData.add("Quit smoking");
