@@ -64,6 +64,14 @@
 
         </activity>
 
+        <activity
+            android:name=".activities.AboutActivity"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+
 
     </application>
 

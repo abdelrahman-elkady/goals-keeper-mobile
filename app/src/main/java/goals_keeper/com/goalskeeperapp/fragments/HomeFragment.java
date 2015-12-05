@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import goals_keeper.com.goalskeeperapp.R;
+import goals_keeper.com.goalskeeperapp.activities.AboutActivity;
 import goals_keeper.com.goalskeeperapp.activities.ProfileActivity;
 import goals_keeper.com.goalskeeperapp.activities.SearchActivity;
 import goals_keeper.com.goalskeeperapp.adapters.HomePagerAdapter;
@@ -76,6 +77,7 @@ public class HomeFragment extends Fragment {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
+
         if (id == R.id.action_profile) {
             final Intent intent = new Intent(this.getActivity(), ProfileActivity.class);
             startActivity(intent);
