@@ -80,6 +80,14 @@
 
         </activity>
 
+        <activity
+            android:name=".activities.CommentsActivity"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+
 
     </application>
 

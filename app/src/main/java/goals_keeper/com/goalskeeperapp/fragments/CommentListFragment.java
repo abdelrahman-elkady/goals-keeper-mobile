@@ -1,5 +1,6 @@
 package goals_keeper.com.goalskeeperapp.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,18 +16,36 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import goals_keeper.com.goalskeeperapp.R;
 import goals_keeper.com.goalskeeperapp.adapters.CommentListAdapter;
+import goals_keeper.com.goalskeeperapp.utils.Constants;
 
 /**
  * Created by abdelrahman on 01/12/15.
  */
-public class CommentFragment extends Fragment {
+public class CommentListFragment extends Fragment {
 
-    @Bind(R.id.recycler_view_comment_list)
+    @Bind(R.id.fragment_comment_list_recycler_view_comments)
     RecyclerView mCommentsRecyclerView;
 
     CommentListAdapter mCommentsAdapter;
     private ArrayList<String> mData;
 
+
+    public static CommentListFragment newInstance(ArrayList<String> data) {
+
+        Bundle args = new Bundle();
+
+        CommentListFragment fragment = new CommentListFragment();
+        args.putStringArrayList(Constants.DATA, data);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        this.mData = getArguments().getStringArrayList(Constants.DATA);
+
+    }
 
     @Nullable
     @Override
@@ -34,8 +53,6 @@ public class CommentFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_comment_list, container, false);
 
         ButterKnife.bind(this, view);
-
-        initializeData();
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -48,13 +65,4 @@ public class CommentFragment extends Fragment {
         return view;
     }
 
-    private void initializeData() {
-        mData = new ArrayList<>();
-        mData.add("do you like bananas ?");
-        mData.add("Hello");
-        mData.add("hello there");
-        mData.add("Theory of computation");
-        mData.add("Hamburger");
-        mData.add("YaaaaY");
-    }
 }

@@ -1,8 +1,7 @@
 package goals_keeper.com.goalskeeperapp.adapters;
 
 import android.content.Context;
-import android.support.v4.app.FragmentManager;
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +12,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import goals_keeper.com.goalskeeperapp.R;
-import goals_keeper.com.goalskeeperapp.fragments.CommentFragment;
+import goals_keeper.com.goalskeeperapp.activities.CommentsActivity;
 import goals_keeper.com.goalskeeperapp.models.Post;
 
 
@@ -52,14 +51,9 @@ public class TimeLinePostsAdapter extends RecyclerView.Adapter<TimeLinePostsAdap
         holder.commentImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //FIXME: clean this part, not stable at all !
-                if (mContext instanceof AppCompatActivity) {
-                    FragmentManager manager = ((AppCompatActivity) mContext).getSupportFragmentManager();
-
-                    //TODO: send proper data with the request
-                    CommentFragment commentFragment = new CommentFragment();
-                    manager.beginTransaction().replace(R.id.fragment_container, commentFragment).addToBackStack(null).commit();
-                }
+                Intent intent = new Intent(mContext, CommentsActivity.class);
+                // TODO: Pass the proper data
+                mContext.startActivity(intent);
             }
         });
     }

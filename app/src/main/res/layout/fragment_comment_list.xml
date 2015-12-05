@@ -1,31 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/fragment_comment_list_recycler_view_comments"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.90"
-        android:id="@+id/recycler_view_comment_list"
-        />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:orientation="horizontal"
-        android:layout_weight="0.10">
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:hint="New Comment"
-            android:layout_weight="0.70"
-            android:id="@+id/comment_view" />
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.30"
-            android:text="Comment"
+        android:layout_height="match_parent" />
 
-            android:id="@+id/comment_btn" />
-    </LinearLayout>
 </LinearLayout>
