@@ -49,23 +49,9 @@ public class ProfileEditActivity extends BaseActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_about_only, menu);
+        getMenuInflater().inflate(R.menu.menu_default, menu);
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
 
-        switch (id) {
-            case R.id.action_about:
-                Intent aboutIntent = new Intent(this, AboutActivity.class);
-                startActivity(aboutIntent);
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-
-
-    }
 }
