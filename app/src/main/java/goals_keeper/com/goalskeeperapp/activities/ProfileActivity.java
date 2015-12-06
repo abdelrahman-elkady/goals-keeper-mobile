@@ -3,14 +3,10 @@ package goals_keeper.com.goalskeeperapp.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -18,8 +14,6 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import goals_keeper.com.goalskeeperapp.R;
-import goals_keeper.com.goalskeeperapp.fragments.ProfileEditFragment;
-import goals_keeper.com.goalskeeperapp.fragments.ProfileFragment;
 import goals_keeper.com.goalskeeperapp.utils.Constants;
 
 public class ProfileActivity extends BaseActivity {
@@ -46,18 +40,17 @@ public class ProfileActivity extends BaseActivity {
         mToolbar.setTitle("Your Profile");
         setSupportActionBar(mToolbar);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
     }
 
     @OnClick(R.id.fab_profile_edit)
     public void editProfile() {
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-        ProfileEditFragment profileEditFragment = new ProfileEditFragment();
-        fragmentTransaction.replace(R.id.fragment_container, profileEditFragment).addToBackStack(null);
-        fragmentTransaction.commit();
+        Intent editProfileIntent = new Intent(this, ProfileEditActivity.class);
+        startActivity(editProfileIntent);
     }
 
     @OnClick(R.id.following_button)
