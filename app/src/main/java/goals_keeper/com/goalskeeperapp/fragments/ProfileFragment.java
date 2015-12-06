@@ -84,7 +84,6 @@ public class ProfileFragment extends Fragment {
                 followingIntent.putStringArrayListExtra(Constants.BUNDLE_USERS_KEY, data);
                 followingIntent.putExtra(Constants.USER_CONNECTION_TYPE, Constants.FOLLOWINGS);
                 startActivity(followingIntent);
-
             }
         });
 
