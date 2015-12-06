@@ -3,11 +3,7 @@ package goals_keeper.com.goalskeeperapp.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +14,6 @@ import java.util.ArrayList;
 
 import goals_keeper.com.goalskeeperapp.R;
 import goals_keeper.com.goalskeeperapp.activities.UserProfileActivity;
-import goals_keeper.com.goalskeeperapp.fragments.UserProfileFragment;
 import goals_keeper.com.goalskeeperapp.utils.Constants;
 
 /**
@@ -69,7 +64,7 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
         public ViewHolder(View itemView) {
             super(itemView);
             userNameTextView = (TextView) itemView.findViewById(R.id.txtview_user_name);
-            userProfileImageView = (ImageView) itemView.findViewById(R.id.imgview_profile_picture);
+            userProfileImageView = (ImageView) itemView.findViewById(R.id.item_comment_image_view_profile_picture);
             itemView.setOnClickListener(this);
         }
 

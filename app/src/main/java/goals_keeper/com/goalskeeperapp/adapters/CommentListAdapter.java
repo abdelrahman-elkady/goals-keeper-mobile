@@ -52,9 +52,9 @@ public class CommentListAdapter extends RecyclerView.Adapter<CommentListAdapter.
 
         public ViewHolder(View itemView) {
             super(itemView);
-            userCommentTextView=(TextView)itemView.findViewById(R.id.person_comment);
-            userNameTextView = (TextView) itemView.findViewById(R.id.person_name);
-            userProfileImageView = (ImageView) itemView.findViewById(R.id.imgview_profile_picture);
+            userCommentTextView=(TextView)itemView.findViewById(R.id.item_comment_text_view_comment);
+            userNameTextView = (TextView) itemView.findViewById(R.id.item_comment_text_view_person_name);
+            userProfileImageView = (ImageView) itemView.findViewById(R.id.item_comment_image_view_profile_picture);
         }
 
     }
