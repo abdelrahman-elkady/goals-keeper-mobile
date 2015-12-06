@@ -62,6 +62,14 @@ public class GoalsListingAdapter extends RecyclerView.Adapter<GoalsListingAdapte
         return mData.size();
     }
 
+    public ArrayList<Goal> getData() {
+        return mData;
+    }
+
+    public void setData(ArrayList<Goal> mData) {
+        this.mData = mData;
+    }
+
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView goalTitle, goalDescription;
         ImageButton addGoalImageButton;

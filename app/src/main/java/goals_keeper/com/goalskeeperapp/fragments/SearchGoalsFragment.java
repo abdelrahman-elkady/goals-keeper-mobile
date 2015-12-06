@@ -20,8 +20,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import goals_keeper.com.goalskeeperapp.R;
 import goals_keeper.com.goalskeeperapp.activities.CreateGoalActivity;
-import goals_keeper.com.goalskeeperapp.adapters.SearchGoalsAdapter;
-import goals_keeper.com.goalskeeperapp.adapters.SearchPagerAdapter;
+import goals_keeper.com.goalskeeperapp.adapters.GoalsListingAdapter;
+import goals_keeper.com.goalskeeperapp.models.Goal;
 
 /**
  * Created by abdelrahman on 02/12/15.
@@ -36,8 +36,8 @@ public class SearchGoalsFragment extends android.support.v4.app.Fragment {
     @Bind(R.id.fragment_search_goals_fab_create_goal)
     FloatingActionButton mCreateGoalFloatingActionButton;
 
-    ArrayList<String> mData, mFilteredData;
-    SearchGoalsAdapter mSearchGoalsAdapter;
+    ArrayList<Goal> mData, mFilteredData;
+    GoalsListingAdapter mSearchGoalsAdapter;
 
     @Nullable
     @Override
@@ -46,7 +46,6 @@ public class SearchGoalsFragment extends android.support.v4.app.Fragment {
 
         ButterKnife.bind(this, view);
 
-        mData = new ArrayList<>();
         mFilteredData = new ArrayList<>();
         initData();
 
@@ -54,7 +53,7 @@ public class SearchGoalsFragment extends android.support.v4.app.Fragment {
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mGoalsRecyclerView.setLayoutManager(layoutManager);
 
-        mSearchGoalsAdapter = new SearchGoalsAdapter(getActivity(), mData);
+        mSearchGoalsAdapter = new GoalsListingAdapter(getActivity(), mData);
         mGoalsRecyclerView.setAdapter(mSearchGoalsAdapter);
 
         filterGoals();
@@ -63,12 +62,14 @@ public class SearchGoalsFragment extends android.support.v4.app.Fragment {
 
 
     private void initData() {
-        mData.add("Quit smoking");
-        mData.add("Getting A+ in theory of computation");
-        mData.add("Get driving license");
-        mData.add("Eat a banana");
-        mData.add("Win a marathon");
-        mData.add("Win a Free Sandwich");
+        mData = new ArrayList<>();
+        mData.add(new Goal("A+", "gotta catch 'em all "));
+        mData.add(new Goal("Some cool goal", "Because Repetition is bad !"));
+        mData.add(new Goal("quit smoking", "i don't think cancer is cool"));
+        mData.add(new Goal("Space Travel", "Want to try something interesting !"));
+        mData.add(new Goal("becoming a bird", "so i can have colorful feathers"));
+        mData.add(new Goal("Finish projects", "It seems impossible to finish projects :|"));
+        mData.add(new Goal("leaving egypt", "we are not meant to save egypt .. we are meant to leave it "));
 
     }
 
@@ -89,7 +90,7 @@ public class SearchGoalsFragment extends android.support.v4.app.Fragment {
             public void onTextChanged(CharSequence query, int start, int before, int count) {
                 mFilteredData.clear();
                 for (int i = 0; i < mData.size(); i++) {
-                    if (mData.get(i).toLowerCase().contains(query.toString().toLowerCase())) {
+                    if (mData.get(i).getTitle().toLowerCase().contains(query.toString().toLowerCase())) {
                         mFilteredData.add(mData.get(i));
                     }
                 }
