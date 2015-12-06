@@ -9,8 +9,8 @@ import android.view.Menu;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import goals_keeper.com.goalskeeperapp.R;
-import goals_keeper.com.goalskeeperapp.fragments.CreateGoalFragment;
 
 /**
  * Created by kady on 03/12/15.
@@ -31,20 +31,17 @@ public class CreateGoalActivity extends AppCompatActivity {
         mToolbar.setTitle("New Goal");
         setSupportActionBar(mToolbar);
 
+    }
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-        CreateGoalFragment createGoalFragment = new CreateGoalFragment();
-        fragmentTransaction.add(R.id.fragment_container, createGoalFragment);
-        fragmentTransaction.commit();
-
+    @OnClick(R.id.activity_create_goal_button_cancel)
+    public void navigateBack() {
+        onBackPressed();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_no_search, menu);
+        getMenuInflater().inflate(R.menu.menu_default, menu);
         return true;
     }
 
