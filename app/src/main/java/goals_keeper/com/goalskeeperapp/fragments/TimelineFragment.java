@@ -96,7 +96,7 @@ public class TimelineFragment extends android.support.v4.app.Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         if (mArguments.getInt(Constants.TIMELINE_MODE, Constants.MY_TIMELINE) == Constants.USER_TIMELINE) {
             menu.clear();
-            inflater.inflate(R.menu.menu_no_search, menu);
+            inflater.inflate(R.menu.menu_default, menu);
         }
     }
 

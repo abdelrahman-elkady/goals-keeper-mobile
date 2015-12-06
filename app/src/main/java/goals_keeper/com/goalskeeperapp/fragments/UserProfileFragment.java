@@ -96,7 +96,7 @@ public class UserProfileFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
 
         menu.clear();
-        inflater.inflate(R.menu.menu_no_search, menu);
+        inflater.inflate(R.menu.menu_default, menu);
 
     }
 
