@@ -2,7 +2,6 @@ package goals_keeper.com.goalskeeperapp.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,7 +18,7 @@ import goals_keeper.com.goalskeeperapp.R;
  * @author kady
  */
 public class ProfileEditActivity extends BaseActivity {
-    @Bind(R.id.btn_save)
+    @Bind(R.id.activity_profile_edit_button_save)
     Button mSaveButton;
 
     @Bind(R.id.toolbar)
@@ -40,7 +39,7 @@ public class ProfileEditActivity extends BaseActivity {
 
     }
 
-    @OnClick(R.id.btn_save)
+    @OnClick(R.id.activity_profile_edit_button_save)
     public void saveProfileEdit() {
         // TODO: Save the changes !
 

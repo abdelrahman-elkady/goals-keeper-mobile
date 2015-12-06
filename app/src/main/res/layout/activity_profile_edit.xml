@@ -9,7 +9,7 @@
 
     <!-- TODO: fit the image correctly, may need to be changed programmatically  -->
     <ImageView
-        android:id="@+id/imgview_profile"
+        android:id="@+id/activity_profile_edit_image_view_profile"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="2"
@@ -29,7 +29,7 @@
             android:orientation="vertical">
 
             <EditText
-                android:id="@+id/first_name"
+                android:id="@+id/activity_profile_edit_edit_text_first_name"
                 style="@style/profile_edit_field"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
                 android:text="Abdelrahman" />
 
             <EditText
-                android:id="@+id/last_name"
+                android:id="@+id/activity_profile_edit_edit_text_last_name"
                 style="@style/profile_edit_field"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
                 android:text="Mahmoud" />
 
             <EditText
-                android:id="@+id/city"
+                android:id="@+id/activity_profile_edit_edit_text_city"
                 style="@style/profile_edit_field"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -53,7 +53,7 @@
                 android:text="Giza" />
 
             <EditText
-                android:id="@+id/counrty"
+                android:id="@+id/activity_profile_edit_edit_text_country"
                 style="@style/profile_edit_field"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -62,7 +62,7 @@
 
 
             <Button
-                android:id="@+id/btn_save"
+                android:id="@+id/activity_profile_edit_button_save"
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

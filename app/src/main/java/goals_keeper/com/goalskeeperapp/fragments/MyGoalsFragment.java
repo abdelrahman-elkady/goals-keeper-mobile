@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,24 +17,23 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import goals_keeper.com.goalskeeperapp.R;
 import goals_keeper.com.goalskeeperapp.activities.SearchActivity;
-import goals_keeper.com.goalskeeperapp.adapters.GoalsPreviewAdapter;
+import goals_keeper.com.goalskeeperapp.adapters.MyGoalsAdapter;
 import goals_keeper.com.goalskeeperapp.models.Goal;
 import goals_keeper.com.goalskeeperapp.utils.Constants;
-import goals_keeper.com.goalskeeperapp.utils.Helpers;
 
 /**
  * Created by kady on 25/11/15.
  *
  * @author kady
  */
-public class GoalsPreviewFragment extends android.support.v4.app.Fragment {
-    @Bind(R.id.fab_search_goal)
+public class MyGoalsFragment extends android.support.v4.app.Fragment {
+    @Bind(R.id.fragment_goals_preview_fab_search_goal)
     FloatingActionButton mSearchGoalButton;
 
-    @Bind(R.id.recycler_view_goals)
+    @Bind(R.id.fragment_goals_preview_recycler_view_goals)
     RecyclerView mGoalRecyclerView;
 
-    GoalsPreviewAdapter mGoalsPreviewAdapter;
+    MyGoalsAdapter mGoalsAdapter;
     ArrayList<Goal> mData;
 
     @Nullable
@@ -46,14 +44,12 @@ public class GoalsPreviewFragment extends android.support.v4.app.Fragment {
         ButterKnife.bind(this, view);
         initData();
 
-        Helpers.setToolbarTitle((AppCompatActivity) getActivity(), "Goals");
-
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mGoalRecyclerView.setLayoutManager(layoutManager);
 
-        mGoalsPreviewAdapter = new GoalsPreviewAdapter(getActivity(), mData);
-        mGoalRecyclerView.setAdapter(mGoalsPreviewAdapter);
+        mGoalsAdapter = new MyGoalsAdapter(getActivity(), mData);
+        mGoalRecyclerView.setAdapter(mGoalsAdapter);
 
         return view;
     }
@@ -62,12 +58,12 @@ public class GoalsPreviewFragment extends android.support.v4.app.Fragment {
         mData = new ArrayList<>();
         mData.add(new Goal("A+", "gotta catch 'em all "));
         mData.add(new Goal("quit smoking", "i don't think cancer is cool"));
-        mData.add(new Goal("becoming a bird", "so i can have colorful deathers"));
+        mData.add(new Goal("becoming a bird", "so i can have colorful feathers"));
         mData.add(new Goal("leaving egypt", "we are not meant to save egypt .. we are meant to leave it "));
 
     }
 
-    @OnClick(R.id.fab_search_goal)
+    @OnClick(R.id.fragment_goals_preview_fab_search_goal)
     public void launchSearchGoals() {
         Intent intent = new Intent(getActivity(), SearchActivity.class);
         intent.putExtra(Constants.VIEW_PAGER_PAGE_NUMBER, 1);

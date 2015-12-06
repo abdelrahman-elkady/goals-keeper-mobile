@@ -59,8 +59,8 @@ public class SearchGoalsAdapter extends RecyclerView.Adapter<SearchGoalsAdapter.
 
         public ViewHolder(View itemView) {
             super(itemView);
-            goalTitleTextView = (TextView) itemView.findViewById(R.id.item_goal_txt_goal_title);
-            addToMyGoalsImageView = (ImageView) itemView.findViewById(R.id.item_goal_imgview_add_goal);
+            goalTitleTextView = (TextView) itemView.findViewById(R.id.item_goal_text_view_goal_title);
+            addToMyGoalsImageView = (ImageView) itemView.findViewById(R.id.item_goal_image_view_add_goal);
         }
     }
 }

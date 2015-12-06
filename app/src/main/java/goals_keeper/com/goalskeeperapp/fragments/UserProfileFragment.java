@@ -34,7 +34,7 @@ public class UserProfileFragment extends Fragment {
     @Bind(R.id.person_timeline_btn)
     Button mPersonTimelineButton;
 
-    @Bind(R.id.name_text)
+    @Bind(R.id.activity_profile_text_view_name)
     TextView mUsernameTextView;
 
     @Bind(R.id.fragment_user_profile_button_goals)
@@ -74,8 +74,8 @@ public class UserProfileFragment extends Fragment {
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-                GoalsPreviewFragment goalsPreviewFragment = new GoalsPreviewFragment();
-                fragmentTransaction.replace(R.id.fragment_container, goalsPreviewFragment).addToBackStack(null);
+                MyGoalsFragment myGoalsFragment = new MyGoalsFragment();
+                fragmentTransaction.replace(R.id.fragment_container, myGoalsFragment).addToBackStack(null);
                 fragmentTransaction.commit();
             }
         });

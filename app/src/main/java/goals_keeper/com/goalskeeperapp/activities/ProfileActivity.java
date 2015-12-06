@@ -24,10 +24,10 @@ public class ProfileActivity extends BaseActivity {
     @Bind(R.id.fab_profile_edit)
     FloatingActionButton mProfileEditFAB;
 
-    @Bind(R.id.followers_button)
+    @Bind(R.id.activity_profile_button_followers)
     Button mFollowersButton;
 
-    @Bind(R.id.following_button)
+    @Bind(R.id.activity_profile_button_following)
     Button mFollowingButton;
 
     @Override
@@ -53,7 +53,7 @@ public class ProfileActivity extends BaseActivity {
         startActivity(editProfileIntent);
     }
 
-    @OnClick(R.id.following_button)
+    @OnClick(R.id.activity_profile_button_following)
     public void showFollowing() {
         Intent followingIntent = new Intent(this, UserConnectionsActivity.class);
 
@@ -68,7 +68,7 @@ public class ProfileActivity extends BaseActivity {
         startActivity(followingIntent);
     }
 
-    @OnClick(R.id.followers_button)
+    @OnClick(R.id.activity_profile_button_followers)
     public void showFollowers() {
         Intent followersIntent = new Intent(this, UserConnectionsActivity.class);
 
@@ -105,7 +105,6 @@ public class ProfileActivity extends BaseActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-
 
     }
 

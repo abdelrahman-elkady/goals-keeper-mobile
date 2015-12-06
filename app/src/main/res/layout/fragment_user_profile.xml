@@ -69,7 +69,7 @@
                             android:src="@drawable/icon_follow" />
 
                         <TextView
-                            android:id="@+id/name_text"
+                            android:id="@+id/activity_profile_text_view_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingBottom="15dp"
@@ -84,28 +84,28 @@
 
 
                         <TextView
-                            android:id="@+id/age_text"
+                            android:id="@+id/activity_profile_text_view_age"
                             style="@style/profile_info_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="21 Years Old" />
 
                         <TextView
-                            android:id="@+id/city_text"
+                            android:id="@+id/activity_profile_text_view_city"
                             style="@style/profile_info_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Giza" />
 
                         <TextView
-                            android:id="@+id/counrty_text"
+                            android:id="@+id/activity_profile_text_view_country"
                             style="@style/profile_info_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Egypt" />
 
                         <TextView
-                            android:id="@+id/gender_text"
+                            android:id="@+id/activity_profile_text_view_gender"
                             style="@style/profile_info_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
