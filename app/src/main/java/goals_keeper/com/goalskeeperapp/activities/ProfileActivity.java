@@ -2,10 +2,12 @@ package goals_keeper.com.goalskeeperapp.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 
 import java.util.ArrayList;
@@ -30,6 +32,9 @@ public class ProfileActivity extends BaseActivity {
     @Bind(R.id.activity_profile_button_following)
     Button mFollowingButton;
 
+    @Bind(R.id.appbar)
+    AppBarLayout mAppBarLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +49,8 @@ public class ProfileActivity extends BaseActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
+
+        hideFabOnScroll();
 
     }
 
@@ -79,6 +86,22 @@ public class ProfileActivity extends BaseActivity {
         followersIntent.putStringArrayListExtra(Constants.BUNDLE_USERS_KEY, data);
         followersIntent.putExtra(Constants.USER_CONNECTION_TYPE, Constants.FOLLOWERS);
         startActivity(followersIntent);
+    }
+
+    private void hideFabOnScroll() {
+        // Thanks to http://stackoverflow.com/a/33145487/3357910
+        mAppBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+            @Override
+            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+                if (appBarLayout.getHeight() / 2 < -verticalOffset) {
+                    mProfileEditFAB.animate().alpha(0.0f);
+                    mProfileEditFAB.setVisibility(View.GONE);
+                } else {
+                    mProfileEditFAB.setVisibility(View.VISIBLE);
+                    mProfileEditFAB.animate().alpha(1.0f);
+                }
+            }
+        });
     }
 
 
