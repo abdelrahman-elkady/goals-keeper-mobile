@@ -1,5 +1,6 @@
 package goals_keeper.com.goalskeeperapp.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import goals_keeper.com.goalskeeperapp.R;
+import goals_keeper.com.goalskeeperapp.activities.GoalsListingActivity;
 import goals_keeper.com.goalskeeperapp.utils.Constants;
 import goals_keeper.com.goalskeeperapp.utils.Helpers;
 
@@ -71,12 +73,8 @@ public class UserProfileFragment extends Fragment {
         mGoalsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-                MyGoalsFragment myGoalsFragment = new MyGoalsFragment();
-                fragmentTransaction.replace(R.id.fragment_container, myGoalsFragment).addToBackStack(null);
-                fragmentTransaction.commit();
+                Intent goalsListingIntent = new Intent(getActivity(), GoalsListingActivity.class);
+                startActivity(goalsListingIntent);
             }
         });
 

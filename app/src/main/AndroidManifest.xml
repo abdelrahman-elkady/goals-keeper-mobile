@@ -96,6 +96,14 @@
 
         </activity>
 
+        <activity
+            android:name=".activities.GoalsListingActivity"
+            android:launchMode="singleInstance"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+
 
     </application>
 
