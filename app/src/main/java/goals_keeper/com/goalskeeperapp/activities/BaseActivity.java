@@ -1,6 +1,7 @@
 package goals_keeper.com.goalskeeperapp.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,7 +14,6 @@ import goals_keeper.com.goalskeeperapp.R;
  * @author kady
  */
 public class BaseActivity extends AppCompatActivity {
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

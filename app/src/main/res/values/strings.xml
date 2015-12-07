@@ -1,8 +1,10 @@
 <resources>
     <string name="app_name">Goals Keeper</string>
+    <string name="facebook_app_id">918693091501465</string>
+    
+    
     <string name="action_settings">Settings</string>
     <string name="about">About</string>
-
     <string name="desc_placeholder_app_icon">app icon placeholder</string>
     <string name="no_description">null</string>
 
