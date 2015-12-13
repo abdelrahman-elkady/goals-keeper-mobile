@@ -13,7 +13,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -22,11 +21,14 @@ import com.facebook.FacebookException;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
+import java.util.Arrays;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import goals_keeper.com.goalskeeperapp.R;
 import goals_keeper.com.goalskeeperapp.utils.Constants;
+import goals_keeper.com.goalskeeperapp.utils.Utilities;
 
 /**
  * Created by kady on 23/11/15.
@@ -54,17 +56,19 @@ public class LoginFragment extends android.support.v4.app.Fragment {
 
         ButterKnife.bind(this, view);
 
+
         mSharedPreferences = getActivity().getSharedPreferences(Constants.SHARED_PREFS_KEY, Context.MODE_PRIVATE);
+
+        showTimeline();
 
         mFacebookCallback = CallbackManager.Factory.create();
 
         settingLoginPermissions();
         mFacebookLoginButton.setFragment(this);
 
-        handleLoginCallback();
-
         return view;
     }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -72,44 +76,50 @@ public class LoginFragment extends android.support.v4.app.Fragment {
         mFacebookCallback.onActivityResult(requestCode, resultCode, data);
     }
 
-    private void handleLoginCallback() {
-        mFacebookLoginButton.registerCallback(mFacebookCallback, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                mToken = loginResult.getAccessToken();
-                Log.d("TOKEN", mToken.getToken());
-                mSharedPreferences.edit().putString(Constants.FACEBOOK_TOKEN, mToken.getToken()).apply();
-            }
-
-            @Override
-            public void onCancel() {
-
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-
-            }
-        });
-    }
-
-    private void settingLoginPermissions() {
-        mFacebookLoginButton.setReadPermissions("user_friends");
-//        mFacebookLoginButton.setPublishPermissions("publish_actions");
-    }
 
     @OnClick(R.id.fragment_login_button_facebook_login)
     public void loginWithFacebook() {
 
-//        FragmentManager fragmentManager = getFragmentManager();
-//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//
-//        HomeFragment homeFragment = new HomeFragment();
-//        fragmentTransaction.replace(R.id.fragment_container, homeFragment);
-//        fragmentTransaction.commit();
+        mFacebookLoginButton.registerCallback(mFacebookCallback, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                mToken = loginResult.getAccessToken();
+                Log.d("FACEBOOK TOKEN", mToken.getToken());
 
+                mSharedPreferences.edit().putString(Constants.FACEBOOK_TOKEN, mToken.getToken()).apply(); // Saving the token in shared prefs.
+
+                showTimeline();
+            }
+
+            @Override
+            public void onCancel() {
+                Log.d("FACEBOOK", "Login cancelled");
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+                Log.e("FACEBOOK", "Login failed " + error.getMessage());
+            }
+        });
 
     }
+
+
+    private void settingLoginPermissions() {
+        mFacebookLoginButton.setReadPermissions(Arrays.asList("user_friends", "user_hometown"));
+    }
+
+    private void showTimeline() {
+        if (Utilities.isLoggedIn(getActivity())) {
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+            HomeFragment homeFragment = new HomeFragment();
+            fragmentTransaction.replace(R.id.fragment_container, homeFragment);
+            fragmentTransaction.commit();
+        }
+    }
+
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {

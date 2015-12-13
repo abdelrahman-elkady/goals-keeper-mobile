@@ -7,6 +7,9 @@ import android.view.MenuItem;
 
 import goals_keeper.com.goalskeeperapp.R;
 import goals_keeper.com.goalskeeperapp.activities.AboutActivity;
+import goals_keeper.com.goalskeeperapp.activities.MainActivity;
+import goals_keeper.com.goalskeeperapp.utils.Constants;
+import goals_keeper.com.goalskeeperapp.utils.Utilities;
 
 /**
  * Created by kady on 05/12/15.
@@ -15,6 +18,15 @@ import goals_keeper.com.goalskeeperapp.activities.AboutActivity;
  */
 public class BaseActivity extends AppCompatActivity {
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // If user is not logged in go to the main activity
+        if (!Utilities.isLoggedIn(this)) {
+            startActivity(new Intent(this, MainActivity.class));
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
