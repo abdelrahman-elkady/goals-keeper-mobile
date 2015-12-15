@@ -14,6 +14,7 @@ public class Constants {
     public static final String SHARED_PREFS_KEY = "SHARED PREFS KEY";
     public static final String VIEW_PAGER_PAGE_NUMBER = "PAGE NUMBER";
     public static final String FACEBOOK_TOKEN = "FACEBOOK TOKEN";
+    public static final String USER_ID = "USER ID" ;
 
 
     public static final String BUNDLE_USER_ID = "BUNDLE USER ID";

@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -27,8 +28,15 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import goals_keeper.com.goalskeeperapp.R;
+import goals_keeper.com.goalskeeperapp.api.Api;
+import goals_keeper.com.goalskeeperapp.models.Token;
+import goals_keeper.com.goalskeeperapp.models.User;
 import goals_keeper.com.goalskeeperapp.utils.Constants;
 import goals_keeper.com.goalskeeperapp.utils.Utilities;
+import retrofit.Call;
+import retrofit.Callback;
+import retrofit.Response;
+import retrofit.Retrofit;
 
 /**
  * Created by kady on 23/11/15.
@@ -90,6 +98,21 @@ public class LoginFragment extends android.support.v4.app.Fragment {
 
                 showTimeline();
 
+                Call<User> request = Api.publicRoutes(getActivity()).authenticate(new Token(mToken.getToken()));
+                request.enqueue(new Callback<User>() {
+                    @Override
+                    public void onResponse(Response<User> response, Retrofit retrofit) {
+                        User user = response.body();
+                        mSharedPreferences.edit().putString(Constants.USER_ID, user.getId()).apply();
+                    }
+
+                    @Override
+                    public void onFailure(Throwable t) {
+                        Toast.makeText(getActivity(), "Failed to communicate with goals keeper server", Toast.LENGTH_LONG).show();
+                        Log.e("AUTH", t.getMessage());
+                    }
+                });
+
 
             }
 
@@ -108,7 +131,7 @@ public class LoginFragment extends android.support.v4.app.Fragment {
 
 
     private void settingLoginPermissions() {
-        mFacebookLoginButton.setReadPermissions(Arrays.asList("user_friends", "user_hometown","user_birthday"));
+        mFacebookLoginButton.setReadPermissions(Arrays.asList("user_friends", "user_hometown", "user_birthday"));
     }
 
     private void showTimeline() {
