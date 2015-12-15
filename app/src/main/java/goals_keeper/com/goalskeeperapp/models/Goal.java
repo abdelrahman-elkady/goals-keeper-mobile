@@ -9,6 +9,15 @@ public class Goal {
     private String title;
     private String description;
 
+    public Goal() {
+
+    }
+
+    public Goal(String title, String description) {
+        this.title = title;
+        this.description = description;
+    }
+
     /**
      * @return The title
      */

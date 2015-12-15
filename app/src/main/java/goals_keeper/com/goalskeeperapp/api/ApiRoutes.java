@@ -3,6 +3,7 @@ package goals_keeper.com.goalskeeperapp.api;
 
 import java.util.ArrayList;
 
+import goals_keeper.com.goalskeeperapp.models.Goal;
 import goals_keeper.com.goalskeeperapp.models.Token;
 import goals_keeper.com.goalskeeperapp.models.User;
 import retrofit.Call;
@@ -18,6 +19,9 @@ import retrofit.http.POST;
 public interface ApiRoutes {
     @GET("/api/users")
     public Call<ArrayList<User>> listUsers();
+
+    @POST("/api/goals")
+    public Call<Void> createGoal(@Body Goal goal);
 
     @POST("/api/authentication")
     public Call<User> authenticate(@Body Token token);
