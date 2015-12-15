@@ -8,10 +8,12 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -21,7 +23,12 @@ import butterknife.OnClick;
 import goals_keeper.com.goalskeeperapp.R;
 import goals_keeper.com.goalskeeperapp.activities.CreateGoalActivity;
 import goals_keeper.com.goalskeeperapp.adapters.GoalsListingAdapter;
+import goals_keeper.com.goalskeeperapp.api.Api;
 import goals_keeper.com.goalskeeperapp.models.Goal;
+import goals_keeper.com.goalskeeperapp.models.User;
+import retrofit.Callback;
+import retrofit.Response;
+import retrofit.Retrofit;
 
 /**
  * Created by abdelrahman on 02/12/15.
@@ -47,7 +54,7 @@ public class SearchGoalsFragment extends android.support.v4.app.Fragment {
         ButterKnife.bind(this, view);
 
         mFilteredData = new ArrayList<>();
-        initData();
+        mData = new ArrayList<>();
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -60,18 +67,6 @@ public class SearchGoalsFragment extends android.support.v4.app.Fragment {
         return view;
     }
 
-
-    private void initData() {
-        mData = new ArrayList<>();
-//        mData.add(new Goal("A+", "gotta catch 'em all "));
-//        mData.add(new Goal("Some cool goal", "Because Repetition is bad !"));
-//        mData.add(new Goal("quit smoking", "i don't think cancer is cool"));
-//        mData.add(new Goal("Space Travel", "Want to try something interesting !"));
-//        mData.add(new Goal("becoming a bird", "so i can have colorful feathers"));
-//        mData.add(new Goal("Finish projects", "It seems impossible to finish projects :|"));
-//        mData.add(new Goal("leaving egypt", "we are not meant to save egypt .. we are meant to leave it "));
-
-    }
 
     @OnClick(R.id.fragment_search_goals_fab_create_goal)
     public void createGoal() {
@@ -104,5 +99,25 @@ public class SearchGoalsFragment extends android.support.v4.app.Fragment {
         });
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        Api.privateRoutes(getActivity()).listGoals().enqueue(new Callback<ArrayList<Goal>>() {
+            @Override
+            public void onResponse(Response<ArrayList<Goal>> response, Retrofit retrofit) {
+                mData = response.body();
+                mSearchGoalsAdapter.setData(mData);
+                mSearchGoalsAdapter.notifyDataSetChanged();
+                Log.d("GOAL LIST", response.body().toString());
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                Toast.makeText(getActivity(), "Failed to retrieve goal list", Toast.LENGTH_SHORT).show();
+                Log.e("GOAL LIST", t.getMessage());
+            }
+        });
+    }
 
 }
