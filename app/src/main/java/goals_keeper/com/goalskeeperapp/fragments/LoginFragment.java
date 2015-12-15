@@ -89,6 +89,8 @@ public class LoginFragment extends android.support.v4.app.Fragment {
                 mSharedPreferences.edit().putString(Constants.FACEBOOK_TOKEN, mToken.getToken()).apply(); // Saving the token in shared prefs.
 
                 showTimeline();
+
+
             }
 
             @Override
@@ -106,7 +108,7 @@ public class LoginFragment extends android.support.v4.app.Fragment {
 
 
     private void settingLoginPermissions() {
-        mFacebookLoginButton.setReadPermissions(Arrays.asList("user_friends", "user_hometown"));
+        mFacebookLoginButton.setReadPermissions(Arrays.asList("user_friends", "user_hometown","user_birthday"));
     }
 
     private void showTimeline() {
