@@ -10,6 +10,7 @@ import retrofit.Call;
 import retrofit.http.Body;
 import retrofit.http.GET;
 import retrofit.http.POST;
+import retrofit.http.PUT;
 import retrofit.http.Path;
 
 /**
@@ -29,6 +30,9 @@ public interface ApiRoutes {
 
     @GET("/api/users/{id}")
     public Call<User> showUser(@Path("id") int userId);
+
+    @PUT("/api/users/{id}")
+    public Call<Void> editUser(@Body User user);
 
     @POST("/api/authentication")
     public Call<User> authenticate(@Body Token token);
