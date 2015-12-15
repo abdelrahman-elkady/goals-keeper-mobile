@@ -23,14 +23,6 @@ public class SearchPagerAdapter extends FragmentPagerAdapter {
 
     public Fragment getItem(int position) {
         if (position == 0) {
-            //TODO: Get all people !
-            ArrayList<String> data = new ArrayList<>();
-            data.add("Ali Hassan");
-            data.add("Abdelrahman Elkady");
-            data.add("Mohammed Mostafa");
-            data.add("Ahmed Saleh");
-
-
             return new SearchPeopleFragment();
         }
         return new SearchGoalsFragment();

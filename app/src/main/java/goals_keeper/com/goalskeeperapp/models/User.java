@@ -9,56 +9,169 @@ import goals_keeper.com.goalskeeperapp.R;
  * Created by abdelrahman on 01/12/15.
  */
 public class User {
+
+    private String id;
     private String firstName;
     private String lastName;
     private String city;
     private String country;
-    private boolean gender;//true for male and false for female
-    private String age;//in the data base it's date of birth .. but i will leave that for now #TODO
-    private int photoId;//in the database it's a string but i will leave it like that for now as well #TODO
-
-    private ArrayList<Like> likes;
-    private ArrayList<Comment> comments;
-    private ArrayList<Post> createdPosts;
-    private ArrayList<Post> profilePosts;
-    private ArrayList<Goal> goals;
-    private ArrayList<User> followings;
-    private ArrayList<User> followers;
+    private Boolean gender;
+    private String dateOfBirth;
+    private String profilePicture;
+    private String facebookToken;
+    private String facebookId;
 
 
-    //#TODO i will leave this consrtuctor for now and make a new one
-    User(String name, String age, int photoId) {
-        this.firstName = name;
-        this.age = age;
-        this.photoId = photoId;
+    /**
+     * @return The id
+     */
+    public String getId() {
+        return id;
     }
-    public User (String firstName , String lastName , int photoId, boolean gender)
-    {
+    /**
+     * @param id The id
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * @return The firstName
+     */
+    public String getFirstName() {
+        return firstName;
+    }
+
+    /**
+     * @param firstName The first_name
+     */
+    public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    /**
+     * @return The lastName
+     */
+    public String getLastName() {
+        return lastName;
+    }
+
+    /**
+     * @param lastName The last_name
+     */
+    public void setLastName(String lastName) {
         this.lastName = lastName;
-        this.photoId = photoId;
+    }
+
+    /**
+     * @return The city
+     */
+    public String getCity() {
+        return city;
+    }
+
+    /**
+     * @param city The city
+     */
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    /**
+     * @return The country
+     */
+    public String getCountry() {
+        return country;
+    }
+
+    /**
+     * @param country The country
+     */
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    /**
+     * @return The gender
+     */
+    public Boolean getGender() {
+        return gender;
+    }
+
+    /**
+     * @param gender The gender
+     */
+    public void setGender(Boolean gender) {
         this.gender = gender;
+    }
 
+    /**
+     * @return The dateOfBirth
+     */
+    public String getDateOfBirth() {
+        return dateOfBirth;
+    }
 
-        this.likes = new ArrayList<Like>();
-        this.comments = new ArrayList<Comment>();
-        this.createdPosts = new ArrayList<Post>();
-        this.profilePosts = new ArrayList<Post>();
-        this.goals = new ArrayList<Goal>();
-        this.followings = new ArrayList<User>();
-        this.followers = new ArrayList<User>();
+    /**
+     * @param dateOfBirth The date_of_birth
+     */
+    public void setDateOfBirth(String dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    /**
+     * @return The profilePicture
+     */
+    public String getProfilePicture() {
+        return profilePicture;
+    }
+
+    /**
+     * @param profilePicture The profile_picture
+     */
+    public void setProfilePicture(String profilePicture) {
+        this.profilePicture = profilePicture;
+    }
+
+    /**
+     * @return The facebookToken
+     */
+    public String getFacebookToken() {
+        return facebookToken;
+    }
+
+    /**
+     * @param facebookToken The facebook_token
+     */
+    public void setFacebookToken(String facebookToken) {
+        this.facebookToken = facebookToken;
+    }
+
+    /**
+     * @return The facebookId
+     */
+    public String getFacebookId() {
+        return facebookId;
+    }
+
+    /**
+     * @param facebookId The facebook_id
+     */
+    public void setFacebookId(String facebookId) {
+        this.facebookId = facebookId;
     }
 
 
-    private List<User> users;
+    /**
+     *
+     * @return the full name of the user
+     */
+    public String getName() {
+        return this.firstName + " " + this.lastName;
+    }
 
-    // This method creates an ArrayList that has three User objects
-// Checkout the project associated with this tutorial on Github if
-// you want to use the same images.
-    private void initializeData(){
-        users = new ArrayList<>();
-        users.add(new User("Emma Wilson", "23 years old", R.drawable.placeholder));
-        users.add(new User("Lavery Maiss", "25 years old", R.drawable.placeholder));
-        users.add(new User("Lillie Watts", "35 years old", R.drawable.placeholder));
+    @Override
+    public String toString() {
+        return this.getName();
     }
 }

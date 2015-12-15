@@ -56,10 +56,10 @@ public class MyGoalsFragment extends android.support.v4.app.Fragment {
 
     private void initData() {
         mData = new ArrayList<>();
-        mData.add(new Goal("A+", "gotta catch 'em all "));
-        mData.add(new Goal("quit smoking", "i don't think cancer is cool"));
-        mData.add(new Goal("becoming a bird", "so i can have colorful feathers"));
-        mData.add(new Goal("leaving egypt", "we are not meant to save egypt .. we are meant to leave it "));
+//        mData.add(new Goal("A+", "gotta catch 'em all "));
+//        mData.add(new Goal("quit smoking", "i don't think cancer is cool"));
+//        mData.add(new Goal("becoming a bird", "so i can have colorful feathers"));
+//        mData.add(new Goal("leaving egypt", "we are not meant to save egypt .. we are meant to leave it "));
 
     }
 

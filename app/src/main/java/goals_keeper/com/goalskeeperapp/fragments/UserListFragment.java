@@ -2,6 +2,7 @@ package goals_keeper.com.goalskeeperapp.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -21,6 +23,8 @@ import butterknife.ButterKnife;
 import butterknife.OnTextChanged;
 import goals_keeper.com.goalskeeperapp.R;
 import goals_keeper.com.goalskeeperapp.adapters.UserListAdapter;
+import goals_keeper.com.goalskeeperapp.api.Api;
+import goals_keeper.com.goalskeeperapp.models.User;
 import goals_keeper.com.goalskeeperapp.utils.Constants;
 import goals_keeper.com.goalskeeperapp.utils.Helpers;
 
@@ -39,7 +43,7 @@ public class UserListFragment extends Fragment {
 
     UserListAdapter mUserListAdapter;
 
-    ArrayList<String> mFilteredData, mData;
+    ArrayList<User> mFilteredData, mData;
 
     private Bundle mBundle;
 
@@ -53,7 +57,8 @@ public class UserListFragment extends Fragment {
 
         mBundle = getArguments();
 
-        mData = mBundle.getStringArrayList(Constants.BUNDLE_USERS_KEY);
+
+
         int type = mBundle.getInt(Constants.USER_CONNECTION_TYPE, 0);
         changeTitle(type);
 
@@ -99,7 +104,7 @@ public class UserListFragment extends Fragment {
             public void onTextChanged(CharSequence query, int start, int before, int count) {
                 mFilteredData.clear();
                 for (int i = 0; i < mData.size(); i++) {
-                    if (mData.get(i).toLowerCase().contains(query.toString().toLowerCase())) {
+                    if (mData.get(i).getName().toLowerCase().contains(query.toString().toLowerCase())) {
                         mFilteredData.add(mData.get(i));
                     }
                 }

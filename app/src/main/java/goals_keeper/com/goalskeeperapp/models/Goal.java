@@ -1,59 +1,50 @@
 package goals_keeper.com.goalskeeperapp.models;
 
-import java.util.ArrayList;
 
 /**
  * Created by ali on 2/12/15.
  */
 public class Goal {
-    private ArrayList<User> users;
-    private ArrayList<Post> posts;
 
     private String title;
     private String description;
 
-    public ArrayList<User> getUsers() {
-        return users;
+    public Goal() {
+
     }
 
-    public void setUsers(ArrayList<User> users) {
-        this.users = users;
+    public Goal(String title, String description) {
+        this.title = title;
+        this.description = description;
     }
 
-    public ArrayList<Post> getPosts() {
-        return posts;
-    }
-
-    public void setPosts(ArrayList<Post> posts) {
-        this.posts = posts;
-    }
-
+    /**
+     * @return The title
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     * @param title The title
+     */
     public void setTitle(String title) {
         this.title = title;
     }
 
+    /**
+     * @return The description
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * @param description The description
+     */
     public void setDescription(String description) {
         this.description = description;
     }
 
-    public Goal(String title) {
-        this.title = title;
-        this.description = null;
-        this.users = new ArrayList<User>();
-        this.posts = new ArrayList<Post>();
-    }
 
-    public Goal(String title, String description) {
-        this(title);
-        this.description = description;
-
-    }
 }
