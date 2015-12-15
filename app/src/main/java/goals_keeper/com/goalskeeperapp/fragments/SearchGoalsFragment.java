@@ -90,6 +90,7 @@ public class SearchGoalsFragment extends android.support.v4.app.Fragment {
                     }
                 }
                 mSearchGoalsAdapter.setData(mFilteredData);
+                mSearchGoalsAdapter.notifyDataSetChanged();
             }
 
             @Override
