@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 import goals_keeper.com.goalskeeperapp.R;
@@ -43,8 +45,8 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
     public void onBindViewHolder(ViewHolder holder, int position) {
         User item = mData.get(position);
 
-        //TODO: set the profile pic
         holder.userNameTextView.setText(item.getName());
+        Picasso.with(mContext).load(item.getProfilePicture()).into(holder.userProfileImageView);
     }
 
     @Override
