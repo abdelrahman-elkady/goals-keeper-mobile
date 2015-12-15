@@ -89,8 +89,24 @@ public class ProfileEditActivity extends BaseActivity {
 
     @OnClick(R.id.activity_profile_edit_button_save)
     public void saveProfileEdit() {
-        // TODO: Save the changes !
+        Api.privateRoutes(this).editUser(mUser).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Response<Void> response, Retrofit retrofit) {
+                if (response.code() == 200) {
+                    Toast.makeText(ProfileEditActivity.this, "Profile edited successfully", Toast.LENGTH_LONG).show();
+                    onBackPressed();
+                } else {
+                    Toast.makeText(ProfileEditActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                    Log.e("Edit Profile", response.code() + ": " + response.message());
+                }
+            }
 
+            @Override
+            public void onFailure(Throwable t) {
+                Toast.makeText(ProfileEditActivity.this, "Failed to edit profile", Toast.LENGTH_SHORT).show();
+                Log.e("Edit Profile", t.getMessage());
+            }
+        });
         onBackPressed();
     }
 
