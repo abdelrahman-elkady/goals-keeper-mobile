@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 import goals_keeper.com.goalskeeperapp.R;
 import goals_keeper.com.goalskeeperapp.activities.UserProfileActivity;
+import goals_keeper.com.goalskeeperapp.models.User;
 import goals_keeper.com.goalskeeperapp.utils.Constants;
 
 /**
@@ -23,10 +24,10 @@ import goals_keeper.com.goalskeeperapp.utils.Constants;
  */
 public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHolder> {
 
-    ArrayList<String> mData;
+    ArrayList<User> mData;
     Context mContext;
 
-    public UserListAdapter(Context context, ArrayList<String> data) {
+    public UserListAdapter(Context context, ArrayList<User> data) {
         super();
         this.mContext = context;
         this.mData = data;
@@ -40,10 +41,10 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        String item = mData.get(position);
+        User item = mData.get(position);
 
         //TODO: set the profile pic
-        holder.userNameTextView.setText(item);
+        holder.userNameTextView.setText(item.getName());
     }
 
     @Override
@@ -51,7 +52,7 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
         return mData.size();
     }
 
-    public void setData(ArrayList<String> data) {
+    public void setData(ArrayList<User> data) {
         this.mData = data;
         notifyDataSetChanged();
     }
@@ -74,8 +75,9 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
             Bundle bundle = new Bundle();
 
             //TODO: Convert the whole object to JSON ?
-            String item = mData.get(getAdapterPosition());
-            bundle.putString("USER_NAME", item);
+            User item = mData.get(getAdapterPosition());
+            bundle.putString(Constants.BUNDLE_USER_NAME, item.getName());
+            bundle.putString(Constants.BUNDLE_USER_ID, item.getId());
             bundle.putString(Constants.TOOLBAR_TITLE, String.format("%s's profile", item));
 
             Intent userProfileIntent = new Intent(mContext, UserProfileActivity.class);

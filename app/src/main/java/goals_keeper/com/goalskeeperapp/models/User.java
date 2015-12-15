@@ -10,6 +10,7 @@ import goals_keeper.com.goalskeeperapp.R;
  */
 public class User {
 
+    private String id;
     private String firstName;
     private String lastName;
     private String city;
@@ -20,6 +21,19 @@ public class User {
     private String facebookToken;
     private String facebookId;
 
+
+    /**
+     * @return The id
+     */
+    public String getId() {
+        return id;
+    }
+    /**
+     * @param id The id
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
 
     /**
      * @return The firstName
@@ -148,4 +162,16 @@ public class User {
     }
 
 
+    /**
+     *
+     * @return the full name of the user
+     */
+    public String getName() {
+        return this.firstName + " " + this.lastName;
+    }
+
+    @Override
+    public String toString() {
+        return this.getName();
+    }
 }

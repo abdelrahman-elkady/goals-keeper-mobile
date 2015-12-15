@@ -15,9 +15,14 @@ public class Constants {
     public static final String VIEW_PAGER_PAGE_NUMBER = "PAGE NUMBER";
     public static final String FACEBOOK_TOKEN = "FACEBOOK TOKEN";
 
+
+    public static final String BUNDLE_USER_ID = "BUNDLE USER ID";
+    public static final String BUNDLE_USER_NAME = "USER NAME";
+
     public static final int FOLLOWERS = 0;
     public static final int FOLLOWINGS = 1;
 
     public static final int MY_TIMELINE = 2;
     public static final int USER_TIMELINE = 3;
+
 }

@@ -1,6 +1,8 @@
 package goals_keeper.com.goalskeeperapp.api;
 
 
+import java.util.ArrayList;
+
 import goals_keeper.com.goalskeeperapp.models.User;
 import retrofit.Call;
 import retrofit.http.GET;
@@ -12,5 +14,5 @@ import retrofit.http.GET;
  */
 public interface ApiRoutes {
     @GET("/api/users")
-    public Call<User> listUsers();
+    public Call<ArrayList<User>> listUsers();
 }
