@@ -23,6 +23,9 @@ public interface ApiRoutes {
     @POST("/api/goals")
     public Call<Void> createGoal(@Body Goal goal);
 
+    @GET("/api/goals")
+    public Call<ArrayList<Goal>> listGoals();
+
     @POST("/api/authentication")
     public Call<User> authenticate(@Body Token token);
 }
