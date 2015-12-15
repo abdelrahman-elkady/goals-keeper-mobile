@@ -13,6 +13,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import goals_keeper.com.goalskeeperapp.R;
+import goals_keeper.com.goalskeeperapp.activities.base.BaseActivity;
 import goals_keeper.com.goalskeeperapp.adapters.CreatePostAutoCompleteAdapter;
 
 /**

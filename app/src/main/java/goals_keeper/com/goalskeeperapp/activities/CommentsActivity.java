@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import goals_keeper.com.goalskeeperapp.R;
+import goals_keeper.com.goalskeeperapp.activities.base.BaseActivity;
 import goals_keeper.com.goalskeeperapp.fragments.CommentListFragment;
 import goals_keeper.com.goalskeeperapp.utils.Constants;
 

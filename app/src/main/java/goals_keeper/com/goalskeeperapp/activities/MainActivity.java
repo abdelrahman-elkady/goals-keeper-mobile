@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import goals_keeper.com.goalskeeperapp.R;
+import goals_keeper.com.goalskeeperapp.activities.base.BaseActivity;
 import goals_keeper.com.goalskeeperapp.fragments.LoginFragment;
 
 public class MainActivity extends BaseActivity {
