@@ -59,13 +59,13 @@ public class GoalsListingFragment extends Fragment {
 
     private void initData() {
         mData = new ArrayList<>();
-        mData.add(new Goal("A+", "gotta catch 'em all "));
-        mData.add(new Goal("Some cool goal", "Because Repetition is bad !"));
-        mData.add(new Goal("quit smoking", "i don't think cancer is cool"));
-        mData.add(new Goal("Space Travel", "Want to try something interesting !"));
-        mData.add(new Goal("becoming a bird", "so i can have colorful feathers"));
-        mData.add(new Goal("Finish projects", "It seems impossible to finish projects :|"));
-        mData.add(new Goal("leaving egypt", "we are not meant to save egypt .. we are meant to leave it "));
+//        mData.add(new Goal("A+", "gotta catch 'em all "));
+//        mData.add(new Goal("Some cool goal", "Because Repetition is bad !"));
+//        mData.add(new Goal("quit smoking", "i don't think cancer is cool"));
+//        mData.add(new Goal("Space Travel", "Want to try something interesting !"));
+//        mData.add(new Goal("becoming a bird", "so i can have colorful feathers"));
+//        mData.add(new Goal("Finish projects", "It seems impossible to finish projects :|"));
+//        mData.add(new Goal("leaving egypt", "we are not meant to save egypt .. we are meant to leave it "));
 
     }
 
