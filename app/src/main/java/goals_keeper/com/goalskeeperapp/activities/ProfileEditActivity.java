@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -36,7 +38,7 @@ public class ProfileEditActivity extends BaseActivity {
     Toolbar mToolbar;
 
     @Bind(R.id.activity_profile_edit_image_view_profile)
-    ImageView editImageView;
+    ImageView mEditImageView;
 
     @Bind(R.id.activity_profile_edit_edit_text_first_name)
     TextView editTextFirstName;
@@ -74,6 +76,8 @@ public class ProfileEditActivity extends BaseActivity {
             @Override
             public void onResponse(Response<User> response, Retrofit retrofit) {
                 mUser = response.body();
+                
+                Picasso.with(ProfileEditActivity.this).load(mUser.getProfilePicture()).into(mEditImageView);
                 editTextFirstName.setText(mUser.getFirstName());
                 editTextLastName.setText(mUser.getLastName());
                 editTextCity.setText(mUser.getCity());
@@ -91,14 +95,16 @@ public class ProfileEditActivity extends BaseActivity {
 
     @OnClick(R.id.activity_profile_edit_button_save)
     public void saveProfileEdit() {
-        if(mUser != null) {
+        if (mUser != null) {
+
             mUser.setFirstName(editTextFirstName.getText().toString());
             mUser.setLastName(editTextLastName.getText().toString());
             mUser.setCity(editTextCity.getText().toString());
             mUser.setCountry(editTextCountry.getText().toString());
+
             int userId = mSharedPreferences.getInt(Constants.USER_ID, -1);
 
-            Api.privateRoutes(this).editUser(userId,mUser).enqueue(new Callback<Void>() {
+            Api.privateRoutes(this).editUser(userId, mUser).enqueue(new Callback<Void>() {
                 @Override
                 public void onResponse(Response<Void> response, Retrofit retrofit) {
                     if (response.code() == 200) {
