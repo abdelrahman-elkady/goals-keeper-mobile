@@ -11,6 +11,7 @@
     <string name="app_title">Goals keeper</string>
     <string name="btn_facebook_login">Login with Facebook</string>
     <string name="title_activity_profile">Profile</string>
+    <string name="title_activity_logout">Log Out</string>
     <string name="goals_search_hint">Goal</string>
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec purus in ante pretium blandit. Aliquam erat volutpat. Nulla libero lectus.</string>
     <string name="user_name_placeholder">John Doe</string>
