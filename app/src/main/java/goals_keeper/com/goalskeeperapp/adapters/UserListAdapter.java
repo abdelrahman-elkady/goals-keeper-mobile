@@ -79,7 +79,7 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
             //TODO: Convert the whole object to JSON ?
             User item = mData.get(getAdapterPosition());
             bundle.putString(Constants.BUNDLE_USER_NAME, item.getName());
-            bundle.putString(Constants.BUNDLE_USER_ID, item.getId());
+            bundle.putInt(Constants.BUNDLE_USER_ID, item.getId());
             bundle.putString(Constants.TOOLBAR_TITLE, String.format("%s's profile", item));
 
             Intent userProfileIntent = new Intent(mContext, UserProfileActivity.class);

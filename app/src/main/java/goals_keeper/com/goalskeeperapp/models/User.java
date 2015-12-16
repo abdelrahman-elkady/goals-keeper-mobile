@@ -10,7 +10,7 @@ import goals_keeper.com.goalskeeperapp.R;
  */
 public class User {
 
-    private String id;
+    private int id;
     private String firstName;
     private String lastName;
     private String city;
@@ -25,13 +25,13 @@ public class User {
     /**
      * @return The id
      */
-    public String getId() {
+    public int getId() {
         return id;
     }
     /**
      * @param id The id
      */
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
