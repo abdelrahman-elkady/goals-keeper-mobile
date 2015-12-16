@@ -103,7 +103,8 @@ public class LoginFragment extends android.support.v4.app.Fragment {
                     @Override
                     public void onResponse(Response<User> response, Retrofit retrofit) {
                         User user = response.body();
-                        mSharedPreferences.edit().putString(Constants.USER_ID, user.getId()).apply();
+                        mSharedPreferences.edit().putInt(Constants.USER_ID, user.getId()).apply();
+                        Log.d("AUTH", "Saved ID: " + mSharedPreferences.getInt(Constants.USER_ID, -1));
                     }
 
                     @Override
