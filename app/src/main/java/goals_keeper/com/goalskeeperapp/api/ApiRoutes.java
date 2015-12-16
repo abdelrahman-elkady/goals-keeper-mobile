@@ -38,6 +38,9 @@ public interface ApiRoutes {
     @POST("/api/authentication")
     public Call<User> authenticate(@Body Token token);
 
+    @GET("/api/users/{id}/goals")
+    public Call<ArrayList<Goal>> getUserGoals(@Path("id") int userId);
+
     @POST("/api/users/{id}/goals")
     public Call<Void> addGoalToUserGoals(@Path("id") int userId, @Body Goal goal);
 
