@@ -1,6 +1,8 @@
 package goals_keeper.com.goalskeeperapp.fragments;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -48,6 +50,7 @@ public class TimelineFragment extends android.support.v4.app.Fragment {
 
     TimeLinePostsAdapter mTimeLinePostsAdapter;
     ArrayList<Post> mData;
+    SharedPreferences mSharedPreferences;
 
     Bundle mArguments;
 
@@ -59,6 +62,7 @@ public class TimelineFragment extends android.support.v4.app.Fragment {
         ButterKnife.bind(this, view);
         setHasOptionsMenu(true);
 
+        mSharedPreferences = getActivity().getSharedPreferences(Constants.SHARED_PREFS_KEY, Context.MODE_PRIVATE);
         mArguments = getArguments();
         if (mArguments == null) {
             mArguments = new Bundle();
@@ -85,8 +89,12 @@ public class TimelineFragment extends android.support.v4.app.Fragment {
 
     private void initData() {
         mData = new ArrayList<>();
-
-        int userId = mArguments.getInt(Constants.BUNDLE_USER_ID, -1);
+        int userId = -1;
+        if (mArguments.getInt(Constants.TIMELINE_MODE, Constants.MY_TIMELINE) == Constants.USER_TIMELINE) {
+            userId = mArguments.getInt(Constants.BUNDLE_USER_ID, -1);
+        } else {
+            userId = mSharedPreferences.getInt(Constants.USER_ID, -1);
+        }
         Api.privateRoutes(getActivity()).userPosts(userId).enqueue(new Callback<ArrayList<Post>>() {
             @Override
             public void onResponse(Response<ArrayList<Post>> response, Retrofit retrofit) {
