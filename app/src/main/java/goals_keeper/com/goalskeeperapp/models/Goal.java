@@ -62,5 +62,11 @@ public class Goal {
         this.description = description;
     }
 
-
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Goal) {
+            return ((Goal) o).getId() == this.getId();
+        }
+        return super.equals(o);
+    }
 }

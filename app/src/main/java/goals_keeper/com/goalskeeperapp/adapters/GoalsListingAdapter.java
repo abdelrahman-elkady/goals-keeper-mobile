@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import goals_keeper.com.goalskeeperapp.R;
@@ -32,12 +33,34 @@ public class GoalsListingAdapter extends RecyclerView.Adapter<GoalsListingAdapte
     ArrayList<Goal> mData;
     Context mContext;
     SharedPreferences mSharedPreferences;
+    int mUserId;
+    ArrayList<Goal> mUserAddedGoals;
 
     public GoalsListingAdapter(Context mContext, ArrayList<Goal> mData) {
         super();
         this.mData = mData;
         this.mContext = mContext;
         this.mSharedPreferences = mContext.getSharedPreferences(Constants.SHARED_PREFS_KEY, Context.MODE_PRIVATE);
+        mUserId = mSharedPreferences.getInt(Constants.USER_ID, -1);
+
+        fetchAddedGoals(mContext);
+
+    }
+
+    private void fetchAddedGoals(Context mContext) {
+        //FIXME: Dangerous, two async calls with dependencies
+        Api.privateRoutes(mContext).getUserGoals(mUserId).enqueue(new Callback<ArrayList<Goal>>() {
+            @Override
+            public void onResponse(Response<ArrayList<Goal>> response, Retrofit retrofit) {
+                mUserAddedGoals = response.body();
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+
+            }
+        });
+
     }
 
 
@@ -52,13 +75,15 @@ public class GoalsListingAdapter extends RecyclerView.Adapter<GoalsListingAdapte
         holder.goalTitle.setText(mData.get(position).getTitle());
         holder.goalDescription.setText(mData.get(position).getDescription());
 
+        holder.addGoalImageButton.setActivated(mUserAddedGoals.contains(mData.get(position)));
+
         holder.addGoalImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
                 Goal mGoal = mData.get(position);
-                int userId = mSharedPreferences.getInt(Constants.USER_ID, -1);
+
                 if (v.isActivated()) {
-                    Api.privateRoutes(mContext).removeGoalFromUserGoals(userId, mGoal.getId()).enqueue(new Callback<Void>() {
+                    Api.privateRoutes(mContext).removeGoalFromUserGoals(mUserId, mGoal.getId()).enqueue(new Callback<Void>() {
                         @Override
                         public void onResponse(Response<Void> response, Retrofit retrofit) {
                             if (response.code() == 200) {
@@ -78,7 +103,7 @@ public class GoalsListingAdapter extends RecyclerView.Adapter<GoalsListingAdapte
                     });
 
                 } else {
-                    Api.privateRoutes(mContext).addGoalToUserGoals(userId, mGoal).enqueue(new Callback<Void>() {
+                    Api.privateRoutes(mContext).addGoalToUserGoals(mUserId, mGoal).enqueue(new Callback<Void>() {
                         @Override
                         public void onResponse(Response<Void> response, Retrofit retrofit) {
                             if (response.code() == 200) {
