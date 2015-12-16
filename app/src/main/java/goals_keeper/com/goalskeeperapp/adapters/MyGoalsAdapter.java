@@ -1,7 +1,9 @@
 package goals_keeper.com.goalskeeperapp.adapters;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +14,12 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import goals_keeper.com.goalskeeperapp.R;
+import goals_keeper.com.goalskeeperapp.api.Api;
 import goals_keeper.com.goalskeeperapp.models.Goal;
+import goals_keeper.com.goalskeeperapp.utils.Constants;
+import retrofit.Callback;
+import retrofit.Response;
+import retrofit.Retrofit;
 
 
 /**
@@ -24,11 +31,13 @@ public class MyGoalsAdapter extends RecyclerView.Adapter<MyGoalsAdapter.ViewHold
 
     ArrayList<Goal> mData;
     Context mContext;
+    SharedPreferences mSharedPreferences;
 
     public MyGoalsAdapter(Context mContext, ArrayList<Goal> mData) {
         super();
         this.mData = mData;
         this.mContext = mContext;
+        this.mSharedPreferences = mContext.getSharedPreferences(Constants.SHARED_PREFS_KEY, Context.MODE_PRIVATE);
     }
 
     @Override
@@ -39,14 +48,35 @@ public class MyGoalsAdapter extends RecyclerView.Adapter<MyGoalsAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
+
         holder.goalTitle.setText(mData.get(position).getTitle());
         holder.goalDescription.setText(mData.get(position).getDescription());
 
         holder.addGoalImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(final View v) {
+                Goal mGoal = mData.get(position);
+                int userId = mSharedPreferences.getInt(Constants.USER_ID, -1);
+
                 if (v.isActivated()) {
-                    //TODO: Remove that bad evil goal !
+                    Api.privateRoutes(mContext).removeGoalFromUserGoals(userId, mGoal.getId()).enqueue(new Callback<Void>() {
+                        @Override
+                        public void onResponse(Response<Void> response, Retrofit retrofit) {
+                            if (response.code() == 200) {
+                                Toast.makeText(mContext, "Goal removed successfully", Toast.LENGTH_LONG).show();
+                                v.setActivated(false); // Here we need to keep the goals as it's not my goals
+                            } else {
+                                Toast.makeText(mContext, "Something went wrong", Toast.LENGTH_SHORT).show();
+                                Log.e("Remove GOAL", response.code() + ": " + response.message());
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Throwable t) {
+                            Toast.makeText(mContext, "Failed to remove goal", Toast.LENGTH_SHORT).show();
+                            Log.e("CREATE GOAL", t.getMessage());
+                        }
+                    });
                     mData.remove(position);
                     notifyItemRemoved(position);
                     notifyItemRangeChanged(position, mData.size());
