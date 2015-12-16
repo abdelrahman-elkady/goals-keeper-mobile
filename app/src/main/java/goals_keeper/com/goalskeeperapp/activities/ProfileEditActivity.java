@@ -89,24 +89,31 @@ public class ProfileEditActivity extends BaseActivity {
 
     @OnClick(R.id.activity_profile_edit_button_save)
     public void saveProfileEdit() {
-        Api.privateRoutes(this).editUser(mUser).enqueue(new Callback<Void>() {
-            @Override
-            public void onResponse(Response<Void> response, Retrofit retrofit) {
-                if (response.code() == 200) {
-                    Toast.makeText(ProfileEditActivity.this, "Profile edited successfully", Toast.LENGTH_LONG).show();
-                    onBackPressed();
-                } else {
-                    Toast.makeText(ProfileEditActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
-                    Log.e("Edit Profile", response.code() + ": " + response.message());
-                }
-            }
+        if(mUser != null) {
+            mUser.setFirstName(editTextFirstName.getText().toString());
+            mUser.setLastName(editTextLastName.getText().toString());
+            mUser.setCity(editTextCity.getText().toString());
+            mUser.setCountry(editTextCountry.getText().toString());
 
-            @Override
-            public void onFailure(Throwable t) {
-                Toast.makeText(ProfileEditActivity.this, "Failed to edit profile", Toast.LENGTH_SHORT).show();
-                Log.e("Edit Profile", t.getMessage());
-            }
-        });
+            Api.privateRoutes(this).editUser(mUser).enqueue(new Callback<Void>() {
+                @Override
+                public void onResponse(Response<Void> response, Retrofit retrofit) {
+                    if (response.code() == 200) {
+                        Toast.makeText(ProfileEditActivity.this, "Profile edited successfully", Toast.LENGTH_LONG).show();
+                        onBackPressed();
+                    } else {
+                        Toast.makeText(ProfileEditActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                        Log.e("Edit Profile", response.code() + ": " + response.message());
+                    }
+                }
+
+                @Override
+                public void onFailure(Throwable t) {
+                    Toast.makeText(ProfileEditActivity.this, "Failed to edit profile", Toast.LENGTH_SHORT).show();
+                    Log.e("Edit Profile", t.getMessage());
+                }
+            });
+        }
         onBackPressed();
     }
 
