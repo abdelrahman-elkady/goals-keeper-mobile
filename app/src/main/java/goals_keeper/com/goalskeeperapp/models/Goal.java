@@ -14,6 +14,11 @@ public class Goal {
 
     }
 
+    public Goal(String title, String description) {
+        this.title = title;
+        this.description = description;
+    }
+
     public Goal(int id, String title, String description) {
         this.id = id;
         this.title = title;
