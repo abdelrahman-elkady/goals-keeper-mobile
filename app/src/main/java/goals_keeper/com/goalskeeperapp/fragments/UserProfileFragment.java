@@ -1,6 +1,8 @@
 package goals_keeper.com.goalskeeperapp.fragments;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -17,6 +19,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -64,6 +68,8 @@ public class UserProfileFragment extends Fragment {
     Bundle mBundle;
     User mUser;
 
+    SharedPreferences mSharedPreferences;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -72,7 +78,7 @@ public class UserProfileFragment extends Fragment {
         ButterKnife.bind(this, view);
 
         mBundle = getArguments();
-
+        mSharedPreferences = getActivity().getSharedPreferences(Constants.SHARED_PREFS_KEY, Context.MODE_PRIVATE);
         followUser();
 
         fetchUserData();
@@ -86,7 +92,7 @@ public class UserProfileFragment extends Fragment {
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
                 Bundle bundle = new Bundle();
-                bundle.putString(Constants.TOOLBAR_TITLE, getArguments().getString("USER_NAME") + "'s Timeline");
+                bundle.putString(Constants.TOOLBAR_TITLE, getArguments().getString(Constants.BUNDLE_USER_NAME) + "'s Timeline");
                 bundle.putInt(Constants.TIMELINE_MODE, Constants.USER_TIMELINE);
 
                 TimelineFragment timelineFragment = new TimelineFragment();
@@ -143,6 +149,26 @@ public class UserProfileFragment extends Fragment {
                     mAgeTextView.setText(mUser.getDateOfBirth());
                 }
 
+                Api.privateRoutes(getActivity()).listFollowings(mSharedPreferences.getInt(Constants.USER_ID, -1)).enqueue(new Callback<ArrayList<User>>() {
+                    @Override
+                    public void onResponse(Response<ArrayList<User>> response, Retrofit retrofit) {
+                        if (response.code() == 200) {
+                            ArrayList<User> followings = response.body();
+                            if (followings != null)
+                                mFollowImageButton.setActivated(followings.contains(mUser));
+                        } else {
+                            Toast.makeText(getActivity(), "Failed to fetch user following status", Toast.LENGTH_SHORT).show();
+                            Log.e("USER PROFILE", response.code() + " : " + response.message());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Throwable t) {
+
+                    }
+                });
+
+
             }
 
             @Override
@@ -151,6 +177,7 @@ public class UserProfileFragment extends Fragment {
                 Log.e("USER PROFILE", t.getMessage());
             }
         });
+
 
     }
 
