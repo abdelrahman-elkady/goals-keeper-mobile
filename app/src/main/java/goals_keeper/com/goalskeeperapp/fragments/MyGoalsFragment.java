@@ -74,7 +74,6 @@ public class MyGoalsFragment extends android.support.v4.app.Fragment {
                 mData = response.body();
                 mGoalsAdapter.setmData(mData);
                 mGoalsAdapter.notifyDataSetChanged();
-                Toast.makeText(getActivity(), "Succeeded to retrieve goals list", Toast.LENGTH_SHORT).show();
                 Log.d("GOALS LIST", response.body().toString());
             }
 
