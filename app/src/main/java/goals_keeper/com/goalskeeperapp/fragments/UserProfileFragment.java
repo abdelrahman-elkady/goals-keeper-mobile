@@ -79,9 +79,9 @@ public class UserProfileFragment extends Fragment {
 
         mBundle = getArguments();
         mSharedPreferences = getActivity().getSharedPreferences(Constants.SHARED_PREFS_KEY, Context.MODE_PRIVATE);
-        followUser();
-
         fetchUserData();
+
+        followUser();
 
         Helpers.setToolbarTitle((AppCompatActivity) getActivity(), getArguments().getString(Constants.TOOLBAR_TITLE));
 
@@ -183,10 +183,52 @@ public class UserProfileFragment extends Fragment {
 
     private void followUser() {
         mFollowImageButton.setOnClickListener(new View.OnClickListener() {
+            int userId = mSharedPreferences.getInt(Constants.USER_ID, -1);
+            int followedId = mBundle.getInt(Constants.BUNDLE_USER_ID, -1);
+
             @Override
-            public void onClick(View v) {
-                v.setActivated(!v.isActivated());
-                //TODO: Implement following user logic
+            public void onClick(final View v) {
+                if (v.isActivated()) {
+                    //Unfollow User
+                    Api.privateRoutes(getActivity()).unFollowUser(userId, followedId).enqueue(new Callback<Void>() {
+                        @Override
+                        public void onResponse(Response<Void> response, Retrofit retrofit) {
+                            if (response.code() == 200) {
+                                Toast.makeText(getActivity(), "UnFollowed User Successfully", Toast.LENGTH_LONG).show();
+                                v.setActivated(false);
+                            } else {
+                                Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_SHORT).show();
+                                Log.e("UNFOLLOW USER", response.code() + ": " + response.message());
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Throwable t) {
+                            Toast.makeText(getActivity(), "Failed to unfollow user", Toast.LENGTH_SHORT).show();
+                            Log.e("UNFOLLOW USER", t.getMessage());
+                        }
+                    });
+                } else {
+                    //Follow User
+                    Api.privateRoutes(getActivity()).followUser(userId, followedId).enqueue(new Callback<Void>() {
+                        @Override
+                        public void onResponse(Response<Void> response, Retrofit retrofit) {
+                            if (response.code() == 200) {
+                                Toast.makeText(getActivity(), "Followed User Successfully", Toast.LENGTH_LONG).show();
+                                v.setActivated(true);
+                            } else {
+                                Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_SHORT).show();
+                                Log.e("FOLLOW USER", response.code() + ": " + response.message());
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Throwable t) {
+                            Toast.makeText(getActivity(), "Failed to follow user", Toast.LENGTH_SHORT).show();
+                            Log.e("FOLLOW USER", t.getMessage());
+                        }
+                    });
+                }
             }
         });
     }

@@ -52,4 +52,11 @@ public interface ApiRoutes {
 
     @DELETE("/api/users/{id}/goals/{goal_id}")
     public Call<Void> removeGoalFromUserGoals(@Path("id") int userId, @Path("goal_id") int goalId);
+
+    @POST("/api/users/{id}/followings/{followed_id}")
+    public Call<Void> followUser(@Path("id") int userId, @Path("followed_id") int followedId);
+
+    @DELETE("/api/users/{id}/followings/{followed_id}")
+    public Call<Void> unFollowUser(@Path("id") int userId, @Path("followed_id") int followedId);
+
 }
