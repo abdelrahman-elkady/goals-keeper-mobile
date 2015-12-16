@@ -1,5 +1,6 @@
 package goals_keeper.com.goalskeeperapp.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.login.LoginManager;
 import com.squareup.picasso.Picasso;
 
 import org.w3c.dom.Text;
@@ -238,6 +240,9 @@ public class ProfileActivity extends BaseActivity {
     }
 
     public void logout(){
-
+        SharedPreferences mSharedPreferences = getSharedPreferences(Constants.SHARED_PREFS_KEY, Context.MODE_PRIVATE);
+        mSharedPreferences.edit().remove(Constants.USER_ID).apply();
+        mSharedPreferences.edit().remove(Constants.FACEBOOK_TOKEN).apply();
+        LoginManager.getInstance().logOut();
     }
 }
