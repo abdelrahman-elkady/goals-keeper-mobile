@@ -126,6 +126,11 @@ public class ProfileActivity extends BaseActivity {
                 Intent aboutIntent = new Intent(this, AboutActivity.class);
                 startActivity(aboutIntent);
                 return true;
+            case R.id.action_logout:
+                logout();
+                Intent mainIntent = new Intent(this,MainActivity.class);
+                startActivity(mainIntent);
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -139,5 +144,9 @@ public class ProfileActivity extends BaseActivity {
         } else {
             getSupportFragmentManager().popBackStack();
         }
+    }
+
+    public void logout(){
+
     }
 }

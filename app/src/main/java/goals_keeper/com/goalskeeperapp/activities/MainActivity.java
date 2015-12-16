@@ -72,10 +72,7 @@ public class MainActivity extends BaseActivity {
                 Intent profileIntent = new Intent(this, ProfileActivity.class);
                 startActivity(profileIntent);
                 return true;
-            case R.id.action_logout:
-                Intent logoutIntent = new Intent(this,LogoutActivity.class);
-                startActivity(logoutIntent);
-                return true;
+
         }
 
         return super.onOptionsItemSelected(item);
