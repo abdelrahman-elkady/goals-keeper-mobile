@@ -6,6 +6,7 @@ package goals_keeper.com.goalskeeperapp.models;
  */
 public class Goal {
 
+    private int id;
     private String title;
     private String description;
 
@@ -13,9 +14,18 @@ public class Goal {
 
     }
 
-    public Goal(String title, String description) {
+    public Goal(int id, String title, String description) {
+        this.id = id;
         this.title = title;
         this.description = description;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     /**
