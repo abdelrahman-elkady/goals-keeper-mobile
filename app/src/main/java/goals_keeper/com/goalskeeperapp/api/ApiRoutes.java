@@ -8,6 +8,7 @@ import goals_keeper.com.goalskeeperapp.models.Token;
 import goals_keeper.com.goalskeeperapp.models.User;
 import retrofit.Call;
 import retrofit.http.Body;
+import retrofit.http.DELETE;
 import retrofit.http.GET;
 import retrofit.http.POST;
 import retrofit.http.PUT;
@@ -38,5 +39,8 @@ public interface ApiRoutes {
     public Call<User> authenticate(@Body Token token);
 
     @POST("/api/users/{id}/goals")
-    public Call<Void> addGoalToUser(@Path("id") int userId, @Body Goal goal);
+    public Call<Void> addGoalToUserGoals(@Path("id") int userId, @Body Goal goal);
+
+    @DELETE("/api/users/{id}/goals")
+    public Call<Void> removeGoalFromUserGoals(@Path("id") int userId,@Body Goal goal);
 }

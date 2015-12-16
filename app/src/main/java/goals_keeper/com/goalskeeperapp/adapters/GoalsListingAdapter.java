@@ -61,7 +61,7 @@ public class GoalsListingAdapter extends RecyclerView.Adapter<GoalsListingAdapte
                 } else {
                     Goal mGoal = mData.get(position);
                     int userId = mSharedPreferences.getInt(Constants.USER_ID, -1);
-                    Api.privateRoutes(mContext).addGoalToUser(userId, mGoal).enqueue(new Callback<Void>() {
+                    Api.privateRoutes(mContext).addGoalToUserGoals(userId, mGoal).enqueue(new Callback<Void>() {
                         @Override
                         public void onResponse(Response<Void> response, Retrofit retrofit) {
                             if (response.code() == 200) {
