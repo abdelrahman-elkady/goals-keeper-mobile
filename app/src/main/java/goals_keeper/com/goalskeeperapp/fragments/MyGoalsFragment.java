@@ -53,25 +53,27 @@ public class MyGoalsFragment extends android.support.v4.app.Fragment {
         ButterKnife.bind(this, view);
 
         mSharedPreferences = getActivity().getSharedPreferences(Constants.SHARED_PREFS_KEY, Context.MODE_PRIVATE);
+        mGoalsAdapter = new MyGoalsAdapter(getActivity());
         initData();
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mGoalRecyclerView.setLayoutManager(layoutManager);
 
-        mGoalsAdapter = new MyGoalsAdapter(getActivity(), mData);
         mGoalRecyclerView.setAdapter(mGoalsAdapter);
 
         return view;
     }
 
     private void initData() {
-        mData = new ArrayList<Goal>();
+
         int userId = mSharedPreferences.getInt(Constants.USER_ID, -1);
         Api.privateRoutes(getActivity()).getUserGoals(userId).enqueue(new Callback<ArrayList<Goal>>() {
             @Override
             public void onResponse(Response<ArrayList<Goal>> response, Retrofit retrofit) {
                 mData = response.body();
+                mGoalsAdapter.setmData(mData);
+                mGoalsAdapter.notifyDataSetChanged();
                 Toast.makeText(getActivity(), "Succeeded to retrieve goals list", Toast.LENGTH_SHORT).show();
                 Log.d("GOALS LIST", response.body().toString());
             }

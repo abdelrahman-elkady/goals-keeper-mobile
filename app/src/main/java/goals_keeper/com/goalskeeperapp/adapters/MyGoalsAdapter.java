@@ -33,11 +33,15 @@ public class MyGoalsAdapter extends RecyclerView.Adapter<MyGoalsAdapter.ViewHold
     Context mContext;
     SharedPreferences mSharedPreferences;
 
-    public MyGoalsAdapter(Context mContext, ArrayList<Goal> mData) {
+    public MyGoalsAdapter(Context mContext) {
         super();
-        this.mData = mData;
+        this.mData = new ArrayList<>();
         this.mContext = mContext;
         this.mSharedPreferences = mContext.getSharedPreferences(Constants.SHARED_PREFS_KEY, Context.MODE_PRIVATE);
+    }
+
+    public void setmData(ArrayList<Goal> mData) {
+        this.mData = mData;
     }
 
     @Override
