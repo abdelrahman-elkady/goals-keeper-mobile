@@ -111,7 +111,9 @@ public class User {
      */
     public String getDateOfBirth() {
         // FIXME: Dirty fix
-        return dateOfBirth.substring(0, 10);
+        if (dateOfBirth != null)
+            return dateOfBirth.substring(0, 10);
+        return null;
     }
 
     /**
