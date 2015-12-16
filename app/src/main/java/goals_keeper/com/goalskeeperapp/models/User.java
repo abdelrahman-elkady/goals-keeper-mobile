@@ -28,6 +28,7 @@ public class User {
     public int getId() {
         return id;
     }
+
     /**
      * @param id The id
      */
@@ -109,7 +110,8 @@ public class User {
      * @return The dateOfBirth
      */
     public String getDateOfBirth() {
-        return dateOfBirth;
+        // FIXME: Dirty fix
+        return dateOfBirth.substring(0, 10);
     }
 
     /**
@@ -163,7 +165,6 @@ public class User {
 
 
     /**
-     *
      * @return the full name of the user
      */
     public String getName() {
@@ -173,5 +174,14 @@ public class User {
     @Override
     public String toString() {
         return this.getName();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof User) {
+            return ((User) o).getId() == this.getId();
+        }
+
+        return super.equals(o);
     }
 }
