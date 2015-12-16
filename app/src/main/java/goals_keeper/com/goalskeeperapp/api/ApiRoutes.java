@@ -42,6 +42,9 @@ public interface ApiRoutes {
     @GET("/api/users/{id}/followers")
     public Call<ArrayList<User>> listFollowers(@Path("id") int userId);
 
+    @POST("/api/goals/{id}/posts")
+    public Call<Void> createPost(@Path("id") int goalId, @Body Post post);
+
     @POST("/api/authentication")
     public Call<User> authenticate(@Body Token token);
 

@@ -8,34 +8,84 @@ import java.util.ArrayList;
  * @author kady
  */
 public class Post {
-    // TODO: add user model !
-    private String content;
-    private User user;
-    private boolean isPrivate;
 
-    private ArrayList<Like> likes;
-    private ArrayList<Comment> comments;
+    private Integer id;
+    private String text;
+    private Boolean _private;
+    private Integer userId;
+    private Integer goalId;
 
-    public Post(String content) {
-        this.content = content;
-        this.likes = new ArrayList<Like>();
-        this.comments = new ArrayList<Comment>();
-        isPrivate = false;
+
+
+    /**
+     * @return The id
+     */
+    public Integer getId() {
+        return id;
     }
 
-    public Post(User user, String content) {
-        this.user = user;
-        this.content = content;
-        this.likes = new ArrayList<Like>();
-        this.comments = new ArrayList<Comment>();
-        isPrivate = false;
+    /**
+     * @param id The id
+     */
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public String getContent() {
-        return content;
+    /**
+     * @return The text
+     */
+    public String getText() {
+        return text;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    /**
+     * @param text The text
+     */
+    public void setText(String text) {
+        this.text = text;
     }
+
+    /**
+     * @return The _private
+     */
+    public Boolean getPrivate() {
+        return _private;
+    }
+
+    /**
+     * @param _private The private
+     */
+    public void setPrivate(Boolean _private) {
+        this._private = _private;
+    }
+
+    /**
+     * @return The userId
+     */
+    public Integer getUserId() {
+        return userId;
+    }
+
+    /**
+     * @param userId The user_id
+     */
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    /**
+     * @return The goalId
+     */
+    public Integer getGoalId() {
+        return goalId;
+    }
+
+    /**
+     * @param goalId The goal_id
+     */
+    public void setGoalId(Integer goalId) {
+        this.goalId = goalId;
+    }
+
+
 }

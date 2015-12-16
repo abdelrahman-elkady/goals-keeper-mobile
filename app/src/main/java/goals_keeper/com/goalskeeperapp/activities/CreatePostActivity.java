@@ -8,6 +8,8 @@ import android.text.TextWatcher;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -19,6 +21,7 @@ import goals_keeper.com.goalskeeperapp.activities.base.BaseActivity;
 import goals_keeper.com.goalskeeperapp.adapters.CreatePostAutoCompleteAdapter;
 import goals_keeper.com.goalskeeperapp.api.Api;
 import goals_keeper.com.goalskeeperapp.models.Goal;
+import goals_keeper.com.goalskeeperapp.models.Post;
 import goals_keeper.com.goalskeeperapp.utils.Constants;
 import retrofit.Callback;
 import retrofit.Response;
@@ -38,6 +41,9 @@ public class CreatePostActivity extends BaseActivity {
 
     @Bind(R.id.activity_create_post_button_post)
     Button mPostButton;
+
+    @Bind(R.id.activity_create_post_edit_text_post_body)
+    EditText mBodyEditText;
 
     @Bind(R.id.toolbar)
     Toolbar mToolbar;
@@ -61,11 +67,8 @@ public class CreatePostActivity extends BaseActivity {
 
         mData = new ArrayList<>();
 
-        ArrayAdapter<Goal> adapter = new ArrayAdapter<Goal>(
-                this, android.R.layout.simple_dropdown_item_1line, mData);
-
-//        mGoalsAdapter = new CreatePostAutoCompleteAdapter(this, mData);
-        mGoalSelectAutoCompleteTextView.setAdapter(adapter);
+        mGoalsAdapter = new CreatePostAutoCompleteAdapter(this, mData);
+        mGoalSelectAutoCompleteTextView.setAdapter(mGoalsAdapter);
 
         validateInput();
 
@@ -93,6 +96,31 @@ public class CreatePostActivity extends BaseActivity {
     @OnClick(R.id.activity_create_post_button_cancel)
     public void navigateBack() {
         onBackPressed();
+    }
+
+    @OnClick(R.id.activity_create_post_button_post)
+    void createPost() {
+        int index = arraylistToStringArray(mData).indexOf(mGoalSelectAutoCompleteTextView.getText().toString());
+        int goalId = mData.get(index).getId();
+        String postText = mBodyEditText.getText().toString();
+
+        Post post = new Post();
+        post.setGoalId(goalId);
+        post.setText(postText);
+
+        Api.privateRoutes(this).createPost(goalId, post).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Response<Void> response, Retrofit retrofit) {
+                Toast.makeText(CreatePostActivity.this, "Posted a new story successfully", Toast.LENGTH_LONG).show();
+                onBackPressed();
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+
+            }
+        });
+
     }
 
 

@@ -39,6 +39,10 @@ public class GoalsListingAdapter extends RecyclerView.Adapter<GoalsListingAdapte
     public GoalsListingAdapter(Context mContext, ArrayList<Goal> mData) {
         super();
         this.mData = mData;
+        if (this.mData == null) {
+            this.mData = new ArrayList<>();
+        }
+
         this.mContext = mContext;
         this.mSharedPreferences = mContext.getSharedPreferences(Constants.SHARED_PREFS_KEY, Context.MODE_PRIVATE);
         mUserId = mSharedPreferences.getInt(Constants.USER_ID, -1);
@@ -53,6 +57,10 @@ public class GoalsListingAdapter extends RecyclerView.Adapter<GoalsListingAdapte
             @Override
             public void onResponse(Response<ArrayList<Goal>> response, Retrofit retrofit) {
                 mUserAddedGoals = response.body();
+
+                if (mUserAddedGoals == null) {
+                    mUserAddedGoals = new ArrayList<Goal>();
+                }
             }
 
             @Override
@@ -137,6 +145,10 @@ public class GoalsListingAdapter extends RecyclerView.Adapter<GoalsListingAdapte
 
     public void setData(ArrayList<Goal> mData) {
         this.mData = mData;
+
+        if (this.mData == null) {
+            this.mData = new ArrayList<>();
+        }
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

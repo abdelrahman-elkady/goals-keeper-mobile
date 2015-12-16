@@ -85,6 +85,7 @@ public class TimelineFragment extends android.support.v4.app.Fragment {
 
     private void initData() {
         mData = new ArrayList<>();
+
         int userId = mArguments.getInt(Constants.BUNDLE_USER_ID, -1);
         Api.privateRoutes(getActivity()).userPosts(userId).enqueue(new Callback<ArrayList<Post>>() {
             @Override
