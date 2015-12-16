@@ -1,9 +1,11 @@
 package goals_keeper.com.goalskeeperapp.activities;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 
@@ -15,6 +17,12 @@ import butterknife.OnClick;
 import goals_keeper.com.goalskeeperapp.R;
 import goals_keeper.com.goalskeeperapp.activities.base.BaseActivity;
 import goals_keeper.com.goalskeeperapp.adapters.CreatePostAutoCompleteAdapter;
+import goals_keeper.com.goalskeeperapp.api.Api;
+import goals_keeper.com.goalskeeperapp.models.Goal;
+import goals_keeper.com.goalskeeperapp.utils.Constants;
+import retrofit.Callback;
+import retrofit.Response;
+import retrofit.Retrofit;
 
 /**
  * Created by kady on 05/12/15.
@@ -35,7 +43,9 @@ public class CreatePostActivity extends BaseActivity {
     Toolbar mToolbar;
 
     CreatePostAutoCompleteAdapter mGoalsAdapter;
-    ArrayList<String> mData;
+    ArrayList<Goal> mData;
+
+    SharedPreferences mSharedPreferences;
 
 
     @Override
@@ -44,16 +54,39 @@ public class CreatePostActivity extends BaseActivity {
         setContentView(R.layout.activity_create_post);
         ButterKnife.bind(this);
 
+        mSharedPreferences = getSharedPreferences(Constants.SHARED_PREFS_KEY, MODE_PRIVATE);
+
         mToolbar.setTitle("New Post");
         setSupportActionBar(mToolbar);
 
         mData = new ArrayList<>();
-        initData();
 
-        mGoalsAdapter = new CreatePostAutoCompleteAdapter(this, mData);
-        mGoalSelectAutoCompleteTextView.setAdapter(mGoalsAdapter);
+        ArrayAdapter<Goal> adapter = new ArrayAdapter<Goal>(
+                this, android.R.layout.simple_dropdown_item_1line, mData);
+
+//        mGoalsAdapter = new CreatePostAutoCompleteAdapter(this, mData);
+        mGoalSelectAutoCompleteTextView.setAdapter(adapter);
 
         validateInput();
+
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+
+        Api.privateRoutes(this).getUserGoals(mSharedPreferences.getInt(Constants.USER_ID, -1)).enqueue(new Callback<ArrayList<Goal>>() {
+            @Override
+            public void onResponse(Response<ArrayList<Goal>> response, Retrofit retrofit) {
+                mData = response.body();
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+
+            }
+        });
 
     }
 
@@ -62,13 +95,6 @@ public class CreatePostActivity extends BaseActivity {
         onBackPressed();
     }
 
-    private void initData() {
-        mData.add("Quit smoking");
-        mData.add("Getting A+ in theory of computation");
-        mData.add("Get driving license");
-        mData.add("Eat a banana");
-        mData.add("Win a marathon");
-    }
 
     /**
      * Checks for the goal to be within the goals of the user
@@ -82,7 +108,7 @@ public class CreatePostActivity extends BaseActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (mData.contains(mGoalSelectAutoCompleteTextView.getText().toString())) {
+                if (arraylistToStringArray(mData).contains(mGoalSelectAutoCompleteTextView.getText().toString())) {
                     mPostButton.setEnabled(true);
                 } else {
                     mPostButton.setEnabled(false);
@@ -94,5 +120,14 @@ public class CreatePostActivity extends BaseActivity {
 
             }
         });
+    }
+
+    private ArrayList<String> arraylistToStringArray(ArrayList<Goal> data) {
+        ArrayList<String> arr = new ArrayList<>();
+        for (Goal goal : data) {
+            arr.add(goal.toString());
+        }
+
+        return arr;
     }
 }

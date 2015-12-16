@@ -137,7 +137,7 @@ public class ProfileActivity extends BaseActivity {
                     mAgeTextView.setVisibility(View.VISIBLE);
                     mAgeTextView.setText(me.getDateOfBirth());
                 }
-                
+
             }
 
             @Override

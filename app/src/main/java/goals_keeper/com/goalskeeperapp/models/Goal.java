@@ -63,6 +63,11 @@ public class Goal {
     }
 
     @Override
+    public String toString() {
+        return this.title;
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (o instanceof Goal) {
             return ((Goal) o).getId() == this.getId();
