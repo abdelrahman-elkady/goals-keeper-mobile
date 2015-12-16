@@ -55,12 +55,29 @@ public class GoalsListingAdapter extends RecyclerView.Adapter<GoalsListingAdapte
         holder.addGoalImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
+                Goal mGoal = mData.get(position);
+                int userId = mSharedPreferences.getInt(Constants.USER_ID, -1);
                 if (v.isActivated()) {
-                    //TODO Remove the goal
-                    v.setActivated(false); // Here we need to keep the goals as it's not my goals
+                    Api.privateRoutes(mContext).removeGoalFromUserGoals(userId, mGoal.getId()).enqueue(new Callback<Void>() {
+                        @Override
+                        public void onResponse(Response<Void> response, Retrofit retrofit) {
+                            if (response.code() == 200) {
+                                Toast.makeText(mContext, "Goal removed successfully", Toast.LENGTH_LONG).show();
+                                v.setActivated(false); // Here we need to keep the goals as it's not my goals
+                            } else {
+                                Toast.makeText(mContext, "Something went wrong", Toast.LENGTH_SHORT).show();
+                                Log.e("Remove GOAL", response.code() + ": " + response.message());
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Throwable t) {
+                            Toast.makeText(mContext, "Failed to remove goal", Toast.LENGTH_SHORT).show();
+                            Log.e("CREATE GOAL", t.getMessage());
+                        }
+                    });
+
                 } else {
-                    Goal mGoal = mData.get(position);
-                    int userId = mSharedPreferences.getInt(Constants.USER_ID, -1);
                     Api.privateRoutes(mContext).addGoalToUserGoals(userId, mGoal).enqueue(new Callback<Void>() {
                         @Override
                         public void onResponse(Response<Void> response, Retrofit retrofit) {

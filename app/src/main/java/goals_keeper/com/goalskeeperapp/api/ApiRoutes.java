@@ -41,6 +41,6 @@ public interface ApiRoutes {
     @POST("/api/users/{id}/goals")
     public Call<Void> addGoalToUserGoals(@Path("id") int userId, @Body Goal goal);
 
-    @DELETE("/api/users/{id}/goals")
-    public Call<Void> removeGoalFromUserGoals(@Path("id") int userId,@Body Goal goal);
+    @DELETE("/api/users/{id}/goals/{goal_id}")
+    public Call<Void> removeGoalFromUserGoals(@Path("id") int userId, @Path("goal_id") int goalId);
 }
