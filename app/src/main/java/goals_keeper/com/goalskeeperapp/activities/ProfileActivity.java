@@ -108,14 +108,14 @@ public class ProfileActivity extends BaseActivity {
 
                 mNameTextView.setText(me.getName());
 
-                if (me.getCity() == null) {
+                if (me.getCity() == null || me.getCity().isEmpty()) {
                     mCityTextView.setVisibility(View.GONE);
                 } else {
                     mCityTextView.setVisibility(View.VISIBLE);
                     mCityTextView.setText(me.getCity());
                 }
 
-                if (me.getCountry() == null) {
+                if (me.getCountry() == null || me.getCountry().isEmpty()) {
                     mCountryTextView.setVisibility(View.GONE);
                 } else {
                     mCountryTextView.setVisibility(View.VISIBLE);
@@ -129,7 +129,7 @@ public class ProfileActivity extends BaseActivity {
                     mGenderTextView.setText(me.getGender() ? "Male" : "Female");
                 }
 
-                if (me.getDateOfBirth() == null) {
+                if (me.getDateOfBirth() == null || me.getDateOfBirth().isEmpty()) {
                     mAgeTextView.setVisibility(View.GONE);
                 } else {
                     mAgeTextView.setVisibility(View.VISIBLE);

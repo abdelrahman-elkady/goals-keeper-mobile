@@ -67,7 +67,9 @@ public class ProfileEditActivity extends BaseActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
         mSharedPreferences = getSharedPreferences(Constants.SHARED_PREFS_KEY, Context.MODE_PRIVATE);
-        int userId = Integer.parseInt(mSharedPreferences.getString(Constants.USER_ID, null));
+
+        int userId = mSharedPreferences.getInt(Constants.USER_ID, -1);
+
         Api.privateRoutes(this).showUser(userId).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Response<User> response, Retrofit retrofit) {
@@ -94,8 +96,9 @@ public class ProfileEditActivity extends BaseActivity {
             mUser.setLastName(editTextLastName.getText().toString());
             mUser.setCity(editTextCity.getText().toString());
             mUser.setCountry(editTextCountry.getText().toString());
+            int userId = mSharedPreferences.getInt(Constants.USER_ID, -1);
 
-            Api.privateRoutes(this).editUser(mUser).enqueue(new Callback<Void>() {
+            Api.privateRoutes(this).editUser(userId,mUser).enqueue(new Callback<Void>() {
                 @Override
                 public void onResponse(Response<Void> response, Retrofit retrofit) {
                     if (response.code() == 200) {

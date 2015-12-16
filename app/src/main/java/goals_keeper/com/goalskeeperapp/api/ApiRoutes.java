@@ -32,7 +32,7 @@ public interface ApiRoutes {
     public Call<User> showUser(@Path("id") int userId);
 
     @PUT("/api/users/{id}")
-    public Call<Void> editUser(@Body User user);
+    public Call<Void> editUser(@Path("id") int userId,@Body User user);
 
     @POST("/api/authentication")
     public Call<User> authenticate(@Body Token token);
