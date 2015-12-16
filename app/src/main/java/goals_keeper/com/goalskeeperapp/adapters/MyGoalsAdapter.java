@@ -41,7 +41,13 @@ public class MyGoalsAdapter extends RecyclerView.Adapter<MyGoalsAdapter.ViewHold
     }
 
     public void setmData(ArrayList<Goal> mData) {
+
         this.mData = mData;
+
+        if (this.mData == null) {
+            this.mData = new ArrayList<>();
+        }
+
     }
 
     @Override

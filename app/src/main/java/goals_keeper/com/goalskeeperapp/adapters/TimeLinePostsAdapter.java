@@ -40,7 +40,7 @@ public class TimeLinePostsAdapter extends RecyclerView.Adapter<TimeLinePostsAdap
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.postPreviewTextView.setText(mData.get(position).getContent());
+        holder.postPreviewTextView.setText(mData.get(position).getText());
 
         likePost(holder);
 

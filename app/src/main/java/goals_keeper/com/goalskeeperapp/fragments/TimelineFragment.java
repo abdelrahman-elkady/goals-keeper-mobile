@@ -79,11 +79,11 @@ public class TimelineFragment extends android.support.v4.app.Fragment {
 
     private void initData() {
         mData = new ArrayList<>();
-        mData.add(new Post(null, getResources().getString(R.string.lorem_ipsum)));
-        mData.add(new Post(null, "Hello World the world is world without any world !"));
-        mData.add(new Post(null, getResources().getString(R.string.lorem_ipsum)));
-        mData.add(new Post(null, "Bandicoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooots"));
-        mData.add(new Post(null, getResources().getString(R.string.lorem_ipsum)));
+//        mData.add(new Post(null, getResources().getString(R.string.lorem_ipsum)));
+//        mData.add(new Post(null, "Hello World the world is world without any world !"));
+//        mData.add(new Post(null, getResources().getString(R.string.lorem_ipsum)));
+//        mData.add(new Post(null, "Bandicoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooots"));
+//        mData.add(new Post(null, getResources().getString(R.string.lorem_ipsum)));
     }
 
     @OnClick(R.id.fab_add_post)

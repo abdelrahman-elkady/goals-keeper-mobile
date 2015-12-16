@@ -74,7 +74,9 @@ public class MyGoalsFragment extends android.support.v4.app.Fragment {
                 mData = response.body();
                 mGoalsAdapter.setmData(mData);
                 mGoalsAdapter.notifyDataSetChanged();
-                Log.d("GOALS LIST", response.body().toString());
+                if (mData != null) {
+                    Log.d("GOALS LIST", mData.toString());
+                }
             }
 
             @Override
