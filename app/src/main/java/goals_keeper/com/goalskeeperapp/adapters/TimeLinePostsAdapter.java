@@ -26,10 +26,14 @@ public class TimeLinePostsAdapter extends RecyclerView.Adapter<TimeLinePostsAdap
     ArrayList<Post> mData;
     Context mContext;
 
-    public TimeLinePostsAdapter(Context mContext, ArrayList<Post> mData) {
+    public TimeLinePostsAdapter(Context mContext) {
         super();
-        this.mData = mData;
+        this.mData = new ArrayList<>();
         this.mContext = mContext;
+    }
+
+    public void setmData(ArrayList<Post> mData) {
+        this.mData = mData;
     }
 
     @Override

@@ -94,6 +94,7 @@ public class UserProfileFragment extends Fragment {
                 Bundle bundle = new Bundle();
                 bundle.putString(Constants.TOOLBAR_TITLE, getArguments().getString(Constants.BUNDLE_USER_NAME) + "'s Timeline");
                 bundle.putInt(Constants.TIMELINE_MODE, Constants.USER_TIMELINE);
+                bundle.putInt(Constants.BUNDLE_USER_ID, mBundle.getInt(Constants.BUNDLE_USER_ID, -1));
 
                 TimelineFragment timelineFragment = new TimelineFragment();
                 timelineFragment.setArguments(bundle);

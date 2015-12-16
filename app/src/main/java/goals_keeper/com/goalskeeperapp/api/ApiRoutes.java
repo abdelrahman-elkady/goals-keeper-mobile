@@ -4,6 +4,7 @@ package goals_keeper.com.goalskeeperapp.api;
 import java.util.ArrayList;
 
 import goals_keeper.com.goalskeeperapp.models.Goal;
+import goals_keeper.com.goalskeeperapp.models.Post;
 import goals_keeper.com.goalskeeperapp.models.Token;
 import goals_keeper.com.goalskeeperapp.models.User;
 import retrofit.Call;
@@ -58,5 +59,8 @@ public interface ApiRoutes {
 
     @DELETE("/api/users/{id}/followings/{followed_id}")
     public Call<Void> unFollowUser(@Path("id") int userId, @Path("followed_id") int followedId);
+
+    @GET("/api/users/{id}/posts")
+    public Call<ArrayList<Post>> userPosts(@Path("id") int userId);
 
 }

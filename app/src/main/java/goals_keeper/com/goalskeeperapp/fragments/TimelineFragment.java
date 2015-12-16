@@ -15,6 +15,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -24,9 +25,13 @@ import butterknife.OnClick;
 import goals_keeper.com.goalskeeperapp.R;
 import goals_keeper.com.goalskeeperapp.activities.CreatePostActivity;
 import goals_keeper.com.goalskeeperapp.adapters.TimeLinePostsAdapter;
+import goals_keeper.com.goalskeeperapp.api.Api;
 import goals_keeper.com.goalskeeperapp.models.Post;
 import goals_keeper.com.goalskeeperapp.utils.Constants;
 import goals_keeper.com.goalskeeperapp.utils.Helpers;
+import retrofit.Callback;
+import retrofit.Response;
+import retrofit.Retrofit;
 
 /**
  * Created by kady on 25/11/15.
@@ -53,7 +58,6 @@ public class TimelineFragment extends android.support.v4.app.Fragment {
 
         ButterKnife.bind(this, view);
         setHasOptionsMenu(true);
-        initData();
 
         mArguments = getArguments();
         if (mArguments == null) {
@@ -66,8 +70,10 @@ public class TimelineFragment extends android.support.v4.app.Fragment {
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         mPostsRecyclerView.setLayoutManager(layoutManager);
 
-        mTimeLinePostsAdapter = new TimeLinePostsAdapter(getActivity(), mData);
+        mTimeLinePostsAdapter = new TimeLinePostsAdapter(getActivity());
         mPostsRecyclerView.setAdapter(mTimeLinePostsAdapter);
+
+        initData();
 
         return view;
     }
@@ -79,11 +85,22 @@ public class TimelineFragment extends android.support.v4.app.Fragment {
 
     private void initData() {
         mData = new ArrayList<>();
-        mData.add(new Post(null, getResources().getString(R.string.lorem_ipsum)));
-        mData.add(new Post(null, "Hello World the world is world without any world !"));
-        mData.add(new Post(null, getResources().getString(R.string.lorem_ipsum)));
-        mData.add(new Post(null, "Bandicoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooots"));
-        mData.add(new Post(null, getResources().getString(R.string.lorem_ipsum)));
+        int userId = mArguments.getInt(Constants.BUNDLE_USER_ID, -1);
+        Api.privateRoutes(getActivity()).userPosts(userId).enqueue(new Callback<ArrayList<Post>>() {
+            @Override
+            public void onResponse(Response<ArrayList<Post>> response, Retrofit retrofit) {
+                mData = response.body();
+                mTimeLinePostsAdapter.setmData(mData);
+                mTimeLinePostsAdapter.notifyDataSetChanged();
+                Log.d("POSTS LIST", response.body().toString());
+            }
+
+            @Override
+            public void onFailure(Throwable t) {
+                Toast.makeText(getActivity(), "Failed to retrieve posts list", Toast.LENGTH_SHORT).show();
+                Log.e("POSTS LIST", t.getMessage());
+            }
+        });
     }
 
     @OnClick(R.id.fab_add_post)
