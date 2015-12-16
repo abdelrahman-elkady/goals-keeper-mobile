@@ -2,8 +2,14 @@ package goals_keeper.com.goalskeeperapp.utils;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+
+import java.io.IOException;
+
+import goals_keeper.com.goalskeeperapp.api.Api;
+import goals_keeper.com.goalskeeperapp.models.User;
 
 /**
  * Created by kady on 01/12/15.
@@ -39,4 +45,5 @@ public class Helpers {
             Log.e("GOALS_KEEPER", "NullPointerException while getting ActionBar, make sure you set ActionBar in your activity");
         }
     }
+
 }

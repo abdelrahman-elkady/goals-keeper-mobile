@@ -76,7 +76,7 @@ public class ProfileEditActivity extends BaseActivity {
             @Override
             public void onResponse(Response<User> response, Retrofit retrofit) {
                 mUser = response.body();
-                
+
                 Picasso.with(ProfileEditActivity.this).load(mUser.getProfilePicture()).into(mEditImageView);
                 editTextFirstName.setText(mUser.getFirstName());
                 editTextLastName.setText(mUser.getLastName());

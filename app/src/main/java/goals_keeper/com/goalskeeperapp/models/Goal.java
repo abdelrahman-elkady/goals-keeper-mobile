@@ -7,6 +7,7 @@ package goals_keeper.com.goalskeeperapp.models;
 public class Goal {
 
     private int id;
+
     private String title;
     private String description;
 

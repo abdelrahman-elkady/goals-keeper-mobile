@@ -24,5 +24,5 @@
     <string name="post">Post</string>
     <string name="comment">Comment</string>
     <string name="goal_description_hint">Tell people more about your goal</string>
-    <string name="api_base_url">http://10.0.2.2:3000/api/</string>
+    <string name="api_base_url">http://10.0.2.2:3000</string>
 </resources>
