@@ -94,4 +94,9 @@ public class MyGoalsFragment extends android.support.v4.app.Fragment {
         startActivity(intent);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        initData();
+    }
 }

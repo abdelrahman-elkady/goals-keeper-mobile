@@ -67,7 +67,9 @@ public class MyGoalsAdapter extends RecyclerView.Adapter<MyGoalsAdapter.ViewHold
                         @Override
                         public void onResponse(Response<Void> response, Retrofit retrofit) {
                             if (response.code() == 200) {
-                                Toast.makeText(mContext, "Goal removed successfully", Toast.LENGTH_LONG).show();
+                                mData.remove(position);
+                                notifyItemRemoved(position);
+                                notifyItemRangeChanged(position, mData.size());
                                 v.setActivated(false); // Here we need to keep the goals as it's not my goals
                             } else {
                                 Toast.makeText(mContext, "Something went wrong", Toast.LENGTH_SHORT).show();
@@ -81,13 +83,11 @@ public class MyGoalsAdapter extends RecyclerView.Adapter<MyGoalsAdapter.ViewHold
                             Log.e("CREATE GOAL", t.getMessage());
                         }
                     });
-                    mData.remove(position);
-                    notifyItemRemoved(position);
-                    notifyItemRangeChanged(position, mData.size());
+
                 } else {
+                    v.setActivated(true);
                     // By Default ALL the goals here are added to my goals so no need to have this case, just for illustration without data
                     //TODO: Add that cool goal !
-                    v.setActivated(true);
                 }
             }
         });
@@ -108,6 +108,7 @@ public class MyGoalsAdapter extends RecyclerView.Adapter<MyGoalsAdapter.ViewHold
             goalTitle = (TextView) itemView.findViewById(R.id.item_goal_text_view_goal_title);
             goalDescription = (TextView) itemView.findViewById(R.id.goal_description);
             addGoalImageButton = (ImageButton) itemView.findViewById(R.id.item_goal_image_view_add_goal);
+            addGoalImageButton.setActivated(true);
 
             itemView.setOnClickListener(this);
         }
